@@ -104,6 +104,8 @@ export default function App() {
         return <BecomePartner navigate={navigate} />;
       case "trainer-onboarding":
         return <TrainerOnboarding navigate={navigate} />;
+      case "consultant-onboarding":
+        return <TrainerOnboarding navigate={navigate} />;
       case "auditor-onboarding":
         return <AuditorOnboarding navigate={navigate} />;
       default:
