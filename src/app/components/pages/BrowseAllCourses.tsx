@@ -57,7 +57,7 @@ export function BrowseAllCourses({ navigate, defaultTrack }: Props) {
         <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
           <div>
             <p style={{ fontSize: 12, fontWeight: 600, color: "#9BB5D4", letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: 12 }}>
-              Idatum Academy
+              Training Academy
             </p>
             <h1 style={{ fontSize: 40, fontWeight: 700, color: "#fff", lineHeight: 1.2, letterSpacing: "-0.8px", marginBottom: 12 }}>
               Browse All Courses

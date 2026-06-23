@@ -162,7 +162,7 @@ export function Footer({ navigate }: FooterProps) {
                 marginBottom: 16,
               }}
             >
-              Idatum Academy
+              Training Academy
             </p>
             {[
               {

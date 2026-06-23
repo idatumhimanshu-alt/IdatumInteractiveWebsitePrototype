@@ -129,7 +129,7 @@ export function TrainingTracks({ navigate }: Props) {
               marginBottom: 12,
             }}
           >
-            Idatum Academy
+            Training Academy
           </p>
           <h1
             style={{

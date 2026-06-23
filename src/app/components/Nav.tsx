@@ -227,7 +227,7 @@ export function Nav({ navigate, current }: NavProps) {
             )}
           </div>
 
-          {/* Idatum Academy dropdown */}
+          {/* Training Academy dropdown */}
           <div style={{ position: "relative" }}>
             <button
               onMouseEnter={() => {
@@ -258,7 +258,7 @@ export function Nav({ navigate, current }: NavProps) {
                 gap: 4,
               }}
             >
-              Idatum Academy
+              Training Academy
               <svg
                 width="12"
                 height="12"

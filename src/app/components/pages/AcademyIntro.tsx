@@ -30,10 +30,10 @@ export function AcademyIntro({ navigate }: Props) {
               <span style={{ fontSize: 12, color: "#C5D8EE", fontWeight: 500 }}>Professional Training Programs</span>
             </div>
             <h1 style={{ fontSize: 44, fontWeight: 700, color: "#fff", lineHeight: 1.2, letterSpacing: "-0.8px", marginBottom: 20 }}>
-              Idatum Academy: Training That Builds Real Competency
+              Training Academy: Training That Builds Real Competency
             </h1>
             <p style={{ fontSize: 17, color: "#C5D8EE", lineHeight: 1.8, marginBottom: 40 }}>
-              Idatum Academy delivers certification-aligned training across the most critical compliance and workplace domains. Led by active practitioners — not just trainers — every course is built around what your team will actually encounter on the job.
+              Training Academy delivers certification-aligned training across the most critical compliance and workplace domains. Led by active practitioners — not just trainers — every course is built around what your team will actually encounter on the job.
             </p>
             <div style={{ display: "flex", gap: 12 }}>
               <button
@@ -148,7 +148,7 @@ export function AcademyIntro({ navigate }: Props) {
           </div>
           <div>
             <h2 style={{ fontSize: 32, fontWeight: 700, color: "#0D2B5A", letterSpacing: "-0.5px", marginBottom: 20 }}>
-              Why Train with Idatum Academy?
+              Why Train with Training Academy?
             </h2>
             {[
               { title: "Practitioner-Led", desc: "Instructors are active compliance professionals — not career trainers — who bring real-world scenarios into every session." },
