@@ -1,175 +1,117 @@
-import { motion } from "motion/react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import {
+  Award,
+  ShieldCheck,
+  Lock,
+  Server,
+  GraduationCap,
+  BookOpen,
+  ClipboardCheck,
+  ArrowRight,
+  CheckCircle2,
+  Briefcase,
+} from "lucide-react";
 
 type Page = string;
 interface HeroProps {
-  navigate: (page: Page) => void;
+  navigate: (page: Page, state?: Record<string, string>) => void;
 }
 
-const domainColors: Record<
-  string,
-  { color: string; bg: string }
-> = {
-  POSH: { color: "#1A5EA8", bg: "#EEF4FF" },
-  ISMS: { color: "#0D6B4E", bg: "#ECFDF5" },
-  "SOC 2": { color: "#6B3DAB", bg: "#F5F0FF" },
-  ISO: { color: "#8B4513", bg: "#FFF7ED" },
-  ITGC: { color: "#B8370A", bg: "#FFF1EE" },
-  Audit: { color: "#2B6A7C", bg: "#EFF8FC" },
-};
+const clientLogos = [
+  { name: "Schneider", style: { fontWeight: 800, letterSpacing: "-0.5px" } },
+  { name: "TATA", style: { fontWeight: 800, color: "#1A5EA8" } },
+  { name: "wipro", style: { fontWeight: 700, fontStyle: "italic" } },
+  { name: "adani", style: { fontWeight: 600, letterSpacing: "0.5px" } },
+];
 
-const services = [
+const consultingItems = [
   {
-    domain: "POSH",
-    tagline:
-      "Ensure a safe, inclusive workplace with comprehensive POSH compliance and training.",
-    page: "training-tracks",
-    icon: (
-      <svg
-        width="22"
-        height="22"
-        viewBox="0 0 24 24"
-        fill="none"
-      >
-        <path
-          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
+    id: "infosec",
+    title: "Information Security & Compliance",
+    subtitle:
+      "ISO 27001:2022 Implementation, ISO 27701 Privacy, TISAX & Internal Audits.",
+    icon: <ShieldCheck size={28} strokeWidth={1.5} />,
+    track: "InfoSec",
   },
   {
-    domain: "ISMS",
-    tagline:
-      "Protect your information assets with a robust ISO 27001-aligned security management system.",
-    page: "qa-intro",
-    icon: (
-      <svg
-        width="22"
-        height="22"
-        viewBox="0 0 24 24"
-        fill="none"
-      >
-        <path
-          d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
+    id: "datacenter",
+    title: "Data Center Consulting",
+    subtitle:
+      "Governance, Operations Management, Policies, SOPs & Capacity Planning.",
+    icon: <Server size={28} strokeWidth={1.5} />,
+    track: "Data Center",
   },
   {
-    domain: "SOC 2",
-    tagline:
-      "Build client trust through independent, rigorous SOC 2 assessment and readiness support.",
-    page: "qa-intro",
-    icon: (
-      <svg
-        width="22"
-        height="22"
-        viewBox="0 0 24 24"
-        fill="none"
-      >
-        <path
-          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
+    id: "quality",
+    title: "Quality & Business Excellence",
+    subtitle:
+      "ISO 9001, ISO 14001, ISO 22301, CMMI Maturity Levels & Process Improvement.",
+    icon: <Award size={28} strokeWidth={1.5} />,
+    track: "Quality",
   },
   {
-    domain: "ISO",
-    tagline:
-      "Achieve global recognition with expert ISO certification guidance and audit preparation.",
-    page: "qa-intro",
-    icon: (
-      <svg
-        width="22"
-        height="22"
-        viewBox="0 0 24 24"
-        fill="none"
-      >
-        <path
-          d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
-  },
-  {
-    domain: "ITGC",
-    tagline:
-      "Strengthen your digital controls with precision IT General Controls testing and audit.",
-    page: "qa-intro",
-    icon: (
-      <svg
-        width="22"
-        height="22"
-        viewBox="0 0 24 24"
-        fill="none"
-      >
-        <path
-          d="M5 12H3m18 0h-2M12 5V3m0 18v-2m4.22-13.78l-1.42 1.42M5.64 18.36l-1.42 1.42M18.36 18.36l-1.42-1.42M6.34 6.34L4.92 4.92M12 8a4 4 0 100 8 4 4 0 000-8z"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
-  },
-  {
-    domain: "Audit",
-    tagline:
-      "Maintain operational excellence through thorough internal and external audit advisory services.",
-    page: "browse-courses",
-    icon: (
-      <svg
-        width="22"
-        height="22"
-        viewBox="0 0 24 24"
-        fill="none"
-      >
-        <path
-          d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    ),
+    id: "cyber",
+    title: "Cyber Security Services",
+    subtitle:
+      "Risk Assessment, Security Policies, Third-Party Risk & Compliance Reviews.",
+    icon: <Lock size={28} strokeWidth={1.5} />,
+    track: "Cyber",
   },
 ];
 
-const trustItems = [
-  { value: "Trusted Since 2012", label: "" },
-  { value: "500+", label: "Organizations Served" },
-  { value: "98%", label: "Compliance Success Rate" },
-  { value: "50+", label: "Expert Practitioners" },
+const trainingItems = [
+  {
+    id: "iso-training",
+    title: "ISO & TISAX Awareness",
+    subtitle:
+      "Comprehensive workforce awareness training for all major ISO standards & TISAX.",
+    icon: <GraduationCap size={28} strokeWidth={1.5} />,
+    track: "ISO Training",
+  },
+  {
+    id: "auditor-training",
+    title: "Internal Auditor Courses",
+    subtitle:
+      "1-day and 2-3 day internal auditor certification courses conducted by experts.",
+    icon: <ClipboardCheck size={28} strokeWidth={1.5} />,
+    track: "Auditor Course",
+  },
+  {
+    id: "dc-training",
+    title: "Data Center Operations Training",
+    subtitle:
+      "Specialized operational training covering uptime, continuity, and KPI frameworks.",
+    icon: <Server size={28} strokeWidth={1.5} />,
+    track: "DC Training",
+  },
+  {
+    id: "risk-workshops",
+    title: "Risk Management Workshops",
+    subtitle:
+      "Practical workshops focused on risk identification, assessment, and treatment.",
+    icon: <CheckCircle2 size={28} strokeWidth={1.5} />,
+    track: "Risk Workshop",
+  },
 ];
 
 export function Hero({ navigate }: HeroProps) {
+  const [activeTab, setActiveTab] = useState<"consulting" | "training">(
+    "consulting",
+  );
+
+  const currentItems =
+    activeTab === "consulting" ? consultingItems : trainingItems;
+
   return (
-    <div style={{ fontFamily: "var(--font-sans)" }}>
-      {/* ── Hero ── */}
+    <div style={{ fontFamily: "var(--font-sans)", background: "#fff" }}>
+      {/* ── 1. Hero Section (Rich Navy Blue Theme) ── */}
       <section
         style={{
-          background:
-            "linear-gradient(135deg, #0D2B5A 0%, #1A4A8A 60%, #1E5FAF 100%)",
-          minHeight: "100vh",
-          paddingTop: 64,
+          background: "linear-gradient(135deg, #102847 0%, #15335A 100%)", // Applied the rich navy blue
+          padding: "140px 40px 80px",
           display: "flex",
+          flexDirection: "column",
           alignItems: "center",
           position: "relative",
           overflow: "hidden",
@@ -177,568 +119,429 @@ export function Hero({ navigate }: HeroProps) {
       >
         <div
           style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage: `radial-gradient(circle at 70% 50%, rgba(26,94,168,0.3) 0%, transparent 60%),
-                              radial-gradient(circle at 20% 80%, rgba(13,43,90,0.5) 0%, transparent 50%)`,
-          }}
-        />
-
-        <div
-          style={{
-            maxWidth: 1280,
+            maxWidth: 1000,
             margin: "0 auto",
-            padding: "80px 40px",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 80,
-            alignItems: "center",
+            textAlign: "center",
             position: "relative",
             zIndex: 1,
             width: "100%",
           }}
         >
-          {/* Left */}
-          <div>
-            <h1
-              style={{
-                fontSize: 52,
-                fontWeight: 700,
-                color: "#fff",
-                lineHeight: 1.15,
-                letterSpacing: "-1px",
-                marginBottom: 16,
-                maxWidth: 560,
-              }}
-            >
-              Your Partner in Compliance, Quality & Training
-            </h1>
-            <p
-              style={{
-                fontSize: 13,
-                color: "#9BB5D4",
-                letterSpacing: "0.5px",
-                marginBottom: 16,
-                fontWeight: 500,
-              }}
-            >
-              POSH · ISMS · SOC 2 · ISO · ITGC · Audit — for
-              Indian organisations
-            </p>
-
-            <p
-              style={{
-                fontSize: 18,
-                color: "#C5D8EE",
-                lineHeight: 1.7,
-                marginBottom: 44,
-                maxWidth: 480,
-              }}
-            >
-              Idatum helps organizations build lasting
-              compliance frameworks, robust QA systems, and a
-              skilled workforce — all through a single, trusted
-              partner relationship.
-            </p>
-
-            {/* CTAs — Partner with Us is primary */}
-            <div
-              style={{
-                display: "flex",
-                gap: 12,
-                flexWrap: "wrap",
-              }}
-            >
-              <button
-                onClick={() => navigate("partner-intro")}
-                style={{
-                  background: "#fff",
-                  color: "#0D2B5A",
-                  border: "none",
-                  cursor: "pointer",
-                  padding: "14px 28px",
-                  fontSize: 15,
-                  fontWeight: 700,
-                  borderRadius: 6,
-                  transition: "all 0.15s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "#F1F5FA";
-                  e.currentTarget.style.transform =
-                    "translateY(-1px)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "#fff";
-                  e.currentTarget.style.transform =
-                    "translateY(0)";
-                }}
-              >
-                Partner with Us
-              </button>
-
-              <button
-                onClick={() => navigate("qa-intro")}
-                style={{
-                  background: "transparent",
-                  color: "#fff",
-                  border: "2px solid rgba(255,255,255,0.4)",
-                  cursor: "pointer",
-                  padding: "14px 28px",
-                  fontSize: 15,
-                  fontWeight: 600,
-                  borderRadius: 6,
-                  transition: "all 0.15s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "#fff";
-                  e.currentTarget.style.background =
-                    "rgba(255,255,255,0.08)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor =
-                    "rgba(255,255,255,0.4)";
-                  e.currentTarget.style.background =
-                    "transparent";
-                }}
-              >
-                Explore Idatum QA
-              </button>
-
-              <button
-                onClick={() => navigate("academy-intro")}
-                style={{
-                  background: "transparent",
-                  color: "#fff",
-                  border: "2px solid rgba(255,255,255,0.4)",
-                  cursor: "pointer",
-                  padding: "14px 28px",
-                  fontSize: 15,
-                  fontWeight: 600,
-                  borderRadius: 6,
-                  transition: "all 0.15s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "#fff";
-                  e.currentTarget.style.background =
-                    "rgba(255,255,255,0.08)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor =
-                    "rgba(255,255,255,0.4)";
-                  e.currentTarget.style.background =
-                    "transparent";
-                }}
-              >
-                Browse Courses
-              </button>
-            </div>
-
-            <button
-              onClick={() => navigate("choose")}
-              style={{
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                padding: "12px 0 0",
-                fontSize: 13,
-                color: "#9BB5D4",
-                fontFamily: "var(--font-sans)",
-                display: "flex",
-                alignItems: "center",
-                gap: 6,
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.color = "#C5D8EE")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.color = "#9BB5D4")
-              }
-            >
-              Not sure where to start? Let us guide you
-              <svg
-                width="13"
-                height="13"
-                viewBox="0 0 24 24"
-                fill="none"
-              >
-                <path
-                  d="M5 12h14M12 5l7 7-7 7"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
-
-          {/* Right — corporate image, no floating card */}
+          {/* Tagline Placeholder */}
           <div
             style={{
-              borderRadius: 12,
-              overflow: "hidden",
-              boxShadow: "0 32px 64px rgba(0,0,0,0.3)",
-              position: "relative",
+              display: "flex",
+              justifyContent: "center",
+              marginBottom: 24,
             }}
           >
-            <img
-              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&h=500&fit=crop&auto=format"
-              alt="Corporate compliance team in a professional meeting"
+            <span
               style={{
-                display: "block",
-                width: "100%",
-                height: 420,
-                objectFit: "cover",
+                fontSize: 12,
+                fontWeight: 700,
+                color: "#64FFDA",
+                letterSpacing: "1px",
+                textTransform: "uppercase",
+                background: "rgba(100, 255, 218, 0.1)",
+                border: "1px solid rgba(100, 255, 218, 0.2)",
+                padding: "6px 16px",
+                borderRadius: 999,
               }}
-            />
-            <div
+            >
+              [Placeholder: HIPAA · ISO 27001 · SOC 2 · GDPR · PCI DSS]
+            </span>
+          </div>
+
+          <h1
+            style={{
+              fontSize: 64,
+              fontWeight: 800,
+              color: "#ffffff",
+              lineHeight: 1.15,
+              letterSpacing: "-1.5px",
+              marginBottom: 24,
+            }}
+          >
+            Building Trust.
+            <br />
+            Enhancing Business.
+            <br />
+            <span style={{ color: "#64FFDA" }}>Securing Tomorrow.</span>
+          </h1>
+
+          <p
+            style={{
+              fontSize: 18,
+              color: "#B0C4DE",
+              lineHeight: 1.6,
+              marginBottom: 48,
+              maxWidth: 700,
+              margin: "0 auto 48px",
+              fontWeight: 400,
+            }}
+          >
+            Enterprise Advisory for Governance, Risk, Compliance, Security & AI
+          </p>
+
+          {/* CTAs */}
+          <div
+            style={{
+              display: "flex",
+              gap: 16,
+              justifyContent: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            <button
+              onClick={() => navigate("contact")}
               style={{
-                position: "absolute",
-                inset: 0,
-                background:
-                  "linear-gradient(to bottom, transparent 60%, rgba(13,43,90,0.35) 100%)",
+                background: "#ffffff",
+                color: "#15335A",
+                border: "none",
+                cursor: "pointer",
+                padding: "16px 32px",
+                fontSize: 16,
+                fontWeight: 700,
+                borderRadius: 6,
+                transition: "background 0.2s ease",
               }}
-            />
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.background = "#F1F5FA")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.background = "#ffffff")
+              }
+            >
+              Book a Strategy Call
+            </button>
+
+            <button
+              onClick={() => navigate("qa-intro")}
+              style={{
+                background: "transparent",
+                color: "#ffffff",
+                border: "1px solid rgba(255,255,255,0.4)",
+                cursor: "pointer",
+                padding: "16px 32px",
+                fontSize: 16,
+                fontWeight: 600,
+                borderRadius: 6,
+                transition: "all 0.2s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "rgba(255,255,255,0.1)";
+                e.currentTarget.style.borderColor = "#ffffff";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "transparent";
+                e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)";
+              }}
+            >
+              Explore Services
+            </button>
           </div>
         </div>
       </section>
 
-      {/* ── Trust Bar ── */}
+      {/* ── 2. Client Logos Strip ── */}
       <section
         style={{
-          background: "#fff",
-          borderTop: "1px solid #D1DCE8",
-          borderBottom: "1px solid #D1DCE8",
-          padding: "20px 40px",
+          background: "#ffffff",
+          borderBottom: "1px solid #EEF2F7",
+          padding: "32px 40px",
         }}
       >
         <div
           style={{
-            maxWidth: 1280,
+            maxWidth: 1000,
             margin: "0 auto",
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
-            gap: 0,
+            justifyContent: "space-between",
             flexWrap: "wrap",
+            gap: 32,
           }}
         >
-          {trustItems.map((item, i) => (
+          {clientLogos.map((client, index) => (
             <div
-              key={item.value}
-              style={{ display: "flex", alignItems: "center" }}
+              key={index}
+              style={{
+                fontSize: 24,
+                color: "#8892B0",
+                filter: "grayscale(100%) opacity(70%)",
+                transition: "all 0.3s ease",
+                cursor: "default",
+                ...client.style,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.filter = "grayscale(0%) opacity(100%)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.filter = "grayscale(100%) opacity(70%)";
+              }}
             >
-              <div
-                style={{
-                  textAlign: "center",
-                  padding: "0 32px",
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: 16,
-                    fontWeight: 700,
-                    color: "#0D2B5A",
-                  }}
-                >
-                  {item.value}
-                </span>
-                {item.label && (
-                  <span
-                    style={{
-                      fontSize: 14,
-                      color: "#4A6080",
-                      marginLeft: 6,
-                    }}
-                  >
-                    {item.label}
-                  </span>
-                )}
-              </div>
-              {i < trustItems.length - 1 && (
-                <div
-                  style={{
-                    width: 1,
-                    height: 24,
-                    background: "#D1DCE8",
-                  }}
-                />
-              )}
+              {client.name}
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── Client Marquee Strip ── */}
-      <section
-        style={{
-          background: "#F8FAFC",
-          borderTop: "1px solid #D1DCE8",
-          borderBottom: "1px solid #D1DCE8",
-          padding: "16px 0",
-          overflow: "hidden",
-        }}
-      >
-        <style>{`
-          @keyframes idatumScrollLeft {
-            0%   { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-          }
-          .idatum-marquee { display: flex; width: max-content; animation: idatumScrollLeft 38s linear infinite; }
-          .idatum-marquee:hover { animation-play-state: paused; }
-        `}</style>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <div
-            style={{
-              flexShrink: 0,
-              padding: "0 32px 0 40px",
-              borderRight: "1px solid #D1DCE8",
-            }}
-          >
-            <p
-              style={{
-                fontSize: 10,
-                fontWeight: 700,
-                color: "#9BB5D4",
-                letterSpacing: "1.2px",
-                textTransform: "uppercase",
-                whiteSpace: "nowrap",
-                margin: 0,
-              }}
-            >
-              Trusted across
-            </p>
-          </div>
-          <div style={{ overflow: "hidden", flex: 1 }}>
-            <div className="idatum-marquee">
-              {[
-                "Financial Services",
-                "BFSI",
-                "Healthcare",
-                "Technology & SaaS",
-                "Manufacturing",
-                "Professional Services",
-                "IT Services",
-                "Pharmaceuticals",
-                "Logistics & Supply Chain",
-                "Real Estate",
-                "Legal & Compliance",
-                "Education",
-                "Retail & E-Commerce",
-                "Government & PSU",
-                "Financial Services",
-                "BFSI",
-                "Healthcare",
-                "Technology & SaaS",
-                "Manufacturing",
-                "Professional Services",
-                "IT Services",
-                "Pharmaceuticals",
-                "Logistics & Supply Chain",
-                "Real Estate",
-                "Legal & Compliance",
-                "Education",
-                "Retail & E-Commerce",
-                "Government & PSU",
-              ].map((sector, i) => (
-                <span
-                  key={i}
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  <span
-                    style={{
-                      color: "#4A6080",
-                      fontSize: 13,
-                      fontWeight: 500,
-                      padding: "0 6px",
-                    }}
-                  >
-                    {sector}
-                  </span>
-                  <span
-                    style={{
-                      color: "#CBD5E1",
-                      fontSize: 12,
-                      padding: "0 8px",
-                    }}
-                  >
-                    ·
-                  </span>
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Service Grid ── */}
+      {/* ── 3. Our Expertise Grid with Segmented Toggle ── */}
       <section
         style={{
           padding: "80px 40px",
-          maxWidth: 1280,
+          maxWidth: 1200,
           margin: "0 auto",
+          textAlign: "center",
         }}
       >
-        <div style={{ textAlign: "center", marginBottom: 52 }}>
-          <p
-            style={{
-              fontSize: 12,
-              fontWeight: 600,
-              color: "#1A5EA8",
-              letterSpacing: "1.5px",
-              textTransform: "uppercase",
-              marginBottom: 12,
-            }}
-          >
-            Our Expertise
-          </p>
-          <h2
-            style={{
-              fontSize: 34,
-              fontWeight: 700,
-              color: "#0D2B5A",
-              letterSpacing: "-0.5px",
-              marginBottom: 12,
-            }}
-          >
-            Our Compliance & Training Expertise
-          </h2>
-          <p
-            style={{
-              fontSize: 16,
-              color: "#4A6080",
-              maxWidth: 520,
-              margin: "0 auto",
-            }}
-          >
-            Six specialised domains. Click any area to explore
-            how Idatum can help your organisation.
-          </p>
-        </div>
-
-        <div
+        <h2
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 20,
+            fontSize: 32,
+            fontWeight: 700,
+            color: "#15335A",
+            marginBottom: 24,
+            letterSpacing: "-0.5px",
           }}
         >
-          {services.map((svc, index) => {
-            const { color, bg } = domainColors[svc.domain];
-            return (
-              <motion.button
-                key={svc.domain}
-                onClick={() => navigate(svc.page)}
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{
-                  duration: 0.3,
-                  ease: "easeOut",
-                  delay: index * 0.05,
-                }}
+          Our Expertise
+        </h2>
+        <p style={{ fontSize: 16, color: "#4A6080", marginBottom: 40 }}>
+          Select a vertical below to explore our comprehensive service
+          offerings.
+        </p>
+
+        {/* Segmented Control Switch */}
+        <div
+          style={{
+            display: "inline-flex",
+            background: "#F1F5FA",
+            padding: 6,
+            borderRadius: 999,
+            border: "1px solid #D1DCE8",
+            marginBottom: 56,
+          }}
+        >
+          <button
+            onClick={() => setActiveTab("consulting")}
+            style={{
+              padding: "12px 28px",
+              borderRadius: 999,
+              border: "none",
+              fontSize: 14,
+              fontWeight: 600,
+              cursor: "pointer",
+              transition: "all 0.2s ease",
+              background:
+                activeTab === "consulting" ? "#15335A" : "transparent",
+              color: activeTab === "consulting" ? "#ffffff" : "#4A6080",
+              boxShadow:
+                activeTab === "consulting"
+                  ? "0 4px 12px rgba(21,51,90,0.15)"
+                  : "none",
+            }}
+          >
+            Audit &amp; Consulting Services
+          </button>
+          <button
+            onClick={() => setActiveTab("training")}
+            style={{
+              padding: "12px 28px",
+              borderRadius: 999,
+              border: "none",
+              fontSize: 14,
+              fontWeight: 600,
+              cursor: "pointer",
+              transition: "all 0.2s ease",
+              background: activeTab === "training" ? "#15335A" : "transparent",
+              color: activeTab === "training" ? "#ffffff" : "#4A6080",
+              boxShadow:
+                activeTab === "training"
+                  ? "0 4px 12px rgba(21,51,90,0.15)"
+                  : "none",
+            }}
+          >
+            Training Academy
+          </button>
+        </div>
+
+        {/* Dynamic Cards Grid */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25 }}
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+              gap: "24px",
+              justifyItems: "center",
+              marginBottom: 56,
+            }}
+          >
+            {currentItems.map((item) => (
+              <div
+                key={item.id}
                 style={{
-                  background: "#fff",
-                  border: "1px solid #D1DCE8",
-                  borderRadius: 10,
-                  padding: 28,
-                  cursor: "pointer",
-                  textAlign: "left",
-                  transition:
-                    "border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease",
                   display: "flex",
                   flexDirection: "column",
-                  gap: 14,
-                  fontFamily: "var(--font-sans)",
+                  alignItems: "flex-start",
+                  textAlign: "left",
+                  width: "100%",
+                  padding: "32px 24px",
+                  border: "1px solid #D1DCE8",
+                  borderRadius: 12,
+                  background: "#ffffff",
+                  transition: "all 0.2s ease",
                 }}
                 onMouseEnter={(e) => {
-                  const el = e.currentTarget;
-                  el.style.borderColor = color;
-                  el.style.boxShadow = `0 8px 28px ${color}22`;
-                  el.style.transform = "translateY(-2px)";
+                  e.currentTarget.style.borderColor = "#15335A";
+                  e.currentTarget.style.boxShadow =
+                    "0 8px 24px rgba(21,51,90,0.06)";
                 }}
                 onMouseLeave={(e) => {
-                  const el = e.currentTarget;
-                  el.style.borderColor = "#D1DCE8";
-                  el.style.boxShadow = "none";
-                  el.style.transform = "translateY(0)";
+                  e.currentTarget.style.borderColor = "#D1DCE8";
+                  e.currentTarget.style.boxShadow = "none";
                 }}
               >
-                {/* Icon + domain label row */}
                 <div
                   style={{
+                    width: 56,
+                    height: 56,
+                    borderRadius: "12px",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "space-between",
+                    justifyContent: "center",
+                    color: "#15335A",
+                    background: "#EEF4FF",
+                    marginBottom: 20,
                   }}
                 >
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 12,
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: 44,
-                        height: 44,
-                        background: bg,
-                        borderRadius: 8,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color,
-                        flexShrink: 0,
-                      }}
-                    >
-                      {svc.icon}
-                    </div>
-                    <span
-                      style={{
-                        fontSize: 15,
-                        fontWeight: 700,
-                        color: "#0D2B5A",
-                      }}
-                    >
-                      {svc.domain}
-                    </span>
-                  </div>
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    style={{ color, flexShrink: 0 }}
-                  >
-                    <path
-                      d="M5 12h14M12 5l7 7-7 7"
-                      stroke={color}
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                  {item.icon}
                 </div>
-
-                {/* Tagline */}
+                <h3
+                  style={{
+                    fontSize: 18,
+                    fontWeight: 700,
+                    color: "#15335A",
+                    lineHeight: 1.3,
+                    margin: "0 0 10px 0",
+                  }}
+                >
+                  {item.title}
+                </h3>
                 <p
                   style={{
-                    fontSize: 13,
+                    fontSize: 14,
                     color: "#4A6080",
-                    lineHeight: 1.7,
-                    margin: 0,
+                    margin: "0 0 24px 0",
+                    lineHeight: 1.6,
+                    flex: 1,
                   }}
                 >
-                  {svc.tagline}
+                  {item.subtitle}
                 </p>
-              </motion.button>
-            );
-          })}
+
+                <button
+                  onClick={() =>
+                    navigate(
+                      activeTab === "consulting"
+                        ? "qa-intro"
+                        : "browse-courses",
+                      {
+                        defaultTrack: item.track,
+                      },
+                    )
+                  }
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 6,
+                    background: "none",
+                    border: "none",
+                    color: "#15335A",
+                    fontWeight: 600,
+                    fontSize: 14,
+                    cursor: "pointer",
+                    padding: 0,
+                  }}
+                >
+                  <span>
+                    {activeTab === "consulting"
+                      ? "Learn More"
+                      : "Browse Courses"}
+                  </span>
+                  <ArrowRight size={16} />
+                </button>
+              </div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Bottom Hub Routing Buttons */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: 16,
+            flexWrap: "wrap",
+            paddingTop: 16,
+            borderTop: "1px solid #EEF2F7",
+          }}
+        >
+          <button
+            onClick={() => navigate("qa-intro")}
+            style={{
+              background: "#15335A",
+              color: "#ffffff",
+              border: "none",
+              cursor: "pointer",
+              padding: "14px 28px",
+              fontSize: 15,
+              fontWeight: 600,
+              borderRadius: 6,
+              transition: "background 0.2s ease",
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = "#0D213B")}
+            onMouseLeave={(e) => (e.currentTarget.style.background = "#15335A")}
+          >
+            <Briefcase size={18} />
+            Explore Full Audit &amp; Consulting Hub
+          </button>
+
+          <button
+            onClick={() => navigate("academy-intro")}
+            style={{
+              background: "#F1F5FA",
+              color: "#15335A",
+              border: "1px solid #D1DCE8",
+              cursor: "pointer",
+              padding: "14px 28px",
+              fontSize: 15,
+              fontWeight: 600,
+              borderRadius: 6,
+              transition: "all 0.2s ease",
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = "#15335A";
+              e.currentTarget.style.color = "#15335A";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = "#D1DCE8";
+              e.currentTarget.style.color = "#15335A";
+            }}
+          >
+            <BookOpen size={18} />
+            Explore Training Academy Hub
+          </button>
         </div>
       </section>
     </div>
