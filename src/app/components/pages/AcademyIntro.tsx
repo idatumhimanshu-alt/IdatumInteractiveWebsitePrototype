@@ -112,7 +112,7 @@ export function AcademyIntro({ navigate }: Props) {
                 marginBottom: 20,
               }}
             >
-              Training Academy: Training That Builds Real
+              Training Hub: Training That Builds Real
               Competency
             </h1>
             <p
@@ -123,7 +123,7 @@ export function AcademyIntro({ navigate }: Props) {
                 marginBottom: 40,
               }}
             >
-              Training Academy delivers certification-aligned
+              Training Hub delivers certification-aligned
               training across the most critical compliance and
               workplace domains. Led by active practitioners —
               not just trainers — every course is built around
@@ -392,7 +392,7 @@ export function AcademyIntro({ navigate }: Props) {
                 marginBottom: 20,
               }}
             >
-              Why Train with Training Academy?
+              Why Train with Training Hub?
             </h2>
             {[
               {

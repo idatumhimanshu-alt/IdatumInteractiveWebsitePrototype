@@ -49,7 +49,7 @@ const phases = [
   },
 ];
 
-export function QATimeline({ navigate }: Props) {
+export function ServicesTimeline({ navigate }: Props) {
   return (
     <div style={{ fontFamily: "var(--font-sans)", paddingTop: 64 }}>
       {/* Header */}

@@ -11,6 +11,19 @@ import {
   ArrowRight,
   CheckCircle2,
   Briefcase,
+  Leaf,
+  HeartPulse,
+  Stethoscope,
+  FileSearch,
+  Users,
+  MessageSquare,
+  Repeat,
+  FileSpreadsheet,
+  LayoutDashboard,
+  CheckSquare,
+  ListTodo,
+  ClipboardList,
+  MonitorSmartphone,
 } from "lucide-react";
 
 type Page = string;
@@ -28,6 +41,7 @@ const clientLogos = [
 const consultingItems = [
   {
     id: "infosec",
+    num: "01",
     title: "Information Security & Compliance",
     subtitle:
       "ISO 27001:2022 Implementation, ISO 27701 Privacy, TISAX & Internal Audits.",
@@ -36,6 +50,7 @@ const consultingItems = [
   },
   {
     id: "datacenter",
+    num: "02",
     title: "Data Center Consulting",
     subtitle:
       "Governance, Operations Management, Policies, SOPs & Capacity Planning.",
@@ -44,6 +59,7 @@ const consultingItems = [
   },
   {
     id: "quality",
+    num: "03",
     title: "Quality & Business Excellence",
     subtitle:
       "ISO 9001, ISO 14001, ISO 22301, CMMI Maturity Levels & Process Improvement.",
@@ -52,17 +68,55 @@ const consultingItems = [
   },
   {
     id: "cyber",
+    num: "04",
     title: "Cyber Security Services",
     subtitle:
       "Risk Assessment, Security Policies, Third-Party Risk & Compliance Reviews.",
     icon: <Lock size={28} strokeWidth={1.5} />,
     track: "Cyber",
   },
+  {
+    id: "env-mgmt",
+    num: "05",
+    title: "Environmental Management",
+    subtitle:
+      "ISO 14001 implementation, sustainability planning & environmental impact assessments.",
+    icon: <Leaf size={28} strokeWidth={1.5} />,
+    track: "Environment",
+  },
+  {
+    id: "ohs-social",
+    num: "06",
+    title: "Health, Safety & Social Mgmt",
+    subtitle:
+      "ISO 45001 occupational health, workplace safety & SA8000 social accountability.",
+    icon: <HeartPulse size={28} strokeWidth={1.5} />,
+    track: "OHS",
+  },
+  {
+    id: "healthcare",
+    num: "07",
+    title: "Healthcare & Medical Devices",
+    subtitle:
+      "NABL & NABH accreditation, and ISO 13485 for Medical Devices Manufacturing.",
+    icon: <Stethoscope size={28} strokeWidth={1.5} />,
+    track: "Healthcare",
+  },
+  {
+    id: "standalone",
+    num: "08",
+    title: "Standalone Services",
+    subtitle:
+      "Targeted GAP assessments, independent internal audits & ongoing compliance maintenance.",
+    icon: <FileSearch size={28} strokeWidth={1.5} />,
+    track: "Standalone",
+  },
 ];
 
 const trainingItems = [
   {
     id: "iso-training",
+    num: "01",
     title: "ISO & TISAX Awareness",
     subtitle:
       "Comprehensive workforce awareness training for all major ISO standards & TISAX.",
@@ -71,6 +125,7 @@ const trainingItems = [
   },
   {
     id: "auditor-training",
+    num: "02",
     title: "Internal Auditor Courses",
     subtitle:
       "1-day and 2-3 day internal auditor certification courses conducted by experts.",
@@ -79,6 +134,7 @@ const trainingItems = [
   },
   {
     id: "dc-training",
+    num: "03",
     title: "Data Center Operations Training",
     subtitle:
       "Specialized operational training covering uptime, continuity, and KPI frameworks.",
@@ -87,28 +143,108 @@ const trainingItems = [
   },
   {
     id: "risk-workshops",
+    num: "04",
     title: "Risk Management Workshops",
     subtitle:
       "Practical workshops focused on risk identification, assessment, and treatment.",
     icon: <CheckCircle2 size={28} strokeWidth={1.5} />,
     track: "Risk Workshop",
   },
+  {
+    id: "posh",
+    num: "05",
+    title: "POSH Compliance Training",
+    subtitle:
+      "Sensitization and awareness programs to ensure a safe, inclusive workplace environment.",
+    icon: <Users size={28} strokeWidth={1.5} />,
+    track: "POSH",
+  },
+  {
+    id: "soft-skills",
+    num: "06",
+    title: "Business Comm. & Leadership",
+    subtitle:
+      "Corporate leadership, effective communication, and interpersonal skills development.",
+    icon: <MessageSquare size={28} strokeWidth={1.5} />,
+    track: "Soft Skills",
+  },
+  {
+    id: "scrum",
+    num: "07",
+    title: "Agile & Scrum Mastery",
+    subtitle:
+      "Foundational and advanced training for Scrum Masters and Agile project teams.",
+    icon: <Repeat size={28} strokeWidth={1.5} />,
+    track: "Scrum",
+  },
+  {
+    id: "it-tools",
+    num: "08",
+    title: "Data Analytics & IT Tools",
+    subtitle:
+      "Practical training in Google Sheets, data analysis, and essential corporate IT tools.",
+    icon: <FileSpreadsheet size={28} strokeWidth={1.5} />,
+    track: "IT Tools",
+  },
+];
+
+const syscomplyItems = [
+  {
+    id: "pm",
+    num: "01",
+    title: "Project Management",
+    subtitle:
+      "Centralize your compliance timelines, resource allocation, and project tracking.",
+    icon: <LayoutDashboard size={28} strokeWidth={1.5} />,
+    track: "Syscomply PM",
+  },
+  {
+    id: "iso-mgmt",
+    num: "02",
+    title: "ISO Compliance Management",
+    subtitle:
+      "Streamline framework implementation with automated ISO documentation and workflows.",
+    icon: <CheckSquare size={28} strokeWidth={1.5} />,
+    track: "Syscomply ISO",
+  },
+  {
+    id: "task-mgmt",
+    num: "03",
+    title: "Task Management",
+    subtitle:
+      "Assign, monitor, and complete compliance-related tasks across your entire organization.",
+    icon: <ListTodo size={28} strokeWidth={1.5} />,
+    track: "Syscomply Task",
+  },
+  {
+    id: "audit-tool",
+    num: "04",
+    title: "Auditing Tool",
+    subtitle:
+      "Conduct internal audits, log non-conformities, and track corrective actions efficiently.",
+    icon: <ClipboardList size={28} strokeWidth={1.5} />,
+    track: "Syscomply Audit",
+  },
 ];
 
 export function Hero({ navigate }: HeroProps) {
-  const [activeTab, setActiveTab] = useState<"consulting" | "training">(
-    "consulting",
-  );
+  const [activeTab, setActiveTab] = useState<
+    "consulting" | "training" | "syscomply"
+  >("consulting");
 
   const currentItems =
-    activeTab === "consulting" ? consultingItems : trainingItems;
+    activeTab === "consulting"
+      ? consultingItems
+      : activeTab === "training"
+        ? trainingItems
+        : syscomplyItems;
 
   return (
     <div style={{ fontFamily: "var(--font-sans)", background: "#fff" }}>
       {/* ── 1. Hero Section (Rich Navy Blue Theme) ── */}
       <section
         style={{
-          background: "linear-gradient(135deg, #102847 0%, #15335A 100%)", // Applied the rich navy blue
+          background: "linear-gradient(135deg, #102847 0%, #15335A 100%)",
           padding: "140px 40px 80px",
           display: "flex",
           flexDirection: "column",
@@ -216,7 +352,7 @@ export function Hero({ navigate }: HeroProps) {
             </button>
 
             <button
-              onClick={() => navigate("qa-intro")}
+              onClick={() => navigate("services-intro")}
               style={{
                 background: "transparent",
                 color: "#ffffff",
@@ -311,10 +447,12 @@ export function Hero({ navigate }: HeroProps) {
           offerings.
         </p>
 
-        {/* Segmented Control Switch */}
+        {/* 3-Way Segmented Control Switch */}
         <div
           style={{
             display: "inline-flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
             background: "#F1F5FA",
             padding: 6,
             borderRadius: 999,
@@ -341,7 +479,7 @@ export function Hero({ navigate }: HeroProps) {
                   : "none",
             }}
           >
-            Audit &amp; Consulting Services
+            Services
           </button>
           <button
             onClick={() => setActiveTab("training")}
@@ -361,7 +499,27 @@ export function Hero({ navigate }: HeroProps) {
                   : "none",
             }}
           >
-            Training Academy
+            Training Hub
+          </button>
+          <button
+            onClick={() => setActiveTab("syscomply")}
+            style={{
+              padding: "12px 28px",
+              borderRadius: 999,
+              border: "none",
+              fontSize: 14,
+              fontWeight: 600,
+              cursor: "pointer",
+              transition: "all 0.2s ease",
+              background: activeTab === "syscomply" ? "#15335A" : "transparent",
+              color: activeTab === "syscomply" ? "#ffffff" : "#4A6080",
+              boxShadow:
+                activeTab === "syscomply"
+                  ? "0 4px 12px rgba(21,51,90,0.15)"
+                  : "none",
+            }}
+          >
+            Syscomply
           </button>
         </div>
 
@@ -406,21 +564,42 @@ export function Hero({ navigate }: HeroProps) {
                   e.currentTarget.style.boxShadow = "none";
                 }}
               >
+                {/* Icon & Number Row */}
                 <div
                   style={{
-                    width: 56,
-                    height: 56,
-                    borderRadius: "12px",
                     display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "#15335A",
-                    background: "#EEF4FF",
+                    justifyContent: "space-between",
+                    width: "100%",
+                    alignItems: "flex-start",
                     marginBottom: 20,
                   }}
                 >
-                  {item.icon}
+                  <div
+                    style={{
+                      width: 56,
+                      height: 56,
+                      borderRadius: "12px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#15335A",
+                      background: "#EEF4FF",
+                    }}
+                  >
+                    {item.icon}
+                  </div>
+                  <span
+                    style={{
+                      fontSize: 24,
+                      fontWeight: 800,
+                      color: "#E2E8F0",
+                      letterSpacing: "-1px",
+                    }}
+                  >
+                    {item.num}
+                  </span>
                 </div>
+
                 <h3
                   style={{
                     fontSize: 18,
@@ -448,7 +627,7 @@ export function Hero({ navigate }: HeroProps) {
                   onClick={() =>
                     navigate(
                       activeTab === "consulting"
-                        ? "qa-intro"
+                        ? "services-intro"
                         : "browse-courses",
                       {
                         defaultTrack: item.track,
@@ -469,9 +648,7 @@ export function Hero({ navigate }: HeroProps) {
                   }}
                 >
                   <span>
-                    {activeTab === "consulting"
-                      ? "Learn More"
-                      : "Browse Courses"}
+                    {activeTab === "training" ? "Browse Courses" : "Learn More"}
                   </span>
                   <ArrowRight size={16} />
                 </button>
@@ -480,7 +657,7 @@ export function Hero({ navigate }: HeroProps) {
           </motion.div>
         </AnimatePresence>
 
-        {/* Bottom Hub Routing Buttons */}
+        {/* Bottom Hub Routing Buttons (3 Buttons Now) */}
         <div
           style={{
             display: "flex",
@@ -492,14 +669,14 @@ export function Hero({ navigate }: HeroProps) {
           }}
         >
           <button
-            onClick={() => navigate("qa-intro")}
+            onClick={() => navigate("services-intro")}
             style={{
               background: "#15335A",
               color: "#ffffff",
               border: "none",
               cursor: "pointer",
-              padding: "14px 28px",
-              fontSize: 15,
+              padding: "14px 24px",
+              fontSize: 14,
               fontWeight: 600,
               borderRadius: 6,
               transition: "background 0.2s ease",
@@ -511,7 +688,7 @@ export function Hero({ navigate }: HeroProps) {
             onMouseLeave={(e) => (e.currentTarget.style.background = "#15335A")}
           >
             <Briefcase size={18} />
-            Explore Full Audit &amp; Consulting Hub
+            Explore Services
           </button>
 
           <button
@@ -521,8 +698,8 @@ export function Hero({ navigate }: HeroProps) {
               color: "#15335A",
               border: "1px solid #D1DCE8",
               cursor: "pointer",
-              padding: "14px 28px",
-              fontSize: 15,
+              padding: "14px 24px",
+              fontSize: 14,
               fontWeight: 600,
               borderRadius: 6,
               transition: "all 0.2s ease",
@@ -540,7 +717,36 @@ export function Hero({ navigate }: HeroProps) {
             }}
           >
             <BookOpen size={18} />
-            Explore Training Academy Hub
+            Explore Training Hub
+          </button>
+
+          <button
+            onClick={() => navigate("syscomply-intro")}
+            style={{
+              background: "#F1F5FA",
+              color: "#15335A",
+              border: "1px solid #D1DCE8",
+              cursor: "pointer",
+              padding: "14px 24px",
+              fontSize: 14,
+              fontWeight: 600,
+              borderRadius: 6,
+              transition: "all 0.2s ease",
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = "#15335A";
+              e.currentTarget.style.color = "#15335A";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = "#D1DCE8";
+              e.currentTarget.style.color = "#15335A";
+            }}
+          >
+            <MonitorSmartphone size={18} />
+            Explore Syscomply
           </button>
         </div>
       </section>

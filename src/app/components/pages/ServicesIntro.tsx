@@ -4,7 +4,7 @@ interface Props {
   navigate: (page: Page) => void;
 }
 
-export function QAIntro({ navigate }: Props) {
+export function ServicesIntro({ navigate }: Props) {
   return (
     <div style={{ fontFamily: "var(--font-sans)", paddingTop: 64 }}>
       {/* Hero */}

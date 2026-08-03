@@ -5,11 +5,12 @@ import { Footer } from "./components/Footer";
 import { Hero } from "./components/pages/Hero";
 import { ChooseYourPath } from "./components/pages/ChooseYourPath";
 import { WhyIdatum } from "./components/pages/WhyIdatum";
-import { QAIntro } from "./components/pages/QAIntro";
+import { AboutUs } from "./components/pages/AboutUs";
+import { ServicesIntro } from "./components/pages/ServicesIntro"; // Renamed from QAIntro
 import { PartnerVsVendor } from "./components/pages/PartnerVsVendor";
-import { QATimeline } from "./components/pages/QATimeline";
+import { ServicesTimeline } from "./components/pages/ServicesTimeline"; // Renamed from QATimeline
 import { ProcessBuilt } from "./components/pages/ProcessBuilt";
-import { WhyChooseQA } from "./components/pages/WhyChooseQA";
+import { WhyChooseServices } from "./components/pages/WhyChooseServices"; // Renamed from WhyChooseQA
 import { AcademyIntro } from "./components/pages/AcademyIntro";
 import { HowWeTrain } from "./components/pages/HowWeTrain";
 import { TrainingTracks } from "./components/pages/TrainingTracks";
@@ -26,11 +27,13 @@ type Page =
   | "hero"
   | "choose"
   | "why-idatum"
-  | "qa-intro"
+  | "about-us" // Added
+  | "services-intro" // Replaced qa-intro
+  | "syscomply-intro" // Added
   | "partner-vs-vendor"
-  | "qa-timeline"
+  | "services-timeline" // Replaced qa-timeline
   | "process-built"
-  | "why-choose-qa"
+  | "why-choose-services" // Replaced why-choose-qa
   | "academy-intro"
   | "how-we-train"
   | "training-tracks"
@@ -45,14 +48,9 @@ type Page =
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>("hero");
-  const [navState, setNavState] = useState<
-    Record<string, string>
-  >({});
+  const [navState, setNavState] = useState<Record<string, string>>({});
 
-  const navigate = (
-    page: string,
-    state?: Record<string, string>,
-  ) => {
+  const navigate = (page: string, state?: Record<string, string>) => {
     setCurrentPage(page as Page);
     setNavState(state || {});
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -69,16 +67,33 @@ export default function App() {
         return <ChooseYourPath navigate={navigate} />;
       case "why-idatum":
         return <WhyIdatum navigate={navigate} />;
-      case "qa-intro":
-        return <QAIntro navigate={navigate} />;
+      case "about-us":
+        return <AboutUs navigate={navigate} />;
+      case "services-intro":
+        return <ServicesIntro navigate={navigate} />;
+      case "syscomply-intro":
+        return (
+          <div
+            style={{
+              padding: "120px 40px",
+              textAlign: "center",
+              minHeight: "60vh",
+            }}
+          >
+            <h2 style={{ fontSize: 32, color: "#15335A" }}>
+              Syscomply Overview
+            </h2>
+            <p style={{ color: "#4A6080", marginTop: 16 }}>Coming Soon...</p>
+          </div>
+        );
       case "partner-vs-vendor":
         return <PartnerVsVendor navigate={navigate} />;
-      case "qa-timeline":
-        return <QATimeline navigate={navigate} />;
+      case "services-timeline":
+        return <ServicesTimeline navigate={navigate} />;
       case "process-built":
         return <ProcessBuilt navigate={navigate} />;
-      case "why-choose-qa":
-        return <WhyChooseQA navigate={navigate} />;
+      case "why-choose-services":
+        return <WhyChooseServices navigate={navigate} />;
       case "academy-intro":
         return <AcademyIntro navigate={navigate} />;
       case "how-we-train":
@@ -103,8 +118,6 @@ export default function App() {
       case "become-partner":
         return <BecomePartner navigate={navigate} />;
       case "trainer-onboarding":
-        return <TrainerOnboarding navigate={navigate} />;
-      case "consultant-onboarding":
         return <TrainerOnboarding navigate={navigate} />;
       case "auditor-onboarding":
         return <AuditorOnboarding navigate={navigate} />;
@@ -141,11 +154,11 @@ export default function App() {
 
       {/* Contextual bottom nav — only on active flow pages */}
       {[
-        "qa-intro",
+        "services-intro",
         "partner-vs-vendor",
-        "qa-timeline",
+        "services-timeline",
         "process-built",
-        "why-choose-qa",
+        "why-choose-services",
         "academy-intro",
         "how-we-train",
         "training-tracks",
@@ -196,12 +209,14 @@ export default function App() {
               </button>
             </span>
           )}
+
+          {/* Services Hub Bottom Nav */}
           {[
-            "qa-intro",
+            "services-intro",
             "partner-vs-vendor",
-            "qa-timeline",
+            "services-timeline",
             "process-built",
-            "why-choose-qa",
+            "why-choose-services",
           ].includes(currentPage) && (
             <>
               <span
@@ -218,35 +233,27 @@ export default function App() {
                 You're exploring:
               </span>
               {[
-                { label: "QA Overview", page: "qa-intro" },
+                { label: "Services Overview", page: "services-intro" },
                 {
                   label: "Partner vs Vendor",
                   page: "partner-vs-vendor",
                 },
-                { label: "Timeline", page: "qa-timeline" },
+                { label: "Timeline", page: "services-timeline" },
                 { label: "Our Process", page: "process-built" },
                 {
                   label: "Why Choose Us",
-                  page: "why-choose-qa",
+                  page: "why-choose-services",
                 },
               ].map((item) => (
                 <button
                   key={item.page}
                   onClick={() => navigate(item.page)}
                   style={{
-                    background:
-                      currentPage === item.page
-                        ? "#0D2B5A"
-                        : "#fff",
-                    color:
-                      currentPage === item.page
-                        ? "#fff"
-                        : "#4A6080",
+                    background: currentPage === item.page ? "#0D2B5A" : "#fff",
+                    color: currentPage === item.page ? "#fff" : "#4A6080",
                     border: "1px solid",
                     borderColor:
-                      currentPage === item.page
-                        ? "#0D2B5A"
-                        : "#D1DCE8",
+                      currentPage === item.page ? "#0D2B5A" : "#D1DCE8",
                     cursor: "pointer",
                     padding: "6px 14px",
                     fontSize: 12,
@@ -260,6 +267,8 @@ export default function App() {
               ))}
             </>
           )}
+
+          {/* Academy Hub Bottom Nav */}
           {[
             "academy-intro",
             "how-we-train",
@@ -294,19 +303,11 @@ export default function App() {
                   key={item.page}
                   onClick={() => navigate(item.page)}
                   style={{
-                    background:
-                      currentPage === item.page
-                        ? "#0D2B5A"
-                        : "#fff",
-                    color:
-                      currentPage === item.page
-                        ? "#fff"
-                        : "#4A6080",
+                    background: currentPage === item.page ? "#0D2B5A" : "#fff",
+                    color: currentPage === item.page ? "#fff" : "#4A6080",
                     border: "1px solid",
                     borderColor:
-                      currentPage === item.page
-                        ? "#0D2B5A"
-                        : "#D1DCE8",
+                      currentPage === item.page ? "#0D2B5A" : "#D1DCE8",
                     cursor: "pointer",
                     padding: "6px 14px",
                     fontSize: 12,
@@ -320,6 +321,8 @@ export default function App() {
               ))}
             </>
           )}
+
+          {/* Partner Hub Bottom Nav */}
           {[
             "partner-intro",
             "why-partner",
@@ -358,19 +361,11 @@ export default function App() {
                   key={item.page}
                   onClick={() => navigate(item.page)}
                   style={{
-                    background:
-                      currentPage === item.page
-                        ? "#0D2B5A"
-                        : "#fff",
-                    color:
-                      currentPage === item.page
-                        ? "#fff"
-                        : "#4A6080",
+                    background: currentPage === item.page ? "#0D2B5A" : "#fff",
+                    color: currentPage === item.page ? "#fff" : "#4A6080",
                     border: "1px solid",
                     borderColor:
-                      currentPage === item.page
-                        ? "#0D2B5A"
-                        : "#D1DCE8",
+                      currentPage === item.page ? "#0D2B5A" : "#D1DCE8",
                     cursor: "pointer",
                     padding: "6px 14px",
                     fontSize: 12,

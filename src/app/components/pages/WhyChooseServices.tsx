@@ -52,7 +52,7 @@ const testimonials = [
   },
 ];
 
-export function WhyChooseQA({ navigate }: Props) {
+export function WhyChooseServices({ navigate }: Props) {
   return (
     <div style={{ fontFamily: "var(--font-sans)", paddingTop: 64 }}>
       {/* Header */}
