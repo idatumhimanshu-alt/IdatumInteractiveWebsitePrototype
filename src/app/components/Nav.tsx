@@ -4,11 +4,13 @@ type Page =
   | "hero"
   | "choose"
   | "why-idatum"
-  | "qa-intro"
+  | "about-us"
+  | "services-intro"
+  | "syscomply-intro"
   | "partner-vs-vendor"
-  | "qa-timeline"
+  | "services-timeline"
   | "process-built"
-  | "why-choose-qa"
+  | "why-choose-services"
   | "academy-intro"
   | "how-we-train"
   | "training-tracks"
@@ -27,7 +29,7 @@ interface NavProps {
 }
 
 export function Nav({ navigate, current }: NavProps) {
-  const [qaOpen, setQaOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const [academyOpen, setAcademyOpen] = useState(false);
   const [partnerOpen, setPartnerOpen] = useState(false);
 
@@ -107,16 +109,16 @@ export function Nav({ navigate, current }: NavProps) {
             gap: 8,
           }}
         >
-          {/* Idatum QA dropdown */}
+          {/* Services dropdown */}
           <div style={{ position: "relative" }}>
             <button
               onMouseEnter={() => {
-                setQaOpen(true);
+                setServicesOpen(true);
                 setAcademyOpen(false);
                 setPartnerOpen(false);
               }}
-              onMouseLeave={() => setQaOpen(false)}
-              onClick={() => navigate("qa-intro")}
+              onMouseLeave={() => setServicesOpen(false)}
+              onClick={() => navigate("services-intro")}
               style={{
                 background: "none",
                 border: "none",
@@ -125,11 +127,11 @@ export function Nav({ navigate, current }: NavProps) {
                 fontSize: 14,
                 fontWeight: 500,
                 color: [
-                  "qa-intro",
+                  "services-intro",
                   "partner-vs-vendor",
-                  "qa-timeline",
+                  "services-timeline",
                   "process-built",
-                  "why-choose-qa",
+                  "why-choose-services",
                 ].includes(current)
                   ? "#1A5EA8"
                   : "#0D2B5A",
@@ -138,13 +140,8 @@ export function Nav({ navigate, current }: NavProps) {
                 gap: 4,
               }}
             >
-              Idatum QA
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 12 12"
-                fill="none"
-              >
+              Services
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <path
                   d="M3 4.5L6 7.5L9 4.5"
                   stroke="currentColor"
@@ -154,10 +151,10 @@ export function Nav({ navigate, current }: NavProps) {
                 />
               </svg>
             </button>
-            {qaOpen && (
+            {servicesOpen && (
               <div
-                onMouseEnter={() => setQaOpen(true)}
-                onMouseLeave={() => setQaOpen(false)}
+                onMouseEnter={() => setServicesOpen(true)}
+                onMouseLeave={() => setServicesOpen(false)}
                 style={{
                   position: "absolute",
                   top: "100%",
@@ -172,31 +169,31 @@ export function Nav({ navigate, current }: NavProps) {
               >
                 {[
                   {
-                    label: "QA Overview",
-                    page: "qa-intro" as Page,
+                    label: "Services Overview",
+                    page: "services-intro" as Page,
                   },
                   {
                     label: "Partner vs Vendor",
                     page: "partner-vs-vendor" as Page,
                   },
                   {
-                    label: "QA Timeline",
-                    page: "qa-timeline" as Page,
+                    label: "Services Timeline",
+                    page: "services-timeline" as Page,
                   },
                   {
                     label: "Process Built For You",
                     page: "process-built" as Page,
                   },
                   {
-                    label: "Why Choose Idatum QA",
-                    page: "why-choose-qa" as Page,
+                    label: "Why Choose Us",
+                    page: "why-choose-services" as Page,
                   },
                 ].map((item) => (
                   <button
                     key={item.page}
                     onClick={() => {
                       navigate(item.page);
-                      setQaOpen(false);
+                      setServicesOpen(false);
                     }}
                     style={{
                       display: "block",
@@ -212,12 +209,10 @@ export function Nav({ navigate, current }: NavProps) {
                       transition: "background 0.12s ease",
                     }}
                     onMouseEnter={(e) =>
-                      (e.currentTarget.style.background =
-                        "#F1F5FA")
+                      (e.currentTarget.style.background = "#F1F5FA")
                     }
                     onMouseLeave={(e) =>
-                      (e.currentTarget.style.background =
-                        "none")
+                      (e.currentTarget.style.background = "none")
                     }
                   >
                     {item.label}
@@ -227,12 +222,12 @@ export function Nav({ navigate, current }: NavProps) {
             )}
           </div>
 
-          {/* Training Academy dropdown */}
+          {/* Training Hub dropdown */}
           <div style={{ position: "relative" }}>
             <button
               onMouseEnter={() => {
                 setAcademyOpen(true);
-                setQaOpen(false);
+                setServicesOpen(false);
                 setPartnerOpen(false);
               }}
               onMouseLeave={() => setAcademyOpen(false)}
@@ -258,13 +253,8 @@ export function Nav({ navigate, current }: NavProps) {
                 gap: 4,
               }}
             >
-              Training Academy
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 12 12"
-                fill="none"
-              >
+              Training Hub
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <path
                   d="M3 4.5L6 7.5L9 4.5"
                   stroke="currentColor"
@@ -292,7 +282,7 @@ export function Nav({ navigate, current }: NavProps) {
               >
                 {[
                   {
-                    label: "Academy Overview",
+                    label: "Hub Overview",
                     page: "academy-intro" as Page,
                   },
                   {
@@ -328,12 +318,10 @@ export function Nav({ navigate, current }: NavProps) {
                       transition: "background 0.12s ease",
                     }}
                     onMouseEnter={(e) =>
-                      (e.currentTarget.style.background =
-                        "#F1F5FA")
+                      (e.currentTarget.style.background = "#F1F5FA")
                     }
                     onMouseLeave={(e) =>
-                      (e.currentTarget.style.background =
-                        "none")
+                      (e.currentTarget.style.background = "none")
                     }
                   >
                     {item.label}
@@ -343,12 +331,33 @@ export function Nav({ navigate, current }: NavProps) {
             )}
           </div>
 
+          {/* Syscomply Link */}
+          <button
+            onMouseEnter={() => {
+              setServicesOpen(false);
+              setAcademyOpen(false);
+              setPartnerOpen(false);
+            }}
+            onClick={() => navigate("syscomply-intro")}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: "8px 12px",
+              fontSize: 14,
+              fontWeight: 500,
+              color: current === "syscomply-intro" ? "#1A5EA8" : "#0D2B5A",
+            }}
+          >
+            Syscomply
+          </button>
+
           {/* Partner with Us dropdown */}
           <div style={{ position: "relative" }}>
             <button
               onMouseEnter={() => {
                 setPartnerOpen(true);
-                setQaOpen(false);
+                setServicesOpen(false);
                 setAcademyOpen(false);
               }}
               onMouseLeave={() => setPartnerOpen(false)}
@@ -375,12 +384,7 @@ export function Nav({ navigate, current }: NavProps) {
               }}
             >
               Partner with Us
-              <svg
-                width="12"
-                height="12"
-                viewBox="0 0 12 12"
-                fill="none"
-              >
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <path
                   d="M3 4.5L6 7.5L9 4.5"
                   stroke="currentColor"
@@ -503,12 +507,10 @@ export function Nav({ navigate, current }: NavProps) {
                       transition: "background 0.12s ease",
                     }}
                     onMouseEnter={(e) =>
-                      (e.currentTarget.style.background =
-                        "#F1F5FA")
+                      (e.currentTarget.style.background = "#F1F5FA")
                     }
                     onMouseLeave={(e) =>
-                      (e.currentTarget.style.background =
-                        "none")
+                      (e.currentTarget.style.background = "none")
                     }
                   >
                     <div
@@ -596,7 +598,7 @@ export function Nav({ navigate, current }: NavProps) {
                   },
                   {
                     label: "Auditor Onboarding",
-                    sub: "Join the QA auditor panel",
+                    sub: "Join the Services auditor panel",
                     page: "auditor-onboarding" as Page,
                     icon: (
                       <svg
@@ -615,28 +617,6 @@ export function Nav({ navigate, current }: NavProps) {
                       </svg>
                     ),
                     iconBg: "#EFF8FC",
-                  },
-                  {
-                    label: "Consultant Onboarding",
-                    sub: "Join as an independent consultant",
-                    page: "consultant-onboarding" as Page,
-                    icon: (
-                      <svg
-                        width="15"
-                        height="15"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <path
-                          d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                          stroke="#6B3DAB"
-                          strokeWidth="1.6"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    ),
-                    iconBg: "#F5F0FF",
                   },
                 ].map((item) => (
                   <button
@@ -658,12 +638,10 @@ export function Nav({ navigate, current }: NavProps) {
                       transition: "background 0.12s ease",
                     }}
                     onMouseEnter={(e) =>
-                      (e.currentTarget.style.background =
-                        "#F1F5FA")
+                      (e.currentTarget.style.background = "#F1F5FA")
                     }
                     onMouseLeave={(e) =>
-                      (e.currentTarget.style.background =
-                        "none")
+                      (e.currentTarget.style.background = "none")
                     }
                   >
                     <div
@@ -708,7 +686,12 @@ export function Nav({ navigate, current }: NavProps) {
           </div>
 
           <button
-            onClick={() => navigate("why-idatum")}
+            onMouseEnter={() => {
+              setServicesOpen(false);
+              setAcademyOpen(false);
+              setPartnerOpen(false);
+            }}
+            onClick={() => navigate("about-us")}
             style={{
               background: "none",
               border: "none",
@@ -717,12 +700,12 @@ export function Nav({ navigate, current }: NavProps) {
               fontSize: 14,
               fontWeight: 500,
               color:
-                current === "why-idatum"
+                current === "about-us" || current === "why-idatum"
                   ? "#1A5EA8"
                   : "#0D2B5A",
             }}
           >
-            Why Idatum
+            About Us
           </button>
 
           <button
@@ -739,12 +722,8 @@ export function Nav({ navigate, current }: NavProps) {
               marginLeft: 8,
               transition: "background 0.15s",
             }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.background = "#0D4A8A")
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.background = "#1A5EA8")
-            }
+            onMouseEnter={(e) => (e.currentTarget.style.background = "#0D4A8A")}
+            onMouseLeave={(e) => (e.currentTarget.style.background = "#1A5EA8")}
           >
             Contact Us
           </button>

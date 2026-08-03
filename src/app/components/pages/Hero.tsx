@@ -87,7 +87,7 @@ const consultingItems = [
   {
     id: "ohs-social",
     num: "06",
-    title: "Health, Safety & Social Mgmt",
+    title: "Health, Safety & Social Management",
     subtitle:
       "ISO 45001 occupational health, workplace safety & SA8000 social accountability.",
     icon: <HeartPulse size={28} strokeWidth={1.5} />,
@@ -479,7 +479,7 @@ export function Hero({ navigate }: HeroProps) {
                   : "none",
             }}
           >
-            Services
+            <span style={{ opacity: 0.6, marginRight: 6 }}>01</span> Services
           </button>
           <button
             onClick={() => setActiveTab("training")}
@@ -499,7 +499,8 @@ export function Hero({ navigate }: HeroProps) {
                   : "none",
             }}
           >
-            Training Hub
+            <span style={{ opacity: 0.6, marginRight: 6 }}>02</span> Training
+            Hub
           </button>
           <button
             onClick={() => setActiveTab("syscomply")}
@@ -519,7 +520,7 @@ export function Hero({ navigate }: HeroProps) {
                   : "none",
             }}
           >
-            Syscomply
+            <span style={{ opacity: 0.6, marginRight: 6 }}>03</span> Syscomply
           </button>
         </div>
 

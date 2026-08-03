@@ -71,9 +71,8 @@ export function Footer({ navigate }: FooterProps) {
                 maxWidth: 280,
               }}
             >
-              Your trusted partner in compliance, quality
-              assurance, and training. Building confidence
-              through expertise.
+              Your trusted partner in compliance, quality assurance, and
+              training. Building confidence through expertise.
             </p>
             <div
               style={{
@@ -113,16 +112,16 @@ export function Footer({ navigate }: FooterProps) {
                 marginBottom: 16,
               }}
             >
-              Idatum QA
+              Idatum Services
             </p>
             {[
-              { label: "QA Overview", page: "qa-intro" },
+              { label: "Services Overview", page: "Services-intro" },
               {
                 label: "Partner vs Vendor",
                 page: "partner-vs-vendor",
               },
-              { label: "QA Timeline", page: "qa-timeline" },
-              { label: "Why Choose Us", page: "why-choose-qa" },
+              { label: "Services Timeline", page: "Services-timeline" },
+              { label: "Why Choose Us", page: "why-choose-Services" },
             ].map((item) => (
               <button
                 key={item.page}
@@ -139,12 +138,8 @@ export function Footer({ navigate }: FooterProps) {
                   width: "100%",
                   transition: "color 0.15s ease",
                 }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.color = "#fff")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = "#C5D8EE")
-                }
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#C5D8EE")}
               >
                 {item.label}
               </button>
@@ -194,12 +189,8 @@ export function Footer({ navigate }: FooterProps) {
                   width: "100%",
                   transition: "color 0.15s ease",
                 }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.color = "#fff")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = "#C5D8EE")
-                }
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#C5D8EE")}
               >
                 {item.label}
               </button>
@@ -246,12 +237,8 @@ export function Footer({ navigate }: FooterProps) {
                   width: "100%",
                   transition: "color 0.15s ease",
                 }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.color = "#fff")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = "#C5D8EE")
-                }
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#C5D8EE")}
               >
                 {item.label}
               </button>
@@ -269,8 +256,7 @@ export function Footer({ navigate }: FooterProps) {
           }}
         >
           <p style={{ fontSize: 12, color: "#9BB5D4" }}>
-            © {new Date().getFullYear()} Idatum. All rights
-            reserved.
+            © {new Date().getFullYear()} Idatum. All rights reserved.
           </p>
           <p style={{ fontSize: 12, color: "#9BB5D4" }}>
             Privacy Policy · Terms of Service
