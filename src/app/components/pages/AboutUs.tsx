@@ -10,7 +10,7 @@ interface Props {
 export function AboutUs({ navigate }: Props) {
   const [hovered, setHovered] = useState<number>(0);
 
-  // The two core pillars pulling data directly from "Who we are"
+  // Original panels restored
   const panels = [
     {
       id: "philosophy",
@@ -36,9 +36,9 @@ export function AboutUs({ navigate }: Props) {
     {
       id: "legacy",
       badge: "OUR LEGACY & EXPERTISE",
-      title: "50+ Years of Combined Industry Experience.",
+      title: "100+ Years of Combined Industry Experience.",
       description:
-        "Our team brings together over 50 years of hands-on experience in consultancy and training. We are comprised of lead auditors, CMMI assessment team members, and former compliance executives from various companies across diverse industries.",
+        "Our team brings together over 100 years of hands-on experience in consultancy and training. We are comprised of lead auditors, CMMI assessment team members, and former compliance executives from various companies across diverse industries.",
       bullets: [
         "Trustworthy partners with more than 50 years of experience",
         "Lead auditors and CMMI assessment team members",
@@ -64,8 +64,8 @@ export function AboutUs({ navigate }: Props) {
         background: "#F8FAFC",
       }}
     >
-      {/* ── 1. Header ── */}
-      <section style={{ textAlign: "center", padding: "80px 24px 40px" }}>
+      {/* ── 1. Header & Intro Paragraph ── */}
+      <section style={{ textAlign: "center", padding: "80px 24px 60px" }}>
         <span
           style={{
             fontSize: 12,
@@ -86,11 +86,31 @@ export function AboutUs({ navigate }: Props) {
             fontWeight: 800,
             color: "#0D2B5A",
             marginTop: 20,
+            marginBottom: 24,
             letterSpacing: "-0.8px",
           }}
         >
           A Partner Committed to Your Future
         </h1>
+
+        {/* NEW: Added Intro Paragraph Here */}
+        <p
+          style={{
+            maxWidth: 800,
+            margin: "0 auto",
+            fontSize: 18,
+            color: "#4A6080",
+            lineHeight: 1.7,
+            fontWeight: 400,
+          }}
+        >
+          Established in 2010, We, at Idatum Researchers and Consultants,
+          provide quality consulting services to our esteemed customers. Our
+          team includes Corporate Compliance Facilitators, Partners in your
+          improvement journey, ISO Lead Auditors and CMMI Assessment Team
+          Members. The cumulative experience of our team counts for 100+ years
+          ensuring the best expertise for our clients.
+        </p>
       </section>
 
       {/* ── 2. Interactive Sliding Panels (Crazy UX) ── */}
@@ -318,7 +338,7 @@ export function AboutUs({ navigate }: Props) {
               title: "Domain-Depth Expertise",
               desc: "Our practitioners come from the industries they serve. Former auditors, CISOs, and compliance officers — people who have lived the pressures you face.",
               proof:
-                "100% of QA practitioners hold active certifications (CISA, CISSP, ISO 27001 Lead Auditor).",
+                "100% of our practitioners hold active industry certifications.",
             },
             {
               num: "03",
@@ -346,7 +366,7 @@ export function AboutUs({ navigate }: Props) {
               title: "Trusted Track Record",
               desc: "Over 500 organizations across financial services, healthcare, technology, and manufacturing have relied on Idatum for their most critical compliance needs.",
               proof:
-                "Trusted since 2012. 500+ organizations served. 98% client satisfaction rate.",
+                "Providing quality consulting since 2010. 98% client satisfaction rate.",
             },
           ].map((item, index) => (
             <motion.div

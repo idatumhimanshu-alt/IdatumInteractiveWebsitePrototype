@@ -24,6 +24,11 @@ import {
   ListTodo,
   ClipboardList,
   MonitorSmartphone,
+  Shield,
+  Activity,
+  Zap,
+  Cpu,
+  Check,
 } from "lucide-react";
 
 type Page = string;
@@ -87,7 +92,7 @@ const consultingItems = [
   {
     id: "ohs-social",
     num: "06",
-    title: "Health, Safety & Social Management",
+    title: "Health, Safety & Social Mgmt",
     subtitle:
       "ISO 45001 occupational health, workplace safety & SA8000 social accountability.",
     icon: <HeartPulse size={28} strokeWidth={1.5} />,
@@ -241,140 +246,415 @@ export function Hero({ navigate }: HeroProps) {
 
   return (
     <div style={{ fontFamily: "var(--font-sans)", background: "#fff" }}>
-      {/* ── 1. Hero Section (Rich Navy Blue Theme) ── */}
+      {/* ── 1. Cybernetic Split-Screen Hero Section ── */}
       <section
         style={{
-          background: "linear-gradient(135deg, #102847 0%, #15335A 100%)",
-          padding: "140px 40px 80px",
+          background:
+            "radial-gradient(circle at 80% 20%, #1B4375 0%, #102847 45%, #0A192F 100%)",
+          padding: "160px 40px 100px",
           display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+          justifyContent: "center",
           position: "relative",
           overflow: "hidden",
         }}
       >
+        {/* Subtle Background Cyber Grid Lines */}
         <div
           style={{
-            maxWidth: 1000,
+            position: "absolute",
+            inset: 0,
+            backgroundImage:
+              "linear-gradient(rgba(100, 255, 218, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(100, 255, 218, 0.03) 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+            pointerEvents: "none",
+          }}
+        />
+
+        <div
+          style={{
+            maxWidth: 1280,
             margin: "0 auto",
-            textAlign: "center",
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            gap: "48px",
             position: "relative",
             zIndex: 1,
             width: "100%",
           }}
         >
-          {/* Tagline Placeholder */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginBottom: 24,
-            }}
-          >
-            <span
+          {/* LEFT COLUMN: Narrative & CTAs */}
+          <div style={{ flex: "1 1 520px", textAlign: "left" }}>
+            <div style={{ display: "inline-flex", marginBottom: 24 }}>
+              <span
+                style={{
+                  fontSize: 12,
+                  fontWeight: 700,
+                  color: "#64FFDA",
+                  letterSpacing: "1.2px",
+                  textTransform: "uppercase",
+                  background: "rgba(100, 255, 218, 0.08)",
+                  border: "1px solid rgba(100, 255, 218, 0.25)",
+                  padding: "6px 16px",
+                  borderRadius: 999,
+                  boxShadow: "0 0 20px rgba(100,255,218,0.15)",
+                }}
+              >
+                [HIPAA · ISO 27001 · SOC 2 · GDPR · PCI DSS]
+              </span>
+            </div>
+
+            <h1
               style={{
-                fontSize: 12,
-                fontWeight: 700,
-                color: "#64FFDA",
-                letterSpacing: "1px",
-                textTransform: "uppercase",
-                background: "rgba(100, 255, 218, 0.1)",
-                border: "1px solid rgba(100, 255, 218, 0.2)",
-                padding: "6px 16px",
-                borderRadius: 999,
+                fontSize: 62,
+                fontWeight: 800,
+                color: "#ffffff",
+                lineHeight: 1.12,
+                letterSpacing: "-1.5px",
+                marginBottom: 24,
               }}
             >
-              [Placeholder: HIPAA · ISO 27001 · SOC 2 · GDPR · PCI DSS]
-            </span>
+              Building Trust.
+              <br />
+              <span style={{ color: "#9BB5D4" }}>Enhancing Business.</span>
+              <br />
+              <span
+                style={{
+                  color: "#64FFDA",
+                  textShadow: "0 0 30px rgba(100,255,218,0.3)",
+                }}
+              >
+                Securing Tomorrow.
+              </span>
+            </h1>
+
+            <p
+              style={{
+                fontSize: 18,
+                color: "#B0C4DE",
+                lineHeight: 1.6,
+                marginBottom: 44,
+                maxWidth: 540,
+                fontWeight: 400,
+              }}
+            >
+              Enterprise Advisory for Governance, Risk, Compliance, Security &
+              AI. We partner with organizations to build resilient frameworks.
+            </p>
+
+            {/* CTAs */}
+            <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
+              <button
+                onClick={() => navigate("contact")}
+                style={{
+                  background: "#ffffff",
+                  color: "#0A192F",
+                  border: "none",
+                  cursor: "pointer",
+                  padding: "16px 36px",
+                  fontSize: 16,
+                  fontWeight: 700,
+                  borderRadius: 8,
+                  boxShadow: "0 10px 25px rgba(0,0,0,0.2)",
+                  transition: "all 0.2s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "#64FFDA";
+                  e.currentTarget.style.boxShadow =
+                    "0 10px 30px rgba(100,255,218,0.4)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "#ffffff";
+                  e.currentTarget.style.boxShadow =
+                    "0 10px 25px rgba(0,0,0,0.2)";
+                }}
+              >
+                Book a Strategy Call
+              </button>
+
+              <button
+                onClick={() => navigate("services-intro")}
+                style={{
+                  background: "rgba(255,255,255,0.05)",
+                  backdropFilter: "blur(10px)",
+                  color: "#ffffff",
+                  border: "1px solid rgba(255,255,255,0.3)",
+                  cursor: "pointer",
+                  padding: "16px 32px",
+                  fontSize: 16,
+                  fontWeight: 600,
+                  borderRadius: 8,
+                  transition: "all 0.2s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "rgba(255,255,255,0.12)";
+                  e.currentTarget.style.borderColor = "#64FFDA";
+                  e.currentTarget.style.color = "#64FFDA";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "rgba(255,255,255,0.05)";
+                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.3)";
+                  e.currentTarget.style.color = "#ffffff";
+                }}
+              >
+                Explore Services
+              </button>
+            </div>
           </div>
 
-          <h1
-            style={{
-              fontSize: 64,
-              fontWeight: 800,
-              color: "#ffffff",
-              lineHeight: 1.15,
-              letterSpacing: "-1.5px",
-              marginBottom: 24,
-            }}
-          >
-            Building Trust.
-            <br />
-            Enhancing Business.
-            <br />
-            <span style={{ color: "#64FFDA" }}>Securing Tomorrow.</span>
-          </h1>
-
-          <p
-            style={{
-              fontSize: 18,
-              color: "#B0C4DE",
-              lineHeight: 1.6,
-              marginBottom: 48,
-              maxWidth: 700,
-              margin: "0 auto 48px",
-              fontWeight: 400,
-            }}
-          >
-            Enterprise Advisory for Governance, Risk, Compliance, Security & AI
-          </p>
-
-          {/* CTAs */}
+          {/* RIGHT COLUMN: Cybernetic Compliance HUD */}
           <div
             style={{
+              flex: "1 1 480px",
               display: "flex",
-              gap: 16,
               justifyContent: "center",
-              flexWrap: "wrap",
+              alignItems: "center",
+              position: "relative",
+              minHeight: 500,
             }}
           >
-            <button
-              onClick={() => navigate("contact")}
+            {/* Outer Glowing Ambient Aura */}
+            <div
               style={{
-                background: "#ffffff",
-                color: "#15335A",
-                border: "none",
-                cursor: "pointer",
-                padding: "16px 32px",
-                fontSize: 16,
-                fontWeight: 700,
-                borderRadius: 6,
-                transition: "background 0.2s ease",
+                position: "absolute",
+                width: 360,
+                height: 360,
+                borderRadius: "50%",
+                background:
+                  "radial-gradient(circle, rgba(100,255,218,0.18) 0%, rgba(10,25,47,0) 70%)",
+                filter: "blur(40px)",
               }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.background = "#F1F5FA")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.background = "#ffffff")
-              }
-            >
-              Book a Strategy Call
-            </button>
-
-            <button
-              onClick={() => navigate("services-intro")}
+            />
+            {/* Radar Sweeping Line */}
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
               style={{
-                background: "transparent",
-                color: "#ffffff",
-                border: "1px solid rgba(255,255,255,0.4)",
-                cursor: "pointer",
-                padding: "16px 32px",
-                fontSize: 16,
-                fontWeight: 600,
-                borderRadius: 6,
-                transition: "all 0.2s ease",
+                position: "absolute",
+                width: 380,
+                height: 380,
+                borderRadius: "50%",
+                background:
+                  "conic-gradient(from 0deg, transparent 0deg, transparent 300deg, rgba(100, 255, 218, 0.3) 360deg)",
+                pointerEvents: "none",
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "rgba(255,255,255,0.1)";
-                e.currentTarget.style.borderColor = "#ffffff";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)";
+            />
+            {/* Core Shield Reactor */}
+            <motion.div
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+              style={{
+                position: "relative",
+                zIndex: 10,
+                width: 130,
+                height: 130,
+                borderRadius: "50%",
+                background: "linear-gradient(135deg, #15335A 0%, #0A192F 100%)",
+                border: "2px solid #64FFDA",
+                boxShadow:
+                  "0 0 35px rgba(100,255,218,0.4), inset 0 0 15px rgba(100,255,218,0.2)",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
-              Explore Services
-            </button>
+              <Shield size={38} color="#64FFDA" strokeWidth={1.8} />
+              <span
+                style={{
+                  fontSize: 10,
+                  fontWeight: 800,
+                  color: "#ffffff",
+                  letterSpacing: "1px",
+                  marginTop: 6,
+                }}
+              >
+                IDATUM
+              </span>
+            </motion.div>
+            {/* Inner Revolving Orbit Ring */}
+            <motion.div
+              animate={{ rotate: -360 }}
+              transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
+              style={{
+                position: "absolute",
+                width: 270,
+                height: 270,
+                borderRadius: "50%",
+                border: "1px dashed rgba(100, 255, 218, 0.3)",
+              }}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  top: -14,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  background: "#0A192F",
+                  border: "1px solid #64FFDA",
+                  padding: 6,
+                  borderRadius: "50%",
+                }}
+              >
+                <Cpu size={18} color="#64FFDA" />
+              </div>
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: -14,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  background: "#0A192F",
+                  border: "1px solid #64FFDA",
+                  padding: 6,
+                  borderRadius: "50%",
+                }}
+              >
+                <Zap size={18} color="#64FFDA" />
+              </div>
+            </motion.div>{" "}
+            {/* <--- FIXED */}
+            {/* Outer Revolving Orbit Ring */}
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ repeat: Infinity, duration: 50, ease: "linear" }}
+              style={{
+                position: "absolute",
+                width: 410,
+                height: 410,
+                borderRadius: "50%",
+                border: "1px solid rgba(255, 255, 255, 0.12)",
+              }}
+            />
+            {/* ── Floating Glassmorphic Dynamic Badges (The "Crazy" Touch) ── */}
+            {/* Badge 1: Top Right */}
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+              style={{
+                position: "absolute",
+                top: "8%",
+                right: "2%",
+                background: "rgba(16, 40, 71, 0.75)",
+                backdropFilter: "blur(12px)",
+                border: "1px solid rgba(100, 255, 218, 0.3)",
+                borderRadius: 12,
+                padding: "10px 16px",
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+                boxShadow: "0 12px 30px rgba(0,0,0,0.3)",
+                zIndex: 12,
+              }}
+            >
+              <div
+                style={{
+                  width: 28,
+                  height: 28,
+                  borderRadius: 6,
+                  background: "rgba(100, 255, 218, 0.15)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Check size={16} color="#64FFDA" strokeWidth={2.5} />
+              </div>
+              <div>
+                <p
+                  style={{
+                    fontSize: 11,
+                    fontWeight: 700,
+                    color: "#ffffff",
+                    margin: 0,
+                  }}
+                >
+                  ISO 27001:2022
+                </p>
+                <p
+                  style={{
+                    fontSize: 9,
+                    color: "#64FFDA",
+                    margin: 0,
+                    fontWeight: 600,
+                  }}
+                >
+                  ● AUDIT READY
+                </p>
+              </div>
+            </motion.div>
+            {/* Badge 2: Bottom Left */}
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{
+                repeat: Infinity,
+                duration: 5,
+                ease: "easeInOut",
+                delay: 1,
+              }}
+              style={{
+                position: "absolute",
+                bottom: "10%",
+                left: "0%",
+                background: "rgba(16, 40, 71, 0.75)",
+                backdropFilter: "blur(12px)",
+                border: "1px solid rgba(255, 255, 255, 0.2)",
+                borderRadius: 12,
+                padding: "10px 16px",
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+                boxShadow: "0 12px 30px rgba(0,0,0,0.3)",
+                zIndex: 12,
+              }}
+            >
+              <Activity size={22} color="#64FFDA" />
+              <div>
+                <p
+                  style={{
+                    fontSize: 11,
+                    fontWeight: 700,
+                    color: "#ffffff",
+                    margin: 0,
+                  }}
+                >
+                  Risk Assessment
+                </p>
+                <p style={{ fontSize: 9, color: "#B0C4DE", margin: 0 }}>
+                  Score: 0.00% Vulnerability
+                </p>
+              </div>
+            </motion.div>
+            {/* Badge 3: Bottom Right */}
+            <motion.div
+              animate={{ y: [0, -8, 0] }}
+              transition={{
+                repeat: Infinity,
+                duration: 4.5,
+                ease: "easeInOut",
+                delay: 0.5,
+              }}
+              style={{
+                position: "absolute",
+                bottom: "2%",
+                right: "8%",
+                background: "rgba(16, 40, 71, 0.75)",
+                backdropFilter: "blur(12px)",
+                border: "1px solid rgba(100, 255, 218, 0.3)",
+                borderRadius: 12,
+                padding: "8px 14px",
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+                boxShadow: "0 12px 30px rgba(0,0,0,0.3)",
+                zIndex: 12,
+              }}
+            >
+              <span style={{ fontSize: 18 }}>🛡️</span>
+              <span style={{ fontSize: 11, fontWeight: 700, color: "#ffffff" }}>
+                SOC 2 Type II Certified
+              </span>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -658,7 +938,7 @@ export function Hero({ navigate }: HeroProps) {
           </motion.div>
         </AnimatePresence>
 
-        {/* Bottom Hub Routing Buttons (3 Buttons Now) */}
+        {/* Bottom Hub Routing Buttons */}
         <div
           style={{
             display: "flex",
