@@ -2,7 +2,8 @@ import { useState } from "react";
 
 type Page = string;
 interface Props {
-  navigate: (page: Page) => void;
+  navigate: (page: Page, state?: Record<string, string>) => void;
+  defaultType?: string;
 }
 
 const steps = [
@@ -28,10 +29,12 @@ const steps = [
   },
 ];
 
-export function BecomePartner({ navigate }: Props) {
-  const [partnerType, setPartnerType] = useState(
-    "Referral Partner",
-  );
+export function BecomePartner({
+  navigate,
+  defaultType = "Referral Partner",
+}: Props) {
+  // We use partnerType so it matches your form's onClick and selected logic!
+  const [partnerType, setPartnerType] = useState<string>(defaultType);
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -80,12 +83,7 @@ export function BecomePartner({ navigate }: Props) {
               margin: "0 auto 24px",
             }}
           >
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
               <path
                 d="M5 13l4 4L19 7"
                 stroke="#16A34A"
@@ -124,10 +122,9 @@ export function BecomePartner({ navigate }: Props) {
               marginBottom: 32,
             }}
           >
-            Our Partner Success team will review your
-            application and reach out within{" "}
-            <strong>one business day</strong> to schedule a
-            discovery call.
+            Our Partner Success team will review your application and reach out
+            within <strong>one business day</strong> to schedule a discovery
+            call.
           </p>
           <div
             style={{
@@ -230,14 +227,11 @@ export function BecomePartner({ navigate }: Props) {
   }
 
   return (
-    <div
-      style={{ fontFamily: "var(--font-sans)", paddingTop: 64 }}
-    >
+    <div style={{ fontFamily: "var(--font-sans)", paddingTop: 64 }}>
       {/* Header */}
       <section
         style={{
-          background:
-            "linear-gradient(135deg, #0D2B5A 0%, #1A4A8A 100%)",
+          background: "linear-gradient(135deg, #0D2B5A 0%, #1A4A8A 100%)",
           padding: "72px 40px",
         }}
       >
@@ -279,9 +273,8 @@ export function BecomePartner({ navigate }: Props) {
               lineHeight: 1.8,
             }}
           >
-            Apply today. Onboard in 48 hours. Start delivering
-            value to your clients tomorrow. No joining fee. No
-            long-term lock-in.
+            Apply today. Onboard in 48 hours. Start delivering value to your
+            clients tomorrow. No joining fee. No long-term lock-in.
           </p>
         </div>
       </section>
@@ -303,10 +296,7 @@ export function BecomePartner({ navigate }: Props) {
             }}
           >
             {steps.map((step, i) => (
-              <div
-                key={step.num}
-                style={{ display: "flex", gap: 0 }}
-              >
+              <div key={step.num} style={{ display: "flex", gap: 0 }}>
                 <div style={{ padding: "0 20px", flex: 1 }}>
                   <div
                     style={{
@@ -407,8 +397,8 @@ export function BecomePartner({ navigate }: Props) {
                 marginBottom: 32,
               }}
             >
-              Complete the form below. We review every
-              application within one business day.
+              Complete the form below. We review every application within one
+              business day.
             </p>
 
             {/* Partner type */}
@@ -492,8 +482,7 @@ export function BecomePartner({ navigate }: Props) {
                       </svg>
                     ),
                     desc: "White-label our Academy course library",
-                    audience:
-                      "Training companies & LMS operators",
+                    audience: "Training companies & LMS operators",
                   },
                   {
                     type: "Technology Partner",
@@ -532,13 +521,9 @@ export function BecomePartner({ navigate }: Props) {
                       style={{
                         padding: "14px 16px",
                         border: "2px solid",
-                        borderColor: selected
-                          ? "#1A5EA8"
-                          : "#D1DCE8",
+                        borderColor: selected ? "#1A5EA8" : "#D1DCE8",
                         borderRadius: 8,
-                        background: selected
-                          ? "#EEF4FF"
-                          : "#fff",
+                        background: selected ? "#EEF4FF" : "#fff",
                         cursor: "pointer",
                         textAlign: "left",
                         fontFamily: "var(--font-sans)",
@@ -551,9 +536,7 @@ export function BecomePartner({ navigate }: Props) {
                           alignItems: "center",
                           gap: 8,
                           marginBottom: 6,
-                          color: selected
-                            ? "#1A5EA8"
-                            : "#0D2B5A",
+                          color: selected ? "#1A5EA8" : "#0D2B5A",
                         }}
                       >
                         {icon}
@@ -647,12 +630,8 @@ export function BecomePartner({ navigate }: Props) {
                         boxSizing: "border-box",
                         fontFamily: "var(--font-sans)",
                       }}
-                      onFocus={(e) =>
-                        (e.target.style.borderColor = "#1A5EA8")
-                      }
-                      onBlur={(e) =>
-                        (e.target.style.borderColor = "#D1DCE8")
-                      }
+                      onFocus={(e) => (e.target.style.borderColor = "#1A5EA8")}
+                      onBlur={(e) => (e.target.style.borderColor = "#D1DCE8")}
                     />
                   </div>
                 ))}
@@ -701,12 +680,8 @@ export function BecomePartner({ navigate }: Props) {
                       boxSizing: "border-box",
                       fontFamily: "var(--font-sans)",
                     }}
-                    onFocus={(e) =>
-                      (e.target.style.borderColor = "#1A5EA8")
-                    }
-                    onBlur={(e) =>
-                      (e.target.style.borderColor = "#D1DCE8")
-                    }
+                    onFocus={(e) => (e.target.style.borderColor = "#1A5EA8")}
+                    onBlur={(e) => (e.target.style.borderColor = "#D1DCE8")}
                   />
                 </div>
                 <div>
@@ -744,12 +719,8 @@ export function BecomePartner({ navigate }: Props) {
                       boxSizing: "border-box",
                       fontFamily: "var(--font-sans)",
                     }}
-                    onFocus={(e) =>
-                      (e.target.style.borderColor = "#1A5EA8")
-                    }
-                    onBlur={(e) =>
-                      (e.target.style.borderColor = "#D1DCE8")
-                    }
+                    onFocus={(e) => (e.target.style.borderColor = "#1A5EA8")}
+                    onBlur={(e) => (e.target.style.borderColor = "#D1DCE8")}
                   />
                 </div>
               </div>
@@ -796,12 +767,8 @@ export function BecomePartner({ navigate }: Props) {
                       boxSizing: "border-box",
                       fontFamily: "var(--font-sans)",
                     }}
-                    onFocus={(e) =>
-                      (e.target.style.borderColor = "#1A5EA8")
-                    }
-                    onBlur={(e) =>
-                      (e.target.style.borderColor = "#D1DCE8")
-                    }
+                    onFocus={(e) => (e.target.style.borderColor = "#1A5EA8")}
+                    onBlur={(e) => (e.target.style.borderColor = "#D1DCE8")}
                   />
                 </div>
                 <div>
@@ -830,9 +797,7 @@ export function BecomePartner({ navigate }: Props) {
                       border: "1.5px solid #D1DCE8",
                       borderRadius: 7,
                       fontSize: 14,
-                      color: form.teamSize
-                        ? "#0D2B5A"
-                        : "#9BB5D4",
+                      color: form.teamSize ? "#0D2B5A" : "#9BB5D4",
                       background: "#fff",
                       outline: "none",
                       boxSizing: "border-box",
@@ -840,13 +805,7 @@ export function BecomePartner({ navigate }: Props) {
                     }}
                   >
                     <option value="">Select...</option>
-                    {[
-                      "1–10",
-                      "11–50",
-                      "51–200",
-                      "201–500",
-                      "500+",
-                    ].map((o) => (
+                    {["1–10", "11–50", "51–200", "201–500", "500+"].map((o) => (
                       <option key={o} value={o}>
                         {o} employees
                       </option>
@@ -892,12 +851,8 @@ export function BecomePartner({ navigate }: Props) {
                     fontFamily: "var(--font-sans)",
                     lineHeight: 1.6,
                   }}
-                  onFocus={(e) =>
-                    (e.target.style.borderColor = "#1A5EA8")
-                  }
-                  onBlur={(e) =>
-                    (e.target.style.borderColor = "#D1DCE8")
-                  }
+                  onFocus={(e) => (e.target.style.borderColor = "#1A5EA8")}
+                  onBlur={(e) => (e.target.style.borderColor = "#D1DCE8")}
                 />
               </div>
 
@@ -917,12 +872,10 @@ export function BecomePartner({ navigate }: Props) {
                     fontFamily: "var(--font-sans)",
                   }}
                   onMouseEnter={(e) =>
-                    (e.currentTarget.style.background =
-                      "#0D4A8A")
+                    (e.currentTarget.style.background = "#0D4A8A")
                   }
                   onMouseLeave={(e) =>
-                    (e.currentTarget.style.background =
-                      "#1A5EA8")
+                    (e.currentTarget.style.background = "#1A5EA8")
                   }
                 >
                   Apply to Partner
@@ -987,18 +940,8 @@ export function BecomePartner({ navigate }: Props) {
                     marginBottom: 10,
                   }}
                 >
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 14 14"
-                    fill="none"
-                  >
-                    <circle
-                      cx="7"
-                      cy="7"
-                      r="6"
-                      fill="rgba(74,222,128,0.2)"
-                    />
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <circle cx="7" cy="7" r="6" fill="rgba(74,222,128,0.2)" />
                     <path
                       d="M4.5 7l2 2 3-3"
                       stroke="#4ADE80"
@@ -1007,11 +950,7 @@ export function BecomePartner({ navigate }: Props) {
                       strokeLinejoin="round"
                     />
                   </svg>
-                  <span
-                    style={{ fontSize: 13, color: "#C5D8EE" }}
-                  >
-                    {item}
-                  </span>
+                  <span style={{ fontSize: 13, color: "#C5D8EE" }}>{item}</span>
                 </div>
               ))}
             </div>
@@ -1041,8 +980,7 @@ export function BecomePartner({ navigate }: Props) {
                   marginBottom: 16,
                 }}
               >
-                Speak to our Partner Success team — no
-                commitment required.
+                Speak to our Partner Success team — no commitment required.
               </p>
               <button
                 onClick={() => navigate("contact")}

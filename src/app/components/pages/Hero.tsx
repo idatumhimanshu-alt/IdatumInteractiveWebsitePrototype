@@ -24,7 +24,11 @@ import {
   ListTodo,
   ClipboardList,
   MonitorSmartphone,
+  Scale,
+  Target,
+  Settings,
   Shield,
+  FileText,
   Activity,
   Zap,
   Cpu,
@@ -328,6 +332,7 @@ export function Hero({ navigate }: HeroProps) {
               </span>
             </h1>
 
+            {/* Paragraph Updated */}
             <p
               style={{
                 fontSize: 18,
@@ -338,8 +343,7 @@ export function Hero({ navigate }: HeroProps) {
                 fontWeight: 400,
               }}
             >
-              Enterprise Advisory for Governance, Risk, Compliance, Security &
-              AI. We partner with organizations to build resilient frameworks.
+              We partner with organizations to build resilient frameworks.
             </p>
 
             {/* CTAs */}
@@ -402,7 +406,7 @@ export function Hero({ navigate }: HeroProps) {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Cybernetic Compliance HUD */}
+          {/* RIGHT COLUMN: Cybernetic Compliance */}
           <div
             style={{
               flex: "1 1 480px",
@@ -425,6 +429,7 @@ export function Hero({ navigate }: HeroProps) {
                 filter: "blur(40px)",
               }}
             />
+
             {/* Radar Sweeping Line */}
             <motion.div
               animate={{ rotate: 360 }}
@@ -439,6 +444,7 @@ export function Hero({ navigate }: HeroProps) {
                 pointerEvents: "none",
               }}
             />
+
             {/* Core Shield Reactor */}
             <motion.div
               animate={{ scale: [1, 1.05, 1] }}
@@ -459,7 +465,8 @@ export function Hero({ navigate }: HeroProps) {
                 justifyContent: "center",
               }}
             >
-              <Shield size={38} color="#64FFDA" strokeWidth={1.8} />
+              {/* Changed from <Shield /> to <ShieldCheck /> */}
+              <ShieldCheck size={38} color="#64FFDA" strokeWidth={1.8} />
               <span
                 style={{
                   fontSize: 10,
@@ -472,6 +479,7 @@ export function Hero({ navigate }: HeroProps) {
                 IDATUM
               </span>
             </motion.div>
+
             {/* Inner Revolving Orbit Ring */}
             <motion.div
               animate={{ rotate: -360 }}
@@ -512,8 +520,8 @@ export function Hero({ navigate }: HeroProps) {
               >
                 <Zap size={18} color="#64FFDA" />
               </div>
-            </motion.div>{" "}
-            {/* <--- FIXED */}
+            </motion.div>
+
             {/* Outer Revolving Orbit Ring */}
             <motion.div
               animate={{ rotate: 360 }}
@@ -526,8 +534,10 @@ export function Hero({ navigate }: HeroProps) {
                 border: "1px solid rgba(255, 255, 255, 0.12)",
               }}
             />
-            {/* ── Floating Glassmorphic Dynamic Badges (The "Crazy" Touch) ── */}
-            {/* Badge 1: Top Right */}
+
+            {/* ── 5 Custom Keywords Floating Badges ── */}
+
+            {/* Badge 1: COMPLIANCE */}
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
@@ -545,6 +555,7 @@ export function Hero({ navigate }: HeroProps) {
                 gap: 10,
                 boxShadow: "0 12px 30px rgba(0,0,0,0.3)",
                 zIndex: 12,
+                transform: "none", // Forces it to remain straight
               }}
             >
               <div
@@ -569,7 +580,7 @@ export function Hero({ navigate }: HeroProps) {
                     margin: 0,
                   }}
                 >
-                  ISO 27001:2022
+                  Compliance
                 </p>
                 <p
                   style={{
@@ -583,7 +594,8 @@ export function Hero({ navigate }: HeroProps) {
                 </p>
               </div>
             </motion.div>
-            {/* Badge 2: Bottom Left */}
+
+            {/* Badge 2: RISK */}
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{
@@ -595,7 +607,7 @@ export function Hero({ navigate }: HeroProps) {
               style={{
                 position: "absolute",
                 bottom: "10%",
-                left: "0%",
+                left: "-5%",
                 background: "rgba(16, 40, 71, 0.75)",
                 backdropFilter: "blur(12px)",
                 border: "1px solid rgba(255, 255, 255, 0.2)",
@@ -625,7 +637,8 @@ export function Hero({ navigate }: HeroProps) {
                 </p>
               </div>
             </motion.div>
-            {/* Badge 3: Bottom Right */}
+
+            {/* Badge 3: SECURITY */}
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{
@@ -636,7 +649,7 @@ export function Hero({ navigate }: HeroProps) {
               }}
               style={{
                 position: "absolute",
-                bottom: "2%",
+                bottom: "5%",
                 right: "8%",
                 background: "rgba(16, 40, 71, 0.75)",
                 backdropFilter: "blur(12px)",
@@ -650,9 +663,71 @@ export function Hero({ navigate }: HeroProps) {
                 zIndex: 12,
               }}
             >
-              <span style={{ fontSize: 18 }}>🛡️</span>
+              <Lock size={16} color="#64FFDA" />
               <span style={{ fontSize: 11, fontWeight: 700, color: "#ffffff" }}>
-                SOC 2 Type II Certified
+                Security Verified
+              </span>
+            </motion.div>
+
+            {/* Badge 4: GOVERNANCE */}
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{
+                repeat: Infinity,
+                duration: 5.5,
+                ease: "easeInOut",
+                delay: 1.5,
+              }}
+              style={{
+                position: "absolute",
+                top: "12%",
+                left: "2%",
+                background: "rgba(16, 40, 71, 0.75)",
+                backdropFilter: "blur(12px)",
+                border: "1px solid rgba(255, 255, 255, 0.2)",
+                borderRadius: 12,
+                padding: "8px 14px",
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+                boxShadow: "0 12px 30px rgba(0,0,0,0.3)",
+                zIndex: 12,
+              }}
+            >
+              <Briefcase size={16} color="#B0C4DE" />
+              <span style={{ fontSize: 11, fontWeight: 700, color: "#ffffff" }}>
+                Governance
+              </span>
+            </motion.div>
+
+            {/* Badge 5: AI */}
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
+              transition={{
+                repeat: Infinity,
+                duration: 4.8,
+                ease: "easeInOut",
+                delay: 0.8,
+              }}
+              style={{
+                position: "absolute",
+                top: "45%",
+                right: "-6%",
+                background: "rgba(16, 40, 71, 0.75)",
+                backdropFilter: "blur(12px)",
+                border: "1px solid rgba(100, 255, 218, 0.3)",
+                borderRadius: 12,
+                padding: "8px 14px",
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+                boxShadow: "0 12px 30px rgba(0,0,0,0.3)",
+                zIndex: 12,
+              }}
+            >
+              <Cpu size={16} color="#64FFDA" />
+              <span style={{ fontSize: 11, fontWeight: 700, color: "#ffffff" }}>
+                AI Readiness
               </span>
             </motion.div>
           </div>

@@ -116,7 +116,12 @@ export default function App() {
       case "why-partner":
         return <WhyPartner navigate={navigate} />;
       case "become-partner":
-        return <BecomePartner navigate={navigate} />;
+        return (
+          <BecomePartner
+            navigate={navigate}
+            defaultType={navState.defaultType}
+          />
+        );
       case "trainer-onboarding":
         return <TrainerOnboarding navigate={navigate} />;
       case "auditor-onboarding":

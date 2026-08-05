@@ -2,13 +2,11 @@ import { useState } from "react";
 
 type Page = string;
 interface Props {
-  navigate: (
-    page: Page,
-    state?: Record<string, string>,
-  ) => void;
+  navigate: (page: Page, state?: Record<string, string>) => void;
   defaultTrack?: string;
 }
 
+// Keep your array logically grouped by track for easy editing!
 const allCourses = [
   // POSH
   {
@@ -238,10 +236,35 @@ const trackList = [
   "Audit",
 ];
 
-export function BrowseAllCourses({
-  navigate,
-  defaultTrack,
-}: Props) {
+// Automatically interleaves courses by track so colors don't clump together
+const interleaveCourses = (courses: typeof allCourses) => {
+  const grouped: Record<string, typeof allCourses> = {};
+
+  // Group courses by their track
+  courses.forEach((c) => {
+    if (!grouped[c.track]) grouped[c.track] = [];
+    grouped[c.track].push(c);
+  });
+
+  const interleaved = [];
+  const trackKeys = Object.keys(grouped);
+
+  // Find the largest group
+  const maxLen = Math.max(...trackKeys.map((k) => grouped[k].length));
+
+  // Pull one course from each track, row by row
+  for (let i = 0; i < maxLen; i++) {
+    trackKeys.forEach((k) => {
+      if (grouped[k][i]) {
+        interleaved.push(grouped[k][i]);
+      }
+    });
+  }
+
+  return interleaved;
+};
+
+export function BrowseAllCourses({ navigate, defaultTrack }: Props) {
   const [activeTrack, setActiveTrack] = useState(
     defaultTrack && trackList.includes(defaultTrack)
       ? defaultTrack
@@ -250,21 +273,19 @@ export function BrowseAllCourses({
   const [activeLevel, setActiveLevel] = useState("All Levels");
 
   const filtered = allCourses.filter((c) => {
-    const matchTrack =
-      activeTrack === "All Tracks" || c.track === activeTrack;
-    const matchLevel =
-      activeLevel === "All Levels" || c.level === activeLevel;
+    const matchTrack = activeTrack === "All Tracks" || c.track === activeTrack;
+    const matchLevel = activeLevel === "All Levels" || c.level === activeLevel;
     return matchTrack && matchLevel;
   });
 
+  // Automatically mix the colors if we are viewing multiple tracks
+  const displayCourses =
+    activeTrack === "All Tracks" ? interleaveCourses(filtered) : filtered;
+
   return (
-    <div
-      style={{ fontFamily: "var(--font-sans)", paddingTop: 64 }}
-    >
+    <div style={{ fontFamily: "var(--font-sans)", paddingTop: 64 }}>
       {/* Header */}
-      <section
-        style={{ background: "#0D2B5A", padding: "56px 40px" }}
-      >
+      <section style={{ background: "#0D2B5A", padding: "56px 40px" }}>
         <div
           style={{
             maxWidth: 1280,
@@ -300,8 +321,7 @@ export function BrowseAllCourses({
               Browse All Courses
             </h1>
             <p style={{ fontSize: 16, color: "#C5D8EE" }}>
-              {allCourses.length} courses across 6 compliance
-              domains
+              {allCourses.length} courses across 6 compliance domains
             </p>
           </div>
           <button
@@ -363,15 +383,10 @@ export function BrowseAllCourses({
                     key={t}
                     onClick={() => setActiveTrack(t)}
                     style={{
-                      background:
-                        activeTrack === t ? "#0D2B5A" : "#fff",
-                      color:
-                        activeTrack === t ? "#fff" : "#4A6080",
+                      background: activeTrack === t ? "#0D2B5A" : "#fff",
+                      color: activeTrack === t ? "#fff" : "#4A6080",
                       border: "1px solid",
-                      borderColor:
-                        activeTrack === t
-                          ? "#0D2B5A"
-                          : "#D1DCE8",
+                      borderColor: activeTrack === t ? "#0D2B5A" : "#D1DCE8",
                       cursor: "pointer",
                       padding: "6px 14px",
                       fontSize: 12,
@@ -409,15 +424,10 @@ export function BrowseAllCourses({
                     key={l}
                     onClick={() => setActiveLevel(l)}
                     style={{
-                      background:
-                        activeLevel === l ? "#1A5EA8" : "#fff",
-                      color:
-                        activeLevel === l ? "#fff" : "#4A6080",
+                      background: activeLevel === l ? "#1A5EA8" : "#fff",
+                      color: activeLevel === l ? "#fff" : "#4A6080",
                       border: "1px solid",
-                      borderColor:
-                        activeLevel === l
-                          ? "#1A5EA8"
-                          : "#D1DCE8",
+                      borderColor: activeLevel === l ? "#1A5EA8" : "#D1DCE8",
                       cursor: "pointer",
                       padding: "6px 14px",
                       fontSize: 12,
@@ -459,7 +469,7 @@ export function BrowseAllCourses({
             gap: 20,
           }}
         >
-          {filtered.map((course) => {
+          {displayCourses.map((course) => {
             const color = trackColors[course.track];
             const bg = trackBgs[course.track];
             return (
@@ -469,45 +479,41 @@ export function BrowseAllCourses({
                   background: "#fff",
                   border: "1px solid #D1DCE8",
                   borderRadius: 10,
-                  padding: 24,
                   display: "flex",
                   flexDirection: "column",
                   transition: "box-shadow 0.2s, transform 0.2s",
                   cursor: "pointer",
+                  overflow: "hidden", // Ensures the top color strip respects the border radius
                 }}
                 onMouseEnter={(e) => {
-                  (
-                    e.currentTarget as HTMLDivElement
-                  ).style.boxShadow =
+                  (e.currentTarget as HTMLDivElement).style.boxShadow =
                     "0 8px 24px rgba(13,43,90,0.1)";
-                  (
-                    e.currentTarget as HTMLDivElement
-                  ).style.transform = "translateY(-2px)";
+                  (e.currentTarget as HTMLDivElement).style.transform =
+                    "translateY(-2px)";
                 }}
                 onMouseLeave={(e) => {
-                  (
-                    e.currentTarget as HTMLDivElement
-                  ).style.boxShadow = "none";
-                  (
-                    e.currentTarget as HTMLDivElement
-                  ).style.transform = "translateY(0)";
+                  (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+                  (e.currentTarget as HTMLDivElement).style.transform =
+                    "translateY(0)";
                 }}
               >
+                {/* Colored Header Strip */}
                 <div
                   style={{
+                    background: color,
+                    padding: "12px 24px",
                     display: "flex",
                     justifyContent: "space-between",
-                    alignItems: "flex-start",
-                    marginBottom: 14,
+                    alignItems: "center",
                   }}
                 >
                   <span
                     style={{
-                      background: bg,
-                      color,
+                      background: "rgba(255, 255, 255, 0.2)",
+                      color: "#ffffff",
                       fontSize: 10,
                       fontWeight: 700,
-                      padding: "3px 9px",
+                      padding: "4px 10px",
                       borderRadius: 4,
                       letterSpacing: "0.5px",
                     }}
@@ -516,119 +522,128 @@ export function BrowseAllCourses({
                   </span>
                   <span
                     style={{
-                      background: "#F1F5FA",
-                      color: "#4A6080",
+                      background: "rgba(255, 255, 255, 0.2)",
+                      color: "#ffffff",
                       fontSize: 10,
                       fontWeight: 600,
-                      padding: "3px 9px",
+                      padding: "4px 10px",
                       borderRadius: 4,
                     }}
                   >
                     {course.level}
                   </span>
                 </div>
-                <h3
+
+                {/* Card Body */}
+                <div
                   style={{
-                    fontSize: 14,
-                    fontWeight: 700,
-                    color: "#0D2B5A",
-                    lineHeight: 1.45,
-                    marginBottom: 10,
+                    padding: 24,
+                    display: "flex",
+                    flexDirection: "column",
                     flex: 1,
                   }}
                 >
-                  {course.title}
-                </h3>
-                <p
-                  style={{
-                    fontSize: 12,
-                    color: "#4A6080",
-                    lineHeight: 1.65,
-                    marginBottom: 16,
-                  }}
-                >
-                  {course.description}
-                </p>
-                <div
-                  style={{
-                    display: "flex",
-                    gap: 12,
-                    marginBottom: 16,
-                  }}
-                >
-                  <span
+                  <h3
                     style={{
-                      fontSize: 11,
-                      color: "#4A6080",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 4,
+                      fontSize: 14,
+                      fontWeight: 700,
+                      color: "#0D2B5A",
+                      lineHeight: 1.45,
+                      marginBottom: 10,
+                      flex: 1,
                     }}
                   >
-                    <svg
-                      width="12"
-                      height="12"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <circle
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="#4A6080"
-                        strokeWidth="1.5"
-                      />
-                      <path
-                        d="M12 6v6l4 2"
-                        stroke="#4A6080"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                    {course.duration}
-                  </span>
-                  <span
-                    style={{ fontSize: 11, color: "#4A6080" }}
+                    {course.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontSize: 12,
+                      color: "#4A6080",
+                      lineHeight: 1.65,
+                      marginBottom: 16,
+                    }}
                   >
-                    • {course.format}
-                  </span>
+                    {course.description}
+                  </p>
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: 12,
+                      marginBottom: 16,
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: 11,
+                        color: "#4A6080",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 4,
+                      }}
+                    >
+                      <svg
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                      >
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="#4A6080"
+                          strokeWidth="1.5"
+                        />
+                        <path
+                          d="M12 6v6l4 2"
+                          stroke="#4A6080"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                        />
+                      </svg>
+                      {course.duration}
+                    </span>
+                    <span style={{ fontSize: 11, color: "#4A6080" }}>
+                      • {course.format}
+                    </span>
+                  </div>
+                  <button
+                    onClick={() =>
+                      course.isPOSH
+                        ? navigate("posh-detail")
+                        : navigate("contact")
+                    }
+                    style={{
+                      background: bg,
+                      color,
+                      border: `1px solid ${color}30`,
+                      cursor: "pointer",
+                      padding: "9px 16px",
+                      fontSize: 12,
+                      fontWeight: 700,
+                      borderRadius: 6,
+                      transition: "all 0.15s",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = color;
+                      e.currentTarget.style.color = "#fff";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = bg;
+                      e.currentTarget.style.color = color;
+                    }}
+                  >
+                    {course.isPOSH
+                      ? "View Course Details"
+                      : "Request Course Details"}
+                  </button>
                 </div>
-                <button
-                  onClick={() =>
-                    course.isPOSH
-                      ? navigate("posh-detail")
-                      : navigate("contact")
-                  }
-                  style={{
-                    background: bg,
-                    color,
-                    border: `1px solid ${color}30`,
-                    cursor: "pointer",
-                    padding: "9px 16px",
-                    fontSize: 12,
-                    fontWeight: 700,
-                    borderRadius: 6,
-                    transition: "all 0.15s",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = color;
-                    e.currentTarget.style.color = "#fff";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = bg;
-                    e.currentTarget.style.color = color;
-                  }}
-                >
-                  {course.isPOSH
-                    ? "View Course Details"
-                    : "Request Course Details"}
-                </button>
               </div>
             );
           })}
         </div>
 
-        {filtered.length === 0 && (
+        {displayCourses.length === 0 && (
           <div
             style={{
               textAlign: "center",
@@ -637,8 +652,8 @@ export function BrowseAllCourses({
             }}
           >
             <p style={{ fontSize: 16 }}>
-              No courses match your filters. Try adjusting the
-              track or level selection.
+              No courses match your filters. Try adjusting the track or level
+              selection.
             </p>
           </div>
         )}

@@ -1,131 +1,354 @@
-type Page = string;
-interface Props { navigate: (page: Page) => void; }
+import React from "react";
+import { motion } from "motion/react";
+import {
+  Video,
+  Users,
+  PlayCircle,
+  LayoutGrid,
+  Check,
+  CheckCircle2,
+} from "lucide-react";
 
-const methods = [
-  {
-    title: "Live Virtual Instructor-Led",
-    icon: (
-      <path d="M15 10l4.553-2.069A1 1 0 0121 8.82v6.36a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" stroke="#1A5EA8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-    ),
-    desc: "Real-time sessions delivered via virtual classroom. Participants engage directly with the instructor, ask questions, and work through case studies with peers — all without travel overhead.",
-    features: ["Live Q&A and discussion", "Group breakout exercises", "Session recordings available", "Cohort-based scheduling"],
-  },
-  {
-    title: "In-Person Workshop",
-    icon: (
-      <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" stroke="#1A5EA8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-    ),
-    desc: "Delivered at your location or a neutral venue. Best for teams that benefit from hands-on facilitation, working through organization-specific scenarios in a structured setting.",
-    features: ["On-site at your premises", "Custom case studies", "Tabletop exercises", "Group certification pathways"],
-  },
-  {
-    title: "Self-Paced On-Demand",
-    icon: (
-      <path d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#1A5EA8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-    ),
-    desc: "Learners complete modules at their own pace through our learning platform. Ideal for refresher training, onboarding new staff, or organizations with distributed teams across time zones.",
-    features: ["24/7 platform access", "Progress tracking & reporting", "Completion certificates", "Mobile-compatible"],
-  },
-  {
-    title: "Blended Learning Programs",
-    icon: (
-      <path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" stroke="#1A5EA8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-    ),
-    desc: "A structured combination of self-paced pre-work, live application sessions, and post-training assessments. The most effective format for deep competency development.",
-    features: ["Pre-work modules", "Live application sessions", "Post-training assessments", "Manager dashboards"],
-  },
-];
+type Page = string;
+interface Props {
+  navigate: (page: Page, state?: Record<string, string>) => void;
+}
 
 export function HowWeTrain({ navigate }: Props) {
+  const formats = [
+    {
+      id: "live-virtual",
+      icon: Video,
+      title: "Live Virtual Instructor-Led",
+      desc: "Real-time sessions delivered via virtual classroom. Participants engage directly with the instructor, ask questions, and work through case studies with peers — all without travel overhead.",
+      bullets: [
+        "Live Q&A and discussion",
+        "Group breakout exercises",
+        "Session recordings available",
+        "Cohort-based scheduling",
+      ],
+    },
+    {
+      id: "in-person",
+      icon: Users,
+      title: "In-Person Workshop",
+      desc: "Delivered at your location or a neutral venue. Best for teams that benefit from hands-on facilitation, working through organization-specific scenarios in a structured setting.",
+      bullets: [
+        "On-site at your premises",
+        "Custom case studies",
+        "Tabletop exercises",
+        "Group certification pathways",
+      ],
+    },
+    {
+      id: "on-demand",
+      icon: PlayCircle,
+      title: "Self-Paced On-Demand",
+      desc: "Learners complete modules at their own pace through our learning platform. Ideal for refresher training, onboarding new staff, or organizations with distributed teams across time zones.",
+      bullets: [
+        "24/7 platform access",
+        "Progress tracking & reporting",
+        "Completion certificates",
+        "Mobile-compatible",
+      ],
+    },
+    {
+      id: "blended",
+      icon: LayoutGrid,
+      title: "Blended Learning Programs",
+      desc: "A structured combination of self-paced pre-work, live application sessions, and post-training assessments. The most effective format for deep competency development.",
+      bullets: [
+        "Pre-work modules",
+        "Live application sessions",
+        "Post-training assessments",
+        "Manager dashboards",
+      ],
+    },
+  ];
+
   return (
-    <div style={{ fontFamily: "var(--font-sans)", paddingTop: 64 }}>
-      {/* Header */}
-      <section style={{ background: "#0D2B5A", padding: "72px 40px" }}>
-        <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
-          <p style={{ fontSize: 12, fontWeight: 600, color: "#9BB5D4", letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: 12 }}>
-            Our Methodology
-          </p>
-          <h1 style={{ fontSize: 44, fontWeight: 700, color: "#fff", lineHeight: 1.2, letterSpacing: "-0.8px", marginBottom: 20 }}>
-            How We Train
-          </h1>
-          <p style={{ fontSize: 17, color: "#C5D8EE", lineHeight: 1.8 }}>
-            Idatum Academy offers four delivery formats designed to fit any team structure, schedule, or learning objective. Every format is built around the same core principle: real knowledge transfer, not box-ticking.
-          </p>
-        </div>
+    <div
+      style={{
+        fontFamily: "var(--font-sans)",
+        background: "#F8FAFC",
+        minHeight: "100vh",
+        paddingBottom: 80,
+      }}
+    >
+      {/* ── 1. Hero Section ── */}
+      <section
+        style={{
+          background: "linear-gradient(135deg, #102847 0%, #15335A 100%)",
+          padding: "100px 40px 80px",
+          textAlign: "center",
+        }}
+      >
+        <span
+          style={{
+            fontSize: 11,
+            fontWeight: 700,
+            letterSpacing: "1.5px",
+            color: "#64FFDA",
+            textTransform: "uppercase",
+            marginBottom: 16,
+            display: "block",
+          }}
+        >
+          OUR METHODOLOGY
+        </span>
+        <h1
+          style={{
+            fontSize: 48,
+            fontWeight: 800,
+            color: "#ffffff",
+            marginBottom: 24,
+            letterSpacing: "-1px",
+          }}
+        >
+          How We Train
+        </h1>
+        <p
+          style={{
+            fontSize: 18,
+            color: "#B0C4DE",
+            lineHeight: 1.6,
+            maxWidth: 700,
+            margin: "0 auto",
+            fontWeight: 400,
+          }}
+        >
+          Idatum Academy offers four delivery formats designed to fit any team
+          structure, schedule, or learning objective. Every format is built
+          around the same core principle: real knowledge transfer, not
+          box-ticking.
+        </p>
       </section>
 
-      {/* Training methods */}
-      <section style={{ padding: "80px 40px", maxWidth: 1280, margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 28 }}>
-          {methods.map((m) => (
-            <div
-              key={m.title}
+      {/* ── 2. The 4 Delivery Formats Grid ── */}
+      <section
+        style={{
+          maxWidth: 1280,
+          margin: "-40px auto 80px",
+          padding: "0 40px",
+          position: "relative",
+          zIndex: 10,
+        }}
+      >
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(450px, 1fr))",
+            gap: 24,
+          }}
+        >
+          {formats.map((format) => (
+            <motion.div
+              key={format.id}
+              whileHover={{ y: -4 }}
               style={{
-                background: "#fff",
-                border: "1px solid #D1DCE8",
-                borderRadius: 12,
-                padding: 36,
-                transition: "box-shadow 0.2s",
+                background: "#ffffff",
+                border: "1px solid #E2E8F0",
+                borderRadius: 16,
+                padding: 40,
+                boxShadow: "0 10px 30px rgba(13,43,90,0.04)",
+                display: "flex",
+                flexDirection: "column",
+                transition: "border-color 0.2s ease",
               }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLDivElement).style.boxShadow = "0 8px 32px rgba(13,43,90,0.1)")}
-              onMouseLeave={(e) => ((e.currentTarget as HTMLDivElement).style.boxShadow = "none")}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.borderColor = "#CBD5E1")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.borderColor = "#E2E8F0")
+              }
             >
-              <div style={{ width: 52, height: 52, background: "#EEF4FF", borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20 }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">{m.icon}</svg>
+              <div
+                style={{
+                  width: 48,
+                  height: 48,
+                  borderRadius: 12,
+                  background: "#F1F5FA",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginBottom: 24,
+                }}
+              >
+                <format.icon size={24} color="#1A5EA8" strokeWidth={2} />
               </div>
-              <h3 style={{ fontSize: 19, fontWeight: 700, color: "#0D2B5A", marginBottom: 12 }}>{m.title}</h3>
-              <p style={{ fontSize: 14, color: "#4A6080", lineHeight: 1.7, marginBottom: 20 }}>{m.desc}</p>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
-                {m.features.map((f) => (
-                  <div key={f} style={{ display: "flex", alignItems: "flex-start", gap: 8 }}>
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ marginTop: 2, flexShrink: 0 }}>
-                      <circle cx="7" cy="7" r="6" fill="#DCFCE7"/>
-                      <path d="M4.5 7l2 2 3-3" stroke="#16A34A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    <span style={{ fontSize: 12, color: "#4A6080" }}>{f}</span>
+
+              <h3
+                style={{
+                  fontSize: 20,
+                  fontWeight: 700,
+                  color: "#0D2B5A",
+                  marginBottom: 12,
+                }}
+              >
+                {format.title}
+              </h3>
+
+              <p
+                style={{
+                  fontSize: 14,
+                  color: "#4A6080",
+                  lineHeight: 1.6,
+                  marginBottom: 32,
+                  flex: 1,
+                }}
+              >
+                {format.desc}
+              </p>
+
+              {/* 2-Column Bullet List */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "12px 16px",
+                  borderTop: "1px solid #F1F5FA",
+                  paddingTop: 24,
+                }}
+              >
+                {format.bullets.map((bullet, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      gap: 8,
+                    }}
+                  >
+                    <div style={{ marginTop: 2, color: "#10B981" }}>
+                      <Check size={16} strokeWidth={3} />
+                    </div>
+                    <span
+                      style={{
+                        fontSize: 13,
+                        color: "#4A6080",
+                        lineHeight: 1.4,
+                        fontWeight: 500,
+                      }}
+                    >
+                      {bullet}
+                    </span>
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
 
-      {/* Training philosophy */}
-      <section style={{ background: "#F1F5FA", padding: "64px 40px", borderTop: "1px solid #D1DCE8" }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
-          <div>
-            <h2 style={{ fontSize: 32, fontWeight: 700, color: "#0D2B5A", letterSpacing: "-0.5px", marginBottom: 20 }}>
+      {/* ── 3. Competency vs Checkboxes (Split Screen) ── */}
+      <section style={{ maxWidth: 1280, margin: "0 auto", padding: "40px" }}>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            gap: 60,
+          }}
+        >
+          {/* Left: Content */}
+          <div style={{ flex: "1 1 500px" }}>
+            <h2
+              style={{
+                fontSize: 32,
+                fontWeight: 800,
+                color: "#0D2B5A",
+                marginBottom: 24,
+                lineHeight: 1.2,
+                letterSpacing: "-0.5px",
+              }}
+            >
               Training Built Around Competency, Not Compliance Checkboxes
             </h2>
-            <p style={{ fontSize: 15, color: "#4A6080", lineHeight: 1.8, marginBottom: 20 }}>
-              Too many compliance training programs exist solely to generate completion certificates. Idatum Academy is built differently. Our learning design starts with the job to be done — what your team needs to actually do as a result of training — and works backward to the curriculum.
+            <p
+              style={{
+                fontSize: 16,
+                color: "#4A6080",
+                lineHeight: 1.7,
+                marginBottom: 20,
+              }}
+            >
+              Too many compliance training programs exist solely to generate
+              completion certificates. Idatum Academy is built differently. Our
+              learning design starts with the job to be done — what your team
+              needs to actually do as a result of training — and works backward
+              to the curriculum.
             </p>
-            <p style={{ fontSize: 15, color: "#4A6080", lineHeight: 1.8, marginBottom: 32 }}>
-              This means every module connects learning to application, and every assessment measures capability rather than memorization. Your team emerges from training ready to act, not just ready to pass a test.
+            <p
+              style={{
+                fontSize: 16,
+                color: "#4A6080",
+                lineHeight: 1.7,
+                marginBottom: 32,
+              }}
+            >
+              This means every module connects learning to application, and
+              every assessment measures capability rather than memorization.
+              Your team emerges from training ready to act, not just ready to
+              pass a test.
             </p>
             <button
               onClick={() => navigate("contact")}
               style={{
                 background: "#1A5EA8",
-                color: "#fff",
+                color: "#ffffff",
                 border: "none",
                 cursor: "pointer",
-                padding: "13px 24px",
-                fontSize: 14,
+                padding: "14px 28px",
+                fontSize: 15,
                 fontWeight: 600,
                 borderRadius: 6,
+                transition: "background 0.2s ease",
               }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.background = "#0D4A8A")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.background = "#1A5EA8")
+              }
             >
               Contact Us to Learn More
             </button>
           </div>
-          <div>
-            <img
-              src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=580&h=400&fit=crop&auto=format"
-              alt="Instructor-led compliance training"
-              style={{ display: "block", width: "100%", height: 360, objectFit: "cover", borderRadius: 12, boxShadow: "0 12px 40px rgba(13,43,90,0.12)" }}
-            />
+
+          {/* Right: Image / Visual */}
+          <div style={{ flex: "1 1 400px", position: "relative" }}>
+            <div
+              style={{
+                width: "100%",
+                paddingBottom: "65%", // Creates a 3:2 aspect ratio container
+                position: "relative",
+                borderRadius: 16,
+                overflow: "hidden",
+                boxShadow: "0 24px 48px rgba(13,43,90,0.12)",
+              }}
+            >
+              <img
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
+                alt="Team collaborating on training"
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+              />
+              {/* Optional: Slight color overlay to match brand */}
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background:
+                    "linear-gradient(to right, rgba(13,43,90,0.2), transparent)",
+                }}
+              />
+            </div>
           </div>
         </div>
       </section>
