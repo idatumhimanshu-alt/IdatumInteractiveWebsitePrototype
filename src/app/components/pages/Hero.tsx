@@ -24,11 +24,6 @@ import {
   ListTodo,
   ClipboardList,
   MonitorSmartphone,
-  Scale,
-  Target,
-  Settings,
-  Shield,
-  FileText,
   Activity,
   Zap,
   Cpu,
@@ -40,11 +35,19 @@ interface HeroProps {
   navigate: (page: Page, state?: Record<string, string>) => void;
 }
 
+// Exactly 8 client logos for a perfectly balanced 2x4 grid
 const clientLogos = [
-  { name: "Schneider", style: { fontWeight: 800, letterSpacing: "-0.5px" } },
-  { name: "TATA", style: { fontWeight: 800, color: "#1A5EA8" } },
-  { name: "wipro", style: { fontWeight: 700, fontStyle: "italic" } },
-  { name: "adani", style: { fontWeight: 600, letterSpacing: "0.5px" } },
+  { name: "HDFC", style: { fontWeight: 800, letterSpacing: "-0.5px" } },
+  { name: "Bajaj Allianz", style: { fontWeight: 700 } },
+  { name: "Bitwise Global", style: { fontWeight: 700 } },
+  {
+    name: "Wurth IT India",
+    style: { fontWeight: 600, letterSpacing: "0.5px" },
+  },
+  { name: "tCognition Consultancy", style: { fontWeight: 700 } },
+  { name: "Xpanxion International", style: { fontWeight: 600 } },
+  { name: "Opus Software", style: { fontWeight: 700 } },
+  { name: "Minda Stoneridge", style: { fontWeight: 600 } },
 ];
 
 const consultingItems = [
@@ -292,7 +295,7 @@ export function Hero({ navigate }: HeroProps) {
             <div style={{ display: "inline-flex", marginBottom: 24 }}>
               <span
                 style={{
-                  fontSize: 12,
+                  fontSize: 17,
                   fontWeight: 700,
                   color: "#64FFDA",
                   letterSpacing: "1.2px",
@@ -304,7 +307,7 @@ export function Hero({ navigate }: HeroProps) {
                   boxShadow: "0 0 20px rgba(100,255,218,0.15)",
                 }}
               >
-                [HIPAA · ISO 27001 · SOC 2 · GDPR · PCI DSS]
+                HIPAA · ISO 27001 · SOC 2 · GDPR · PCI DSS
               </span>
             </div>
 
@@ -332,7 +335,6 @@ export function Hero({ navigate }: HeroProps) {
               </span>
             </h1>
 
-            {/* Paragraph Updated */}
             <p
               style={{
                 fontSize: 18,
@@ -417,7 +419,6 @@ export function Hero({ navigate }: HeroProps) {
               minHeight: 500,
             }}
           >
-            {/* Outer Glowing Ambient Aura */}
             <div
               style={{
                 position: "absolute",
@@ -430,7 +431,6 @@ export function Hero({ navigate }: HeroProps) {
               }}
             />
 
-            {/* Radar Sweeping Line */}
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
@@ -445,7 +445,6 @@ export function Hero({ navigate }: HeroProps) {
               }}
             />
 
-            {/* Core Shield Reactor */}
             <motion.div
               animate={{ scale: [1, 1.05, 1] }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
@@ -465,7 +464,6 @@ export function Hero({ navigate }: HeroProps) {
                 justifyContent: "center",
               }}
             >
-              {/* Changed from <Shield /> to <ShieldCheck /> */}
               <ShieldCheck size={38} color="#64FFDA" strokeWidth={1.8} />
               <span
                 style={{
@@ -480,7 +478,6 @@ export function Hero({ navigate }: HeroProps) {
               </span>
             </motion.div>
 
-            {/* Inner Revolving Orbit Ring */}
             <motion.div
               animate={{ rotate: -360 }}
               transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
@@ -522,7 +519,6 @@ export function Hero({ navigate }: HeroProps) {
               </div>
             </motion.div>
 
-            {/* Outer Revolving Orbit Ring */}
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ repeat: Infinity, duration: 50, ease: "linear" }}
@@ -535,9 +531,7 @@ export function Hero({ navigate }: HeroProps) {
               }}
             />
 
-            {/* ── 5 Custom Keywords Floating Badges ── */}
-
-            {/* Badge 1: COMPLIANCE */}
+            {/* Floating Badges */}
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
@@ -555,7 +549,6 @@ export function Hero({ navigate }: HeroProps) {
                 gap: 10,
                 boxShadow: "0 12px 30px rgba(0,0,0,0.3)",
                 zIndex: 12,
-                transform: "none", // Forces it to remain straight
               }}
             >
               <div
@@ -595,7 +588,6 @@ export function Hero({ navigate }: HeroProps) {
               </div>
             </motion.div>
 
-            {/* Badge 2: RISK */}
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{
@@ -638,7 +630,6 @@ export function Hero({ navigate }: HeroProps) {
               </div>
             </motion.div>
 
-            {/* Badge 3: SECURITY */}
             <motion.div
               animate={{ y: [0, -8, 0] }}
               transition={{
@@ -669,7 +660,6 @@ export function Hero({ navigate }: HeroProps) {
               </span>
             </motion.div>
 
-            {/* Badge 4: GOVERNANCE */}
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{
@@ -700,7 +690,6 @@ export function Hero({ navigate }: HeroProps) {
               </span>
             </motion.div>
 
-            {/* Badge 5: AI */}
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{
@@ -734,46 +723,72 @@ export function Hero({ navigate }: HeroProps) {
         </div>
       </section>
 
-      {/* ── 2. Client Logos Strip ── */}
+      {/* ── 2. Symmetrical 2x4 Enterprise Client Grid ── */}
       <section
         style={{
-          background: "#ffffff",
-          borderBottom: "1px solid #EEF2F7",
-          padding: "32px 40px",
+          background: "#F8FAFC",
+          borderBottom: "1px solid #E2E8F0",
+          padding: "48px 40px",
         }}
       >
-        <div
-          style={{
-            maxWidth: 1000,
-            margin: "0 auto",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: 32,
-          }}
-        >
-          {clientLogos.map((client, index) => (
-            <div
-              key={index}
-              style={{
-                fontSize: 24,
-                color: "#8892B0",
-                filter: "grayscale(100%) opacity(70%)",
-                transition: "all 0.3s ease",
-                cursor: "default",
-                ...client.style,
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.filter = "grayscale(0%) opacity(100%)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.filter = "grayscale(100%) opacity(70%)";
-              }}
-            >
-              {client.name}
-            </div>
-          ))}
+        <div style={{ maxWidth: 1280, margin: "0 auto", textAlign: "center" }}>
+          <p
+            style={{
+              fontSize: 21,
+              fontWeight: 700,
+              color: "#1A5EA8",
+              textTransform: "uppercase",
+              letterSpacing: "1.5px",
+              marginBottom: 28,
+            }}
+          >
+            TRUSTED BY INDUSTRY LEADERS
+          </p>
+
+          {/* Balanced 4-column Grid for 8 items */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap: 16,
+              maxWidth: 1100,
+              margin: "0 auto",
+            }}
+          >
+            {clientLogos.map((client, index) => (
+              <div
+                key={index}
+                style={{
+                  background: "#ffffff",
+                  border: "1px solid #E2E8F0",
+                  borderRadius: 8,
+                  padding: "16px 20px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: 15,
+                  color: "#4A6080",
+                  transition: "all 0.2s ease",
+                  boxShadow: "0 2px 6px rgba(13,43,90,0.02)",
+                  ...client.style,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "#1A5EA8";
+                  e.currentTarget.style.color = "#0D2B5A";
+                  e.currentTarget.style.boxShadow =
+                    "0 6px 16px rgba(26,94,168,0.08)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "#E2E8F0";
+                  e.currentTarget.style.color = "#4A6080";
+                  e.currentTarget.style.boxShadow =
+                    "0 2px 6px rgba(13,43,90,0.02)";
+                }}
+              >
+                {client.name}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

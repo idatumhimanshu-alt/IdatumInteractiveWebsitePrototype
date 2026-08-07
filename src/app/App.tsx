@@ -6,11 +6,12 @@ import { Hero } from "./components/pages/Hero";
 import { ChooseYourPath } from "./components/pages/ChooseYourPath";
 import { WhyIdatum } from "./components/pages/WhyIdatum";
 import { AboutUs } from "./components/pages/AboutUs";
-import { ServicesIntro } from "./components/pages/ServicesIntro"; // Renamed from QAIntro
+import { ServicesIntro } from "./components/pages/ServicesIntro"; 
+import { SyscomplyIntro } from "./components/pages/SyscomplyIntro"; // <--- Imported Syscomply Component
 import { PartnerVsVendor } from "./components/pages/PartnerVsVendor";
-import { ServicesTimeline } from "./components/pages/ServicesTimeline"; // Renamed from QATimeline
+import { ServicesTimeline } from "./components/pages/ServicesTimeline"; 
 import { ProcessBuilt } from "./components/pages/ProcessBuilt";
-import { WhyChooseServices } from "./components/pages/WhyChooseServices"; // Renamed from WhyChooseQA
+import { WhyChooseServices } from "./components/pages/WhyChooseServices"; 
 import { AcademyIntro } from "./components/pages/AcademyIntro";
 import { HowWeTrain } from "./components/pages/HowWeTrain";
 import { TrainingTracks } from "./components/pages/TrainingTracks";
@@ -27,13 +28,13 @@ type Page =
   | "hero"
   | "choose"
   | "why-idatum"
-  | "about-us" // Added
-  | "services-intro" // Replaced qa-intro
-  | "syscomply-intro" // Added
+  | "about-us"
+  | "services-intro"
+  | "syscomply-intro"
   | "partner-vs-vendor"
-  | "services-timeline" // Replaced qa-timeline
+  | "services-timeline"
   | "process-built"
-  | "why-choose-services" // Replaced why-choose-qa
+  | "why-choose-services"
   | "academy-intro"
   | "how-we-train"
   | "training-tracks"
@@ -56,7 +57,6 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Pages that don't show footer (none in this case)
   const showFooter = true;
 
   const renderPage = () => {
@@ -72,20 +72,7 @@ export default function App() {
       case "services-intro":
         return <ServicesIntro navigate={navigate} />;
       case "syscomply-intro":
-        return (
-          <div
-            style={{
-              padding: "120px 40px",
-              textAlign: "center",
-              minHeight: "60vh",
-            }}
-          >
-            <h2 style={{ fontSize: 32, color: "#15335A" }}>
-              Syscomply Overview
-            </h2>
-            <p style={{ color: "#4A6080", marginTop: 16 }}>Coming Soon...</p>
-          </div>
-        );
+        return <SyscomplyIntro navigate={navigate} />; // <--- Rendered Syscomply Component here
       case "partner-vs-vendor":
         return <PartnerVsVendor navigate={navigate} />;
       case "services-timeline":

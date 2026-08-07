@@ -29,7 +29,6 @@ interface NavProps {
 }
 
 export function Nav({ navigate, current }: NavProps) {
-  const [servicesOpen, setServicesOpen] = useState(false);
   const [academyOpen, setAcademyOpen] = useState(false);
   const [partnerOpen, setPartnerOpen] = useState(false);
 
@@ -109,125 +108,42 @@ export function Nav({ navigate, current }: NavProps) {
             gap: 8,
           }}
         >
-          {/* Services dropdown */}
-          <div style={{ position: "relative" }}>
-            <button
-              onMouseEnter={() => {
-                setServicesOpen(true);
-                setAcademyOpen(false);
-                setPartnerOpen(false);
-              }}
-              onMouseLeave={() => setServicesOpen(false)}
-              onClick={() => navigate("services-intro")}
-              style={{
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                padding: "8px 12px",
-                fontSize: 14,
-                fontWeight: 500,
-                color: [
-                  "services-intro",
-                  "partner-vs-vendor",
-                  "services-timeline",
-                  "process-built",
-                  "why-choose-services",
-                ].includes(current)
-                  ? "#1A5EA8"
-                  : "#0D2B5A",
-                display: "flex",
-                alignItems: "center",
-                gap: 4,
-              }}
-            >
-              Services
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path
-                  d="M3 4.5L6 7.5L9 4.5"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-            {servicesOpen && (
-              <div
-                onMouseEnter={() => setServicesOpen(true)}
-                onMouseLeave={() => setServicesOpen(false)}
-                style={{
-                  position: "absolute",
-                  top: "100%",
-                  left: 0,
-                  background: "#fff",
-                  border: "1px solid #D1DCE8",
-                  borderRadius: 8,
-                  padding: "8px 0",
-                  minWidth: 200,
-                  boxShadow: "0 8px 24px rgba(13,43,90,0.12)",
-                }}
-              >
-                {[
-                  {
-                    label: "Services Overview",
-                    page: "services-intro" as Page,
-                  },
-                  {
-                    label: "Partner vs Vendor",
-                    page: "partner-vs-vendor" as Page,
-                  },
-                  {
-                    label: "Services Timeline",
-                    page: "services-timeline" as Page,
-                  },
-                  {
-                    label: "Process Built For You",
-                    page: "process-built" as Page,
-                  },
-                  {
-                    label: "Why Choose Us",
-                    page: "why-choose-services" as Page,
-                  },
-                ].map((item) => (
-                  <button
-                    key={item.page}
-                    onClick={() => {
-                      navigate(item.page);
-                      setServicesOpen(false);
-                    }}
-                    style={{
-                      display: "block",
-                      width: "100%",
-                      textAlign: "left",
-                      padding: "10px 16px",
-                      background: "none",
-                      border: "none",
-                      cursor: "pointer",
-                      fontSize: 13,
-                      color: "#0D2B5A",
-                      fontWeight: 400,
-                      transition: "background 0.12s ease",
-                    }}
-                    onMouseEnter={(e) =>
-                      (e.currentTarget.style.background = "#F1F5FA")
-                    }
-                    onMouseLeave={(e) =>
-                      (e.currentTarget.style.background = "none")
-                    }
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+          {/* Services Direct Link (Dropdown Removed) */}
+          <button
+            onMouseEnter={() => {
+              setAcademyOpen(false);
+              setPartnerOpen(false);
+            }}
+            onClick={() => navigate("services-intro")}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: "8px 12px",
+              fontSize: 14,
+              fontWeight: 500,
+              color: [
+                "services-intro",
+                "partner-vs-vendor",
+                "services-timeline",
+                "process-built",
+                "why-choose-services",
+              ].includes(current)
+                ? "#1A5EA8"
+                : "#0D2B5A",
+              display: "flex",
+              alignItems: "center",
+              gap: 4,
+            }}
+          >
+            Services
+          </button>
 
           {/* Training Hub dropdown */}
           <div style={{ position: "relative" }}>
             <button
               onMouseEnter={() => {
                 setAcademyOpen(true);
-                setServicesOpen(false);
                 setPartnerOpen(false);
               }}
               onMouseLeave={() => setAcademyOpen(false)}
@@ -334,7 +250,6 @@ export function Nav({ navigate, current }: NavProps) {
           {/* Syscomply Link */}
           <button
             onMouseEnter={() => {
-              setServicesOpen(false);
               setAcademyOpen(false);
               setPartnerOpen(false);
             }}
@@ -349,7 +264,7 @@ export function Nav({ navigate, current }: NavProps) {
               color: current === "syscomply-intro" ? "#1A5EA8" : "#0D2B5A",
             }}
           >
-            Syscomply
+            Products
           </button>
 
           {/* Partner with Us dropdown */}
@@ -357,7 +272,6 @@ export function Nav({ navigate, current }: NavProps) {
             <button
               onMouseEnter={() => {
                 setPartnerOpen(true);
-                setServicesOpen(false);
                 setAcademyOpen(false);
               }}
               onMouseLeave={() => setPartnerOpen(false)}
@@ -687,7 +601,6 @@ export function Nav({ navigate, current }: NavProps) {
 
           <button
             onMouseEnter={() => {
-              setServicesOpen(false);
               setAcademyOpen(false);
               setPartnerOpen(false);
             }}

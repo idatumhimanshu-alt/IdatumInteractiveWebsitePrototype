@@ -1,16 +1,31 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Target, TrendingUp, ShieldCheck, ArrowRight } from "lucide-react";
+import { 
+  Target, 
+  TrendingUp, 
+  ShieldCheck, 
+  ArrowRight, 
+  Building2, 
+  Cpu, 
+  Factory, 
+  Server, 
+  Landmark, 
+  HeartPulse, 
+  ShieldAlert, 
+  Radio, 
+  CheckCircle2 
+} from "lucide-react";
 
 type Page = string;
 interface Props {
-  navigate: (page: Page) => void;
+  navigate: (page: Page, state?: Record<string, string>) => void;
 }
 
 export function AboutUs({ navigate }: Props) {
   const [hovered, setHovered] = useState<number>(0);
+  const [activeIndustry, setActiveIndustry] = useState(0);
 
-  // Original panels restored
+  // Original sliding panels
   const panels = [
     {
       id: "philosophy",
@@ -56,6 +71,82 @@ export function AboutUs({ navigate }: Props) {
     },
   ];
 
+  // Industry sectors based on team documents
+  const industries = [
+    {
+      name: "Automotive",
+      icon: <Cpu size={22} color="#1A5EA8" />,
+      challenges: "Stringent supply chain security requirements, complex multi-tier vendor oversight, and zero-tolerance for operational downtime.",
+      standards: ["TISAX", "IATF 16949", "ISO 9001"],
+      approach: "End-to-end audit preparation, TISAX assessment alignment, and robust second-party supplier evaluation frameworks.",
+      deliverables: ["TISAX Assessment Readiness Report", "Supply Chain Risk Matrix", "Quality Management Manuals"]
+    },
+    {
+      name: "Manufacturing",
+      icon: <Factory size={22} color="#1A5EA8" />,
+      challenges: "Integrating operational technology (OT) with IT security, maintaining environmental compliance, and ensuring worker safety standards.",
+      standards: ["ISO 9001", "ISO 14001", "ISO 45001"],
+      approach: "Process mapping across shop floors, environmental impact audits, and rigorous documentation design for shop-floor SOPs.",
+      deliverables: ["Environmental Management Systems", "Safety Protocol Manuals", "Process Optimization Audits"]
+    },
+    {
+      name: "Software Development",
+      icon: <Building2 size={22} color="#1A5EA8" />,
+      challenges: "Protecting proprietary source code, managing cloud infrastructure security, and meeting international data privacy regulations for global clients.",
+      standards: ["ISO 27001:2022", "SOC 2 Type II", "GDPR"],
+      approach: "Implementing robust Information Security Management Systems (ISMS), conducting gap analyses, and preparing dev teams for rigorous type-2 audits.",
+      deliverables: ["ISMS Policy Framework", "Access Control SOPs", "Mock Internal Audit Reports"]
+    },
+    {
+      name: "Engineering Services",
+      icon: <ShieldAlert size={22} color="#1A5EA8" />,
+      challenges: "Safeguarding confidential design blueprints, client intellectual property, and multi-location engineering collaboration security.",
+      standards: ["ISO 27001", "ISO 9001"],
+      approach: "Structured asset classification, rigorous access controls, and tailored secure engineering workflow documentation.",
+      deliverables: ["IP Protection Protocols", "Risk Assessment Registry", "Employee Security Awareness Framework"]
+    },
+    {
+      name: "Data Centers",
+      icon: <Server size={22} color="#1A5EA8" />,
+      challenges: "Maintaining 24/7 physical and digital uptime, strict capacity planning, facility environmental governance, and robust disaster recovery.",
+      standards: ["ISO 27001", "ISO 22301", "ISO 9k / 14k / 45k"],
+      approach: "Specialized facility readiness assessments, governance policy creation, and comprehensive business continuity planning.",
+      deliverables: ["Data Center Operations SOPs", "Disaster Recovery Frameworks", "Facility Compliance Checklists"]
+    },
+    {
+      name: "Banking & Financial Services",
+      icon: <Landmark size={22} color="#1A5EA8" />,
+      challenges: "Meeting stringent regulatory compliance mandates, securing sensitive consumer financial data, and managing third-party vendor risks.",
+      standards: ["PCI DSS", "ISO 27001", "GDPR"],
+      approach: "Comprehensive data flow mapping, strict access governance, and continuous regulatory alignment audits.",
+      deliverables: ["Data Protection Impact Assessments", "Vendor Risk Governance Model", "Security Compliance Reviews"]
+    },
+    {
+      name: "Healthcare",
+      icon: <HeartPulse size={22} color="#1A5EA8" />,
+      challenges: "Safeguarding electronic protected health information (ePHI), patient confidentiality, and medical device data integrity.",
+      standards: ["HIPAA", "ISO 27701", "ISO 13485"],
+      approach: "Privacy management system implementation, administrative safeguard reviews, and workforce HIPAA awareness training.",
+      deliverables: ["HIPAA Compliance Roadmap", "Privacy Impact Assessments", "Staff Training Records"]
+    },
+    {
+      name: "Government",
+      icon: <Building2 size={22} color="#1A5EA8" />,
+      challenges: "Adhering to public sector cybersecurity mandates, citizen data sovereignty, and multi-agency accountability frameworks.",
+      standards: ["ISO 27001", "ISO 22301"],
+      approach: "Rigorous public-sector compliance audits, structured governance frameworks, and continuous risk monitoring.",
+      deliverables: ["Public Sector Compliance Audit", "Continuity & Resilience Plans"]
+    },
+    {
+      name: "Telecom",
+      icon: <Radio size={22} color="#1A5EA8" />,
+      challenges: "Securing massive network infrastructure, managing core routing security, and complying with national telecommunications regulations.",
+      standards: ["ISO 27001", "ISO 27701", "ISO 22301"],
+      approach: "Infrastructure vulnerability assessment, telecom-specific risk frameworks, and business continuity synchronization.",
+      deliverables: ["Network Security Policy", "Incident Response Playbooks"]
+    }
+  ];
+
   return (
     <div
       style={{
@@ -93,7 +184,6 @@ export function AboutUs({ navigate }: Props) {
           A Partner Committed to Your Future
         </h1>
 
-        {/* NEW: Added Intro Paragraph Here */}
         <p
           style={{
             maxWidth: 800,
@@ -302,7 +392,92 @@ export function AboutUs({ navigate }: Props) {
         })}
       </section>
 
-      {/* ── 3. Core Differentiators (6 Cards) ── */}
+      {/* ── 3. Explore By Industry (From Team Documents) ── */}
+      <section style={{ maxWidth: 1280, margin: "0 auto", padding: "0 40px 80px" }}>
+        <div style={{ textAlign: "center", marginBottom: 48 }}>
+          <h2 style={{ fontSize: 34, fontWeight: 700, color: "#0D2B5A", marginBottom: 12 }}>
+            Explore By Industry
+          </h2>
+          <p style={{ fontSize: 16, color: "#4A6080" }}>
+            Clients often search by industry rather than by standard. Select an industry sector below to review specific business challenges and applicable standards.
+          </p>
+        </div>
+
+        {/* Industry Selector Tabs */}
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 12, marginBottom: 40 }}>
+          {industries.map((ind, idx) => {
+            const isActive = activeIndustry === idx;
+            return (
+              <button
+                key={idx}
+                onClick={() => setActiveIndustry(idx)}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  padding: "12px 20px",
+                  borderRadius: 30,
+                  background: isActive ? "#1A5EA8" : "#ffffff",
+                  color: isActive ? "#ffffff" : "#0D2B5A",
+                  border: "1px solid #D1DCE8",
+                  fontSize: 14,
+                  fontWeight: 600,
+                  cursor: "pointer",
+                  boxShadow: isActive ? "0 4px 14px rgba(26,94,168,0.3)" : "0 2px 6px rgba(0,0,0,0.02)",
+                  transition: "all 0.2s ease"
+                }}
+              >
+                {React.cloneElement(ind.icon, { color: isActive ? "#ffffff" : "#1A5EA8" })}
+                {ind.name}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Industry Deep Dive Card */}
+        <motion.div
+          key={activeIndustry}
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          style={{ background: "#ffffff", borderRadius: 16, border: "1px solid #D1DCE8", padding: 48, boxShadow: "0 10px 30px rgba(13,43,90,0.04)" }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 24 }}>
+            <div style={{ width: 56, height: 56, borderRadius: 14, background: "#EEF4FF", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              {React.cloneElement(industries[activeIndustry].icon, { color: "#1A5EA8" })}
+            </div>
+            <div>
+              <h3 style={{ fontSize: 24, fontWeight: 800, color: "#0D2B5A", margin: 0 }}>
+                {industries[activeIndustry].name} Sector
+              </h3>
+              <p style={{ fontSize: 13, fontWeight: 700, color: "#1A5EA8", margin: "4px 0 0" }}>
+                Applicable Standards: {industries[activeIndustry].standards.join(" • ")}
+              </p>
+            </div>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 32, marginTop: 32 }}>
+            <div style={{ background: "#F8FAFC", padding: 24, borderRadius: 12, borderLeft: "4px solid #1A5EA8" }}>
+              <h4 style={{ fontSize: 14, fontWeight: 700, color: "#0D2B5A", textTransform: "uppercase", marginBottom: 8, letterSpacing: "0.5px" }}>Business Challenges</h4>
+              <p style={{ fontSize: 15, color: "#4A6080", lineHeight: 1.6, margin: 0 }}>{industries[activeIndustry].challenges}</p>
+            </div>
+
+            <div style={{ background: "#F8FAFC", padding: 24, borderRadius: 12, borderLeft: "4px solid #0D6B4E" }}>
+              <h4 style={{ fontSize: 14, fontWeight: 700, color: "#0D2B5A", textTransform: "uppercase", marginBottom: 8, letterSpacing: "0.5px" }}>Our Approach & Deliverables</h4>
+              <p style={{ fontSize: 15, color: "#4A6080", lineHeight: 1.6, margin: "0 0 16px 0" }}>{industries[activeIndustry].approach}</p>
+              <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                {industries[activeIndustry].deliverables.map((del, i) => (
+                  <div key={i} style={{ fontSize: 13, fontWeight: 600, color: "#0D6B4E", display: "flex", alignItems: "center", gap: 6 }}>
+                    <CheckCircle2 size={14} /> {del}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* ── 4. Core Differentiators (6 Cards) ── */}
       <section
         style={{ padding: "0 40px 80px", maxWidth: 1280, margin: "0 auto" }}
       >
@@ -454,7 +629,7 @@ export function AboutUs({ navigate }: Props) {
         </div>
       </section>
 
-      {/* ── 4. CTA Banner ── */}
+      {/* ── 5. CTA Banner ── */}
       <section
         style={{
           background: "#0D2B5A",
