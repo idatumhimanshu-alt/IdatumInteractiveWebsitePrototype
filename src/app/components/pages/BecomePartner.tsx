@@ -1,33 +1,7 @@
 import { useState } from "react";
 
 type Page = string;
-interface Props {
-  navigate: (page: Page, state?: Record<string, string>) => void;
-  defaultType?: string;
-}
-
-const steps = [
-  {
-    num: "01",
-    title: "Submit Your Application",
-    desc: "Complete the partner application form below. We review every application personally — no automated rejections.",
-  },
-  {
-    num: "02",
-    title: "Discovery Call",
-    desc: "A 30-minute call with our Partner Success team to understand your business, clients, and how the partnership would work in practice.",
-  },
-  {
-    num: "03",
-    title: "Partner Agreement",
-    desc: "We issue a straightforward partnership agreement — no lock-in, no hidden terms. Review, sign, and you're in.",
-  },
-  {
-    num: "04",
-    title: "Onboarding & Enablement",
-    desc: "48-hour onboarding: you'll receive your partner toolkit, deal registration access, and an introduction to your dedicated Partner Success Manager.",
-  },
-];
+interface Props { navigate: (page: Page, state?: Record<string, string>) => void; defaultType?: string; }
 
 export function BecomePartner({
   navigate,
@@ -276,91 +250,6 @@ export function BecomePartner({
             Apply today. Onboard in 48 hours. Start delivering value to your
             clients tomorrow. No joining fee. No long-term lock-in.
           </p>
-        </div>
-      </section>
-
-      {/* Process steps */}
-      <section
-        style={{
-          background: "#F1F5FA",
-          padding: "48px 40px",
-          borderBottom: "1px solid #D1DCE8",
-        }}
-      >
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: 0,
-            }}
-          >
-            {steps.map((step, i) => (
-              <div key={step.num} style={{ display: "flex", gap: 0 }}>
-                <div style={{ padding: "0 20px", flex: 1 }}>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 12,
-                      marginBottom: 10,
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: 36,
-                        height: 36,
-                        background: "#0D2B5A",
-                        borderRadius: "50%",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        flexShrink: 0,
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontSize: 12,
-                          fontWeight: 700,
-                          color: "#fff",
-                        }}
-                      >
-                        {step.num}
-                      </span>
-                    </div>
-                    {i < steps.length - 1 && (
-                      <div
-                        style={{
-                          flex: 1,
-                          height: 1,
-                          background: "#D1DCE8",
-                        }}
-                      />
-                    )}
-                  </div>
-                  <h4
-                    style={{
-                      fontSize: 14,
-                      fontWeight: 700,
-                      color: "#0D2B5A",
-                      marginBottom: 6,
-                    }}
-                  >
-                    {step.title}
-                  </h4>
-                  <p
-                    style={{
-                      fontSize: 12,
-                      color: "#4A6080",
-                      lineHeight: 1.65,
-                    }}
-                  >
-                    {step.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 

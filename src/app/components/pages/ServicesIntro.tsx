@@ -7,7 +7,6 @@ import {
   Server,
   Lock,
   CheckCircle2,
-  ArrowRight,
   Shield,
   FileText,
   Users,
@@ -15,6 +14,7 @@ import {
   Check,
   Activity,
   ChevronRight,
+  MessageSquare
 } from "lucide-react";
 
 type Page = string;
@@ -172,6 +172,42 @@ export function ServicesIntro({ navigate }: Props) {
                 {item.title}
               </button>
             ))}
+
+            {/* TASK 1: Permanent CTA under Navigation Menu */}
+            <div style={{ marginTop: 24, paddingTop: 20, borderTop: "1px solid #D1DCE8" }}>
+              <button
+                onClick={() => navigate("contact")}
+                style={{
+                  width: "100%",
+                  background: "#0D2B5A",
+                  color: "#64FFDA",
+                  border: "1px solid #1A5EA8",
+                  padding: "12px 16px",
+                  borderRadius: 10,
+                  fontSize: 14,
+                  fontWeight: 700,
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 8,
+                  boxShadow: "0 4px 12px rgba(13,43,90,0.1)",
+                  transition: "all 0.2s ease"
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "#1A5EA8";
+                  e.currentTarget.style.color = "#ffffff";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "#0D2B5A";
+                  e.currentTarget.style.color = "#64FFDA";
+                }}
+              >
+                <MessageSquare size={16} />
+                Connect with Us
+              </button>
+            </div>
+
           </div>
         </div>
 

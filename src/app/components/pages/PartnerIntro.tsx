@@ -10,7 +10,7 @@ import {
 
 type Page = string;
 interface Props {
-  navigate: (page: Page) => void;
+  navigate: (page: Page, state?: Record<string, string>) => void;
 }
 
 export function PartnerIntro({ navigate }: Props) {
@@ -190,69 +190,198 @@ export function PartnerIntro({ navigate }: Props) {
             </div>
           </div>
 
-          {/* Right: Abstract Tech/Network Graphic */}
+          {/* Right: Trust & Partnership Emblem */}
           <div
             style={{
               flex: "1 1 400px",
               display: "flex",
               justifyContent: "center",
+              alignItems: "center",
               position: "relative",
+              minHeight: 420,
             }}
           >
-            <motion.div
-              animate={{ y: [0, -15, 0] }}
-              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+            {/* Ambient Glow Background */}
+            <div
               style={{
-                width: "100%",
-                maxWidth: 500,
-                aspectRatio: "4/3",
+                position: "absolute",
+                width: 320,
+                height: 320,
+                borderRadius: "50%",
                 background:
-                  "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 100%)",
-                backdropFilter: "blur(12px)",
-                border: "1px solid rgba(255,255,255,0.2)",
-                borderRadius: 24,
-                boxShadow: "0 24px 48px rgba(0,0,0,0.2)",
+                  "radial-gradient(circle, rgba(100,255,218,0.15) 0%, rgba(13,43,90,0) 70%)",
+                filter: "blur(30px)",
+              }}
+            />
+
+            {/* Outer Rotating Trust Ring */}
+            <div
+              style={{
+                position: "absolute",
+                width: 340,
+                height: 340,
+                borderRadius: "50%",
+                border: "1px dashed rgba(100, 255, 218, 0.25)",
+              }}
+            />
+
+            {/* Central Glassmorphic Core Emblem */}
+            <div
+              style={{
+                position: "relative",
+                zIndex: 10,
+                width: 150,
+                height: 150,
+                borderRadius: "50%",
+                background:
+                  "linear-gradient(135deg, rgba(21, 51, 90, 0.9) 0%, rgba(10, 25, 47, 0.95) 100%)",
+                border: "2px solid #64FFDA",
+                boxShadow:
+                  "0 0 40px rgba(100,255,218,0.3), inset 0 0 20px rgba(100,255,218,0.15)",
                 display: "flex",
+                flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                overflow: "hidden",
-                position: "relative",
+                textAlign: "center",
+                padding: 16,
               }}
             >
-              {/* Decorative inner rings */}
-              <div
+              <div style={{ display: "flex", gap: 6, marginBottom: 6 }}>
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#64FFDA"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#64FFDA"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                </svg>
+              </div>
+              <span
                 style={{
-                  position: "absolute",
-                  width: 300,
-                  height: 300,
-                  border: "1px dashed rgba(100,255,218,0.3)",
-                  borderRadius: "50%",
-                }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  width: 200,
-                  height: 200,
-                  border: "1px solid rgba(100,255,218,0.1)",
-                  borderRadius: "50%",
-                }}
-              />
-              <div
-                style={{
-                  width: 80,
-                  height: 80,
-                  background: "rgba(100,255,218,0.15)",
-                  borderRadius: "50%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  border: "1px solid #64FFDA",
+                  fontSize: 11,
+                  fontWeight: 800,
+                  color: "#ffffff",
+                  letterSpacing: "1.2px",
+                  textTransform: "uppercase",
                 }}
               >
-                <HeartHandshake size={32} color="#64FFDA" />
+                Trust
+              </span>
+              <span
+                style={{
+                  fontSize: 9,
+                  fontWeight: 600,
+                  color: "#64FFDA",
+                  marginTop: 2,
+                }}
+              >
+                MUTUAL GROWTH
+              </span>
+            </div>
+
+            {/* Floating Trust Metric 1: Zero Lock-in */}
+            <div
+              style={{
+                position: "absolute",
+                top: "15%",
+                left: "2%",
+                background: "rgba(16, 40, 71, 0.85)",
+                backdropFilter: "blur(12px)",
+                border: "1px solid rgba(100, 255, 218, 0.3)",
+                borderRadius: 12,
+                padding: "10px 16px",
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+                boxShadow: "0 10px 25px rgba(0,0,0,0.3)",
+                zIndex: 12,
+              }}
+            >
+              <div
+                style={{
+                  width: 8,
+                  height: 8,
+                  borderRadius: "50%",
+                  background: "#64FFDA",
+                  boxShadow: "0 0 8px #64FFDA",
+                }}
+              />
+              <div>
+                <p
+                  style={{
+                    fontSize: 11,
+                    fontWeight: 700,
+                    color: "#ffffff",
+                    margin: 0,
+                  }}
+                >
+                  Zero Lock-in
+                </p>
+                <p style={{ fontSize: 9, color: "#9BB5D4", margin: 0 }}>
+                  Transparent terms
+                </p>
               </div>
-            </motion.div>
+            </div>
+
+            {/* Floating Trust Metric 2: Shared Success */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: "15%",
+                right: "2%",
+                background: "rgba(16, 40, 71, 0.85)",
+                backdropFilter: "blur(12px)",
+                border: "1px solid rgba(100, 255, 218, 0.3)",
+                borderRadius: 12,
+                padding: "10px 16px",
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+                boxShadow: "0 10px 25px rgba(0,0,0,0.3)",
+                zIndex: 12,
+              }}
+            >
+              <div
+                style={{
+                  width: 8,
+                  height: 8,
+                  borderRadius: "50%",
+                  background: "#64FFDA",
+                  boxShadow: "0 0 8px #64FFDA",
+                }}
+              />
+              <div>
+                <p
+                  style={{
+                    fontSize: 11,
+                    fontWeight: 700,
+                    color: "#ffffff",
+                    margin: 0,
+                  }}
+                >
+                  Shared Success
+                </p>
+                <p style={{ fontSize: 9, color: "#9BB5D4", margin: 0 }}>
+                  Co-delivered value
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

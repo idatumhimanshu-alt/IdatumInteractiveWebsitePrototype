@@ -1,14 +1,10 @@
-import React, { useState } from "react";
-import { motion } from "motion/react";
+import React from "react";
 import {
   ShieldCheck,
-  Cpu,
   FileText,
   Activity,
-  Lock,
   ArrowRight,
   CheckCircle2,
-  Layers,
   Database,
   BarChart3,
 } from "lucide-react";
@@ -19,8 +15,6 @@ interface Props {
 }
 
 export function SyscomplyIntro({ navigate }: Props) {
-  const [activeFeature, setActiveFeature] = useState(0);
-
   const features = [
     {
       title: "Automated Evidence Collection",
@@ -86,20 +80,19 @@ export function SyscomplyIntro({ navigate }: Props) {
         }}
       >
         <div style={{ maxWidth: 800, margin: "0 auto" }}>
-          <span
+          <h1
             style={{
-              fontSize: 12,
-              fontWeight: 700,
-              letterSpacing: "1.5px",
+              fontSize: 22,
+              fontWeight: 800,
+              letterSpacing: "2px",
               color: "#64FFDA",
               textTransform: "uppercase",
               marginBottom: 16,
-              display: "block",
             }}
           >
             Syscomply Platform
-          </span>
-          <h1
+          </h1>
+          <h2
             style={{
               fontSize: 44,
               fontWeight: 800,
@@ -109,7 +102,7 @@ export function SyscomplyIntro({ navigate }: Props) {
             }}
           >
             Intelligent Compliance Automation Software
-          </h1>
+          </h2>
           <p
             style={{
               fontSize: 18,
@@ -146,7 +139,7 @@ export function SyscomplyIntro({ navigate }: Props) {
         </div>
       </section>
 
-      {/* ── 2. Interactive Feature Showcase ── */}
+      {/* ── 2. Direct 4-Column Layout (No Clicks Needed) ── */}
       <section
         style={{ maxWidth: 1280, margin: "0 auto", padding: "80px 40px" }}
       >
@@ -174,46 +167,43 @@ export function SyscomplyIntro({ navigate }: Props) {
           </p>
         </div>
 
-        {/* Feature Tab Selectors */}
+        {/* 4 Permanent Side-by-Side Columns */}
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-            gap: 16,
-            marginBottom: 40,
+            gap: 24,
+            marginBottom: 64,
           }}
         >
-          {features.map((feat, idx) => {
-            const isActive = activeFeature === idx;
-            return (
-              <div
-                key={idx}
-                onClick={() => setActiveFeature(idx)}
-                style={{
-                  background: isActive ? "#ffffff" : "#F1F5FA",
-                  border: isActive ? "2px solid #1A5EA8" : "1px solid #D1DCE8",
-                  borderRadius: 12,
-                  padding: 24,
-                  cursor: "pointer",
-                  boxShadow: isActive
-                    ? "0 10px 25px rgba(26,94,168,0.08)"
-                    : "none",
-                  transition: "all 0.2s ease",
-                }}
-              >
+          {features.map((feat, idx) => (
+            <div
+              key={idx}
+              style={{
+                background: "#ffffff",
+                border: "1px solid #D1DCE8",
+                borderRadius: 12,
+                padding: 32,
+                boxShadow: "0 4px 16px rgba(13,43,90,0.03)",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <div>
                 <div
                   style={{
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    marginBottom: 12,
+                    marginBottom: 20,
                   }}
                 >
                   <div
                     style={{
-                      width: 40,
-                      height: 40,
-                      borderRadius: 8,
+                      width: 48,
+                      height: 48,
+                      borderRadius: 10,
                       background: "#EEF4FF",
                       display: "flex",
                       alignItems: "center",
@@ -228,7 +218,7 @@ export function SyscomplyIntro({ navigate }: Props) {
                       fontWeight: 700,
                       color: "#1A5EA8",
                       background: "#E0F2FE",
-                      padding: "3px 8px",
+                      padding: "4px 10px",
                       borderRadius: 4,
                     }}
                   >
@@ -237,190 +227,171 @@ export function SyscomplyIntro({ navigate }: Props) {
                 </div>
                 <h3
                   style={{
-                    fontSize: 16,
+                    fontSize: 18,
                     fontWeight: 700,
                     color: "#0D2B5A",
-                    margin: "0 0 6px 0",
+                    marginBottom: 12,
                   }}
                 >
                   {feat.title}
                 </h3>
                 <p
                   style={{
-                    fontSize: 13,
+                    fontSize: 14,
                     color: "#4A6080",
-                    margin: 0,
-                    lineHeight: 1.5,
-                    display: "-webkit-box",
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: "vertical",
-                    overflow: "hidden",
+                    lineHeight: 1.6,
+                    marginBottom: 24,
                   }}
                 >
                   {feat.desc}
                 </p>
               </div>
-            );
-          })}
+
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 10,
+                  borderTop: "1px solid #EEF2F7",
+                  paddingTop: 20,
+                }}
+              >
+                {feat.bullets.map((bullet, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      gap: 8,
+                      fontSize: 13,
+                      fontWeight: 600,
+                      color: "#0D2B5A",
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    <CheckCircle2
+                      size={16}
+                      color="#0D6B4E"
+                      style={{ flexShrink: 0, marginTop: 1 }}
+                    />
+                    <span>{bullet}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* Active Feature Deep Dive Card */}
-        <motion.div
-          key={activeFeature}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
+        {/* ── 3. Platform Advantage Full-Width CTA Section with "Explore Syscomply" ── */}
+        <div
           style={{
-            background: "#ffffff",
+            background: "#0D2B5A",
             borderRadius: 16,
-            border: "1px solid #D1DCE8",
             padding: 48,
-            boxShadow: "0 10px 30px rgba(13,43,90,0.04)",
-            display: "grid",
-            gridTemplateColumns: "1.2fr 1fr",
-            gap: 48,
+            color: "#ffffff",
+            position: "relative",
+            overflow: "hidden",
+            display: "flex",
+            justifyContent: "space-between",
             alignItems: "center",
+            flexWrap: "wrap",
+            gap: 32,
+            boxShadow: "0 12px 35px rgba(13,43,90,0.15)",
           }}
         >
-          <div>
+          <div
+            style={{
+              position: "absolute",
+              right: -30,
+              bottom: -30,
+              opacity: 0.08,
+              pointerEvents: "none",
+            }}
+          >
+            <BarChart3 size={250} />
+          </div>
+
+          <div style={{ maxWidth: 700, position: "relative", zIndex: 1 }}>
             <span
               style={{
                 fontSize: 11,
                 fontWeight: 700,
-                color: "#1A5EA8",
+                color: "#64FFDA",
                 textTransform: "uppercase",
-                letterSpacing: "1px",
+                letterSpacing: "1.5px",
                 marginBottom: 8,
                 display: "block",
               }}
             >
-              {features[activeFeature].tag}
+              Platform Advantage
             </span>
             <h3
               style={{
-                fontSize: 28,
+                fontSize: 26,
                 fontWeight: 800,
-                color: "#0D2B5A",
-                marginBottom: 16,
+                color: "#ffffff",
+                marginBottom: 12,
               }}
             >
-              {features[activeFeature].title}
+              Seamless Workflow Integration
             </h3>
             <p
               style={{
                 fontSize: 16,
-                color: "#4A6080",
-                lineHeight: 1.7,
-                marginBottom: 24,
-              }}
-            >
-              {features[activeFeature].desc}
-            </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-              {features[activeFeature].bullets.map((bullet, i) => (
-                <div
-                  key={i}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 10,
-                    fontSize: 14,
-                    fontWeight: 600,
-                    color: "#0D2B5A",
-                  }}
-                >
-                  <CheckCircle2
-                    size={18}
-                    color="#0D6B4E"
-                    style={{ flexShrink: 0 }}
-                  />
-                  {bullet}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div
-            style={{
-              background: "#0D2B5A",
-              borderRadius: 12,
-              padding: 32,
-              color: "#ffffff",
-              position: "relative",
-              overflow: "hidden",
-            }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                top: -20,
-                right: -20,
-                opacity: 0.1,
-              }}
-            >
-              <BarChart3 size={180} />
-            </div>
-            <h4
-              style={{
-                fontSize: 16,
-                fontWeight: 700,
-                color: "#64FFDA",
-                marginBottom: 16,
-              }}
-            >
-              Platform Advantage
-            </h4>
-            <p
-              style={{
-                fontSize: 14,
                 color: "#C5D8EE",
                 lineHeight: 1.7,
-                margin: "0 0 20px 0",
+                margin: 0,
               }}
             >
               Syscomply integrates seamlessly with your existing team workflows,
               eliminating administrative friction while raising your security
               posture.
             </p>
+          </div>
+
+          <div style={{ position: "relative", zIndex: 1 }}>
             <button
               onClick={() => navigate("contact")}
               style={{
-                background: "transparent",
-                color: "#64FFDA",
-                border: "1px solid #64FFDA",
-                padding: "10px 20px",
-                fontSize: 13,
+                background: "#64FFDA",
+                color: "#0D2B5A",
+                border: "none",
+                padding: "16px 32px",
+                fontSize: 15,
                 fontWeight: 700,
-                borderRadius: 6,
+                borderRadius: 8,
                 cursor: "pointer",
-                transition: "all 0.2s",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                boxShadow: "0 6px 20px rgba(100,255,218,0.3)",
+                transition: "background 0.2s",
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "#64FFDA";
-                e.currentTarget.style.color = "#0D2B5A";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.color = "#64FFDA";
-              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.background = "#ffffff")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.background = "#64FFDA")
+              }
             >
-              Explore Technical Specs
+              Explore Syscomply <ArrowRight size={16} />
             </button>
           </div>
-        </motion.div>
+        </div>
       </section>
 
-      {/* ── 3. Bottom CTA ── */}
+      {/* ── Bottom CTA ── */}
       <section
         style={{
-          background: "#0D2B5A",
-          padding: "80px 40px",
+          background: "#081C38",
+          padding: "60px 40px",
           textAlign: "center",
           color: "#ffffff",
+          borderTop: "1px solid rgba(255,255,255,0.1)",
         }}
       >
         <div style={{ maxWidth: 700, margin: "0 auto" }}>
-          <h2 style={{ fontSize: 32, fontWeight: 800, marginBottom: 16 }}>
+          <h2 style={{ fontSize: 28, fontWeight: 800, marginBottom: 16 }}>
             Ready to Automate Your Compliance?
           </h2>
           <p
@@ -428,7 +399,7 @@ export function SyscomplyIntro({ navigate }: Props) {
               fontSize: 16,
               color: "#C5D8EE",
               lineHeight: 1.7,
-              marginBottom: 32,
+              marginBottom: 28,
             }}
           >
             Schedule a personalized walkthrough with our product specialists to

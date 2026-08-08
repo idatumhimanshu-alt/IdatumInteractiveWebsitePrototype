@@ -2,16 +2,17 @@ import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
+import { BackToTop } from "./components/BackToTop"; // <--- Imported BackToTop
 import { Hero } from "./components/pages/Hero";
 import { ChooseYourPath } from "./components/pages/ChooseYourPath";
 import { WhyIdatum } from "./components/pages/WhyIdatum";
 import { AboutUs } from "./components/pages/AboutUs";
-import { ServicesIntro } from "./components/pages/ServicesIntro"; 
-import { SyscomplyIntro } from "./components/pages/SyscomplyIntro"; // <--- Imported Syscomply Component
+import { ServicesIntro } from "./components/pages/ServicesIntro";
+import { SyscomplyIntro } from "./components/pages/SyscomplyIntro";
 import { PartnerVsVendor } from "./components/pages/PartnerVsVendor";
-import { ServicesTimeline } from "./components/pages/ServicesTimeline"; 
+import { ServicesTimeline } from "./components/pages/ServicesTimeline";
 import { ProcessBuilt } from "./components/pages/ProcessBuilt";
-import { WhyChooseServices } from "./components/pages/WhyChooseServices"; 
+import { WhyChooseServices } from "./components/pages/WhyChooseServices";
 import { AcademyIntro } from "./components/pages/AcademyIntro";
 import { HowWeTrain } from "./components/pages/HowWeTrain";
 import { TrainingTracks } from "./components/pages/TrainingTracks";
@@ -72,7 +73,7 @@ export default function App() {
       case "services-intro":
         return <ServicesIntro navigate={navigate} />;
       case "syscomply-intro":
-        return <SyscomplyIntro navigate={navigate} />; // <--- Rendered Syscomply Component here
+        return <SyscomplyIntro navigate={navigate} />;
       case "partner-vs-vendor":
         return <PartnerVsVendor navigate={navigate} />;
       case "services-timeline":
@@ -126,6 +127,7 @@ export default function App() {
         flexDirection: "column",
         background: "#fff",
         fontFamily: "var(--font-sans)",
+        position: "relative",
       }}
     >
       <Nav navigate={navigate} current={currentPage} />
@@ -375,6 +377,9 @@ export default function App() {
       )}
 
       {showFooter && <Footer navigate={navigate} />}
+
+      {/* Global Back to Top Button */}
+      <BackToTop />
     </div>
   );
 }
