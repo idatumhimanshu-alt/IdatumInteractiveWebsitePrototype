@@ -307,7 +307,7 @@ export function Hero({ navigate }: HeroProps) {
                   boxShadow: "0 0 20px rgba(100,255,218,0.15)",
                 }}
               >
-                HIPAA · ISO 27001 · SOC 2 · GDPR · PCI DSS
+                HIPAA · ISO · CMMI · TISAX · SOC 2 · GDPR · PCI DSS
               </span>
             </div>
 
