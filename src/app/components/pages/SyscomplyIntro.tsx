@@ -2,11 +2,11 @@ import React from "react";
 import {
   ShieldCheck,
   FileText,
-  Activity,
   ArrowRight,
   CheckCircle2,
   Database,
   BarChart3,
+  ClipboardList,
 } from "lucide-react";
 
 type Page = string;
@@ -28,14 +28,14 @@ export function SyscomplyIntro({ navigate }: Props) {
       ],
     },
     {
-      title: "Continuous Gap & Risk Monitoring",
+      title: "Governance & Audit Management",
       tag: "GOVERNANCE",
-      desc: "Instantly flags policy drift, unmonitored assets, and control failures before they manifest as critical non-conformities during external audits.",
-      icon: <Activity size={24} color="#0D6B4E" />,
+      desc: "Centralize your operational workflows, track cross-functional compliance timelines, and execute rigorous internal audits seamlessly within a single platform.",
+      icon: <ClipboardList size={24} color="#0D6B4E" />,
       bullets: [
-        "Dynamic risk scoring matrix updated hourly",
-        "Automated alerting for failed control checkpoints",
-        "Root-cause tracking and CAPA workflow integration",
+        "Assign, monitor, and complete compliance tasks across departments",
+        "Centralize timelines, milestones, and resource allocation",
+        "Log non-conformities and track CAPA workflows efficiently",
       ],
     },
     {
@@ -139,7 +139,7 @@ export function SyscomplyIntro({ navigate }: Props) {
         </div>
       </section>
 
-      {/* ── 2. Direct 4-Column Layout (No Clicks Needed) ── */}
+      {/* ── 2. Direct 4-Column Layout ── */}
       <section
         style={{ maxWidth: 1280, margin: "0 auto", padding: "80px 40px" }}
       >
@@ -282,7 +282,7 @@ export function SyscomplyIntro({ navigate }: Props) {
           ))}
         </div>
 
-        {/* ── 3. Platform Advantage Full-Width CTA Section with "Explore Syscomply" ── */}
+        {/* ── 3. Platform Advantage Full-Width CTA Section ── */}
         <div
           style={{
             background: "#0D2B5A",

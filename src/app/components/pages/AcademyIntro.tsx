@@ -32,15 +32,13 @@ const tracks = [
   {
     label: "Audit",
     color: "#2B6A7C",
-    desc: "Internal & External Audit",
+    desc: "Internal Audit Excellence",
   },
 ];
 
 export function AcademyIntro({ navigate }: Props) {
   return (
-    <div
-      style={{ fontFamily: "var(--font-sans)", paddingTop: 64 }}
-    >
+    <div style={{ fontFamily: "var(--font-sans)", paddingTop: 64 }}>
       {/* Hero */}
       <section
         style={{
@@ -112,8 +110,7 @@ export function AcademyIntro({ navigate }: Props) {
                 marginBottom: 20,
               }}
             >
-              Training Hub: Training That Builds Real
-              Competency
+              Training Hub: Training That Builds Real Competency
             </h1>
             <p
               style={{
@@ -123,10 +120,9 @@ export function AcademyIntro({ navigate }: Props) {
                 marginBottom: 40,
               }}
             >
-              Training Hub delivers certification-aligned
-              training across the most critical compliance and
-              workplace domains. Led by active practitioners —
-              not just trainers — every course is built around
+              Training Hub delivers certification-aligned training across the
+              most critical compliance and workplace domains. Led by active
+              practitioners — not just trainers — every course is built around
               what your team will actually encounter on the job.
             </p>
             <div style={{ display: "flex", gap: 12 }}>
@@ -145,13 +141,11 @@ export function AcademyIntro({ navigate }: Props) {
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = "#F1F5FA";
-                  e.currentTarget.style.transform =
-                    "translateY(-1px)";
+                  e.currentTarget.style.transform = "translateY(-1px)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.background = "#fff";
-                  e.currentTarget.style.transform =
-                    "translateY(0)";
+                  e.currentTarget.style.transform = "translateY(0)";
                 }}
               >
                 View Courses
@@ -171,14 +165,11 @@ export function AcademyIntro({ navigate }: Props) {
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = "#fff";
-                  e.currentTarget.style.background =
-                    "rgba(255,255,255,0.08)";
+                  e.currentTarget.style.background = "rgba(255,255,255,0.08)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor =
-                    "rgba(255,255,255,0.4)";
-                  e.currentTarget.style.background =
-                    "transparent";
+                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)";
+                  e.currentTarget.style.background = "transparent";
                 }}
               >
                 Request a Demo
@@ -242,9 +233,8 @@ export function AcademyIntro({ navigate }: Props) {
               margin: "0 auto",
             }}
           >
-            Each track is designed to build both foundational
-            knowledge and operational competency — not just exam
-            preparation.
+            Each track is designed to build both foundational knowledge and
+            operational competency — not just exam preparation.
           </p>
         </div>
         <div
@@ -271,26 +261,19 @@ export function AcademyIntro({ navigate }: Props) {
                 transition: "all 0.2s",
               }}
               onMouseEnter={(e) => {
-                (
-                  e.currentTarget as HTMLButtonElement
-                ).style.borderColor = t.color;
-                (
-                  e.currentTarget as HTMLButtonElement
-                ).style.boxShadow = `0 6px 20px ${t.color}20`;
-                (
-                  e.currentTarget as HTMLButtonElement
-                ).style.transform = "translateY(-2px)";
+                (e.currentTarget as HTMLButtonElement).style.borderColor =
+                  t.color;
+                (e.currentTarget as HTMLButtonElement).style.boxShadow =
+                  `0 6px 20px ${t.color}20`;
+                (e.currentTarget as HTMLButtonElement).style.transform =
+                  "translateY(-2px)";
               }}
               onMouseLeave={(e) => {
-                (
-                  e.currentTarget as HTMLButtonElement
-                ).style.borderColor = "#D1DCE8";
-                (
-                  e.currentTarget as HTMLButtonElement
-                ).style.boxShadow = "none";
-                (
-                  e.currentTarget as HTMLButtonElement
-                ).style.transform = "translateY(0)";
+                (e.currentTarget as HTMLButtonElement).style.borderColor =
+                  "#D1DCE8";
+                (e.currentTarget as HTMLButtonElement).style.boxShadow = "none";
+                (e.currentTarget as HTMLButtonElement).style.transform =
+                  "translateY(0)";
               }}
             >
               <div
@@ -327,9 +310,7 @@ export function AcademyIntro({ navigate }: Props) {
                 >
                   {t.label} Training
                 </p>
-                <p style={{ fontSize: 12, color: "#4A6080" }}>
-                  {t.desc}
-                </p>
+                <p style={{ fontSize: 12, color: "#4A6080" }}>{t.desc}</p>
               </div>
               <svg
                 width="16"

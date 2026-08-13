@@ -28,6 +28,13 @@ import {
   Zap,
   Cpu,
   Check,
+  ChevronDown,
+  ChevronUp,
+  Building2,
+  Factory,
+  Landmark,
+  ShieldAlert,
+  Plane,
 } from "lucide-react";
 
 type Page = string;
@@ -35,19 +42,325 @@ interface HeroProps {
   navigate: (page: Page, state?: Record<string, string>) => void;
 }
 
-// Exactly 8 client logos for a perfectly balanced 2x4 grid
-const clientLogos = [
-  { name: "HDFC", style: { fontWeight: 800, letterSpacing: "-0.5px" } },
-  { name: "Bajaj Allianz", style: { fontWeight: 700 } },
-  { name: "Bitwise Global", style: { fontWeight: 700 } },
+// Complete list of all 23 enterprise clients with monogram codes and sectors
+const clients = [
+  {
+    name: "IL&FS Education, Schoolnet India",
+    code: "ILF",
+    sector: "Education & Infrastructure",
+  },
+  { name: "VFS Global", code: "VFS", sector: "Global Services" },
+  {
+    name: "HDFC (Internal development team)",
+    code: "HDFC",
+    sector: "Financial Services",
+  },
+  { name: "Century Enka", code: "CE", sector: "Manufacturing" },
+  { name: "Wurth IT India", code: "WUR", sector: "IT Services" },
+  { name: "Milliontech- Hongkong", code: "MIL", sector: "Technology" },
+  { name: "Tridiagonal.ai", code: "TRI", sector: "Simulation & Engineering" },
+  { name: "VDA Infosolutions Pvt. Ltd.", code: "VDA", sector: "IT Solutions" },
+  {
+    name: "Qorix India (KPIT Venture)",
+    code: "QRX",
+    sector: "Automotive Software",
+  },
+  { name: "Syntys- Qatar", code: "SYN", sector: "Data Center" },
+  { name: "AurionPro Solutions", code: "APS", sector: "Enterprise Software" },
+  { name: "ISRC Otis", code: "OTI", sector: "Engineering" },
+  { name: "RePlus Engitech Pvt. Ltd", code: "REP", sector: "Energy & Tech" },
+  {
+    name: "Datametica Solutions Pvt. Ltd",
+    code: "DAT",
+    sector: "Data Analytics",
+  },
+  { name: "L&T Finance", code: "LTF", sector: "Financial Services" },
+  { name: "Bond.ai (USA)", code: "BAI", sector: "AI & Technology" },
+  { name: "Wide Wings Pvt. Ltd.", code: "WWP", sector: "Media & Production" },
+  { name: "Bajaj Allianz", code: "BAL", sector: "Insurance" },
+  { name: "Bitwise Global", code: "BIT", sector: "Data & IT Services" },
+  { name: "tCognition Consultancy", code: "TCG", sector: "IT Consulting" },
+  { name: "Xpanxion International", code: "XPX", sector: "Software Solutions" },
+  { name: "Opus Software", code: "OPS", sector: "Fintech Solutions" },
+  { name: "Minda Stoneridge", code: "MSI", sector: "Automotive Components" },
+];
+
+// Complete mapped client database with exact models/standards from records
+const clientDatabase = [
+  {
+    name: "IL&FS Education, Schoolnet India",
+    code: "ILF",
+    sector: "Education",
+    standards: "IMS (ISO 9001, ISO 27001) & CMMI V3.0",
+  },
+  {
+    name: "VFS Global",
+    code: "VFS",
+    sector: "Global Services",
+    standards: "ISO 20001",
+  },
+  {
+    name: "HDFC (Internal development team)",
+    code: "HDFC",
+    sector: "Banking & Financial Services",
+    standards: "CMMI Development V1.3",
+  },
+  {
+    name: "Century Enka",
+    code: "CE",
+    sector: "Manufacturing",
+    standards: "ISO 27001:2022",
+  },
   {
     name: "Wurth IT India",
-    style: { fontWeight: 600, letterSpacing: "0.5px" },
+    code: "WUR",
+    sector: "Software Development",
+    standards: "ISO 20001 & CMMI Services v2.0",
   },
-  { name: "tCognition Consultancy", style: { fontWeight: 700 } },
-  { name: "Xpanxion International", style: { fontWeight: 600 } },
-  { name: "Opus Software", style: { fontWeight: 700 } },
-  { name: "Minda Stoneridge", style: { fontWeight: 600 } },
+  {
+    name: "Milliontech- Hongkong",
+    code: "MIL",
+    sector: "Software Development",
+    standards: "CMMI V1.1",
+  },
+  {
+    name: "Tridiagonal.ai",
+    code: "TRI",
+    sector: "Engineering Services",
+    standards: "IMS (ISO 9001, 27001, 14001)",
+  },
+  {
+    name: "VDA Infosolutions Pvt. Ltd.",
+    code: "VDA",
+    sector: "Software Development",
+    standards: "CMMI Services L3 v3.0",
+  },
+  {
+    name: "Qorix India (KPIT Venture)",
+    code: "QRX",
+    sector: "Automotive",
+    standards: "IMS (ISO 9001, 27001)",
+  },
+  {
+    name: "Syntys- Qatar",
+    code: "SYN",
+    sector: "Data Centers",
+    standards: "ISO 9001, ISO 27001, SOC 2, ISO 14001, 45001, 22301",
+  },
+  {
+    name: "AurionPro Solutions",
+    code: "APS",
+    sector: "Software Development",
+    standards: "ISO 27001 & CMMI L5",
+  },
+  {
+    name: "ISRC Otis",
+    code: "OTI",
+    sector: "Manufacturing",
+    standards: "Otis Quality & Security Standard ACE",
+  },
+  {
+    name: "RePlus Engitech Pvt. Ltd",
+    code: "REP",
+    sector: "Energy & Tech",
+    standards: "IMS (ISO 27001, 9001, 14001, 45001)",
+  },
+  {
+    name: "Datametica Solutions Pvt. Ltd",
+    code: "DAT",
+    sector: "Data Analytics",
+    standards: "Developing Quality & Security Program",
+  },
+  {
+    name: "L&T Finance",
+    code: "LTF",
+    sector: "Banking & Financial Services",
+    standards: "Financial Sector Compliance Frameworks",
+  },
+  {
+    name: "Bond.ai (USA)",
+    code: "BAI",
+    sector: "Software Development",
+    standards: "AI & Tech Compliance Architecture",
+  },
+  {
+    name: "Wide Wings Pvt. Ltd.",
+    code: "WWP",
+    sector: "Media & Production",
+    standards: "Media Production Standards",
+  },
+  {
+    name: "Bajaj Allianz",
+    code: "BAL",
+    sector: "Banking & Financial Services",
+    standards: "Insurance Risk Frameworks",
+  },
+  {
+    name: "Bitwise Global",
+    code: "BIT",
+    sector: "Software Development",
+    standards: "ISO 9001 & ISMS 27001 (Quality Team Provision)",
+  },
+  {
+    name: "tCognition Consultancy",
+    code: "TCG",
+    sector: "Software Development",
+    standards: "IT Consulting Compliance",
+  },
+  {
+    name: "Xpanxion International",
+    code: "XPX",
+    sector: "Software Development",
+    standards: "Software Solutions Framework",
+  },
+  {
+    name: "Opus Software",
+    code: "OPS",
+    sector: "Banking & Financial Services",
+    standards: "Fintech Quality Assurance",
+  },
+  {
+    name: "Minda Stoneridge Instruments Pvt. Ltd",
+    code: "MSI",
+    sector: "Automotive",
+    standards: "Automotive SPICE",
+  },
+  {
+    name: "Everyspend India Pvt. Ltd.",
+    code: "EVS",
+    sector: "Banking & Financial Services",
+    standards: "SOC 2 Compliance & IQA Services",
+  },
+  {
+    name: "National Investment & Infrastructure Fund",
+    code: "NII",
+    sector: "Banking & Financial Services",
+    standards: "ISO 27001:2022",
+  },
+  {
+    name: "Datavision Software Solutions",
+    code: "DVS",
+    sector: "Software Development",
+    standards: "ISO 9001, ISO 27001, CMMI L5, Maintenance",
+  },
+  {
+    name: "Avisys Services Private Limited",
+    code: "AVI",
+    sector: "Engineering Services",
+    standards: "CMMI Development V3.0",
+  },
+  {
+    name: "JJIT Fintech Solutions",
+    code: "JJT",
+    sector: "Banking & Financial Services",
+    standards: "ISO 9001, ISO 27001, CMMI Services v3.0",
+  },
+  {
+    name: "Yavatmal Bank",
+    code: "YBK",
+    sector: "Banking & Financial Services",
+    standards: "ISO 9001 & ISO 27001",
+  },
+  {
+    name: "OvalEdge Pvt. Ltd",
+    code: "OVA",
+    sector: "Software Development",
+    standards: "ISO 9001 & ISO 27001",
+  },
+  {
+    name: "Ellicium Solutions",
+    code: "ELL",
+    sector: "Data Analytics",
+    standards: "ISO 9001",
+  },
+  {
+    name: "SCA- IT",
+    code: "SCA",
+    sector: "Software Development",
+    standards: "ISO 9001 & ISO 27001",
+  },
+  {
+    name: "DTBX Innovate India Pvt. Ltd.",
+    code: "DTB",
+    sector: "Software Development",
+    standards: "ISO 27001",
+  },
+  {
+    name: "MSS India Pvt. Ltd",
+    code: "MSS",
+    sector: "Manufacturing",
+    standards: "ISO 27001, TISAX",
+  },
+  {
+    name: "Learningmate Solutions Pvt. Ltd",
+    code: "LMT",
+    sector: "Education",
+    standards: "ISO 27001 Surveillance Services",
+  },
+];
+
+const industrySectors = [
+  {
+    name: "Automotive",
+    icon: <Cpu size={20} color="#1A5EA8" />,
+    challenges:
+      "Stringent supply chain security requirements, multi-tier vendor oversight, and zero-tolerance for operational downtime.",
+    applicableStandards: ["TISAX", "Automotive SPICE", "IATF 16949"],
+  },
+  {
+    name: "Banking & Financial Services",
+    icon: <Landmark size={20} color="#1A5EA8" />,
+    challenges:
+      "Strict regulatory data mandates, secure consumer financial transactions, and exhaustive third-party risk management.",
+    applicableStandards: ["PCI DSS", "SOC 2 Type II", "ISO 27001", "CMMI"],
+  },
+  {
+    name: "Software Development",
+    icon: <Building2 size={20} color="#1A5EA8" />,
+    challenges:
+      "Protecting proprietary source code, managing secure cloud infrastructure, and meeting international data privacy laws.",
+    applicableStandards: [
+      "ISO 27001:2022",
+      "CMMI Development/Services",
+      "GDPR",
+      "SOC 2",
+    ],
+  },
+  {
+    name: "Manufacturing",
+    icon: <Factory size={20} color="#1A5EA8" />,
+    challenges:
+      "OT/IT security convergence, environmental and workplace safety compliance, and robust quality control procedures.",
+    applicableStandards: ["ISO 9001", "ISO 14001", "ISO 45001", "ACE Standard"],
+  },
+  {
+    name: "Data Centers",
+    icon: <Server size={20} color="#1A5EA8" />,
+    challenges:
+      "Maintaining 24/7 digital and physical uptime, facility environmental governance, and business continuity readiness.",
+    applicableStandards: ["ISO 22301", "ISO 27701", "ISO 27001", "SOC 2"],
+  },
+  {
+    name: "Education",
+    icon: <GraduationCap size={20} color="#1A5EA8" />,
+    challenges:
+      "Multi-campus administrative governance, academic data protection, and institutional accreditation frameworks.",
+    applicableStandards: ["NAAC / NBA", "IMS (ISO 9001/27001)", "CMMI V3.0"],
+  },
+  {
+    name: "Healthcare",
+    icon: <HeartPulse size={20} color="#1A5EA8" />,
+    challenges:
+      "Protecting electronic health records, strict patient confidentiality, and medical device data accuracy.",
+    applicableStandards: ["HIPAA", "ISO 13485", "ISO 27701"],
+  },
+  {
+    name: "Engineering Services",
+    icon: <ShieldAlert size={20} color="#1A5EA8" />,
+    challenges:
+      "Safeguarding design blueprints, confidential client intellectual property, and secure cross-border collaboration.",
+    applicableStandards: ["ISO 27001", "CMMI L3/L5"],
+  },
 ];
 
 const consultingItems = [
@@ -74,7 +387,7 @@ const consultingItems = [
     num: "03",
     title: "Quality & Business Excellence",
     subtitle:
-      "ISO 9001, ISO 14001, ISO 22301, CMMI Maturity Levels & Process Improvement.",
+      "ISO 9001, IATF 16949, ISO 22301, AS 9100, CMMI Dev & Services & Process Improvement.",
     icon: <Award size={28} strokeWidth={1.5} />,
     track: "Quality",
   },
@@ -99,7 +412,7 @@ const consultingItems = [
   {
     id: "ohs-social",
     num: "06",
-    title: "Health, Safety & Social Mgmt",
+    title: "Health, Safety & Social Management",
     subtitle:
       "ISO 45001 occupational health, workplace safety & SA8000 social accountability.",
     icon: <HeartPulse size={28} strokeWidth={1.5} />,
@@ -122,6 +435,24 @@ const consultingItems = [
       "Targeted GAP assessments, independent internal audits & ongoing compliance maintenance.",
     icon: <FileSearch size={28} strokeWidth={1.5} />,
     track: "Standalone",
+  },
+  {
+    id: "aerospace",
+    num: "09",
+    title: "Aerospace, Drone & Defense Tech",
+    subtitle:
+      "AS9100 implementation, drone and defense manufacturing compliance, and specialized quality frameworks.",
+    icon: <Plane size={28} strokeWidth={1.5} />,
+    track: "Aerospace",
+  },
+  {
+    id: "edu-hr",
+    num: "10",
+    title: "Education & HR Providers",
+    subtitle:
+      "Institutional compliance (NAAC/NBA), POSH programs, and human resource framework management.",
+    icon: <Users size={28} strokeWidth={1.5} />,
+    track: "EduHR",
   },
 ];
 
@@ -243,6 +574,8 @@ export function Hero({ navigate }: HeroProps) {
   const [activeTab, setActiveTab] = useState<
     "consulting" | "training" | "syscomply"
   >("consulting");
+  const [showAllClients, setShowAllClients] = useState(false);
+  const [selectedIndustry, setSelectedIndustry] = useState(0);
 
   const currentItems =
     activeTab === "consulting"
@@ -250,6 +583,12 @@ export function Hero({ navigate }: HeroProps) {
       : activeTab === "training"
         ? trainingItems
         : syscomplyItems;
+
+  const displayedClients = showAllClients ? clients : clients.slice(0, 8);
+  const activeSectorData = industrySectors[selectedIndustry];
+  const filteredSectorClients = clientDatabase.filter(
+    (c) => c.sector === activeSectorData.name,
+  );
 
   return (
     <div style={{ fontFamily: "var(--font-sans)", background: "#fff" }}>
@@ -345,7 +684,10 @@ export function Hero({ navigate }: HeroProps) {
                 fontWeight: 400,
               }}
             >
-              We partner with organizations to build resilient frameworks.
+              We partner with organizations across Automotive, Manufacturing,
+              Software/IT, Data Centers, Financial Services, Healthcare,
+              Aerospace, Drone, Defense Tech/Manufacturing, Education, and Human
+              Resource Providers to build resilient frameworks.
             </p>
 
             {/* CTAs */}
@@ -723,72 +1065,413 @@ export function Hero({ navigate }: HeroProps) {
         </div>
       </section>
 
-      {/* ── 2. Symmetrical 2x4 Enterprise Client Grid ── */}
+      {/* ── Fused Interactive Industry-to-Client Proof Matrix ── */}
+      <section
+        style={{
+          background: "#F1F5FA",
+          padding: "80px 40px",
+          borderBottom: "1px solid #D1DCE8",
+        }}
+      >
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 40 }}>
+            <span
+              style={{
+                fontSize: 12,
+                fontWeight: 700,
+                letterSpacing: "1.5px",
+                color: "#1A5EA8",
+                textTransform: "uppercase",
+              }}
+            >
+              Proven Domain Expertise & Work Proofs
+            </span>
+            <h2
+              style={{
+                fontSize: 36,
+                fontWeight: 800,
+                color: "#0D2B5A",
+                marginTop: 8,
+                marginBottom: 12,
+              }}
+            >
+              Explore Industry Sectors & Track Record
+            </h2>
+            <p
+              style={{
+                fontSize: 16,
+                color: "#4A6080",
+                maxWidth: 700,
+                margin: "0 auto",
+              }}
+            >
+              Select an industry sector below to see our specific domain
+              approach and representative work proofs amongst many from our
+              extensive portfolio of enterprise engagements.
+            </p>
+          </div>
+
+          {/* Industry Pills */}
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              gap: 10,
+              marginBottom: 36,
+            }}
+          >
+            {industrySectors.map((sector, idx) => {
+              const isSelected = selectedIndustry === idx;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => setSelectedIndustry(idx)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 8,
+                    padding: "10px 20px",
+                    borderRadius: 30,
+                    background: isSelected ? "#0D2B5A" : "#ffffff",
+                    color: isSelected ? "#64FFDA" : "#0D2B5A",
+                    border: "1px solid #D1DCE8",
+                    fontSize: 14,
+                    fontWeight: 700,
+                    cursor: "pointer",
+                    boxShadow: isSelected
+                      ? "0 4px 14px rgba(13,43,90,0.2)"
+                      : "0 2px 6px rgba(0,0,0,0.02)",
+                    transition: "all 0.2s ease",
+                  }}
+                >
+                  {sector.icon}
+                  {sector.name}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Dynamic Showcase Card */}
+          <motion.div
+            key={selectedIndustry}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            style={{
+              background: "#ffffff",
+              borderRadius: 16,
+              border: "1px solid #D1DCE8",
+              padding: 40,
+              boxShadow: "0 10px 30px rgba(13,43,90,0.06)",
+            }}
+          >
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+                gap: 32,
+                alignItems: "center",
+              }}
+            >
+              <div>
+                <span
+                  style={{
+                    fontSize: 11,
+                    fontWeight: 800,
+                    letterSpacing: "1px",
+                    color: "#1A5EA8",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Sector Profile
+                </span>
+                <h3
+                  style={{
+                    fontSize: 26,
+                    fontWeight: 800,
+                    color: "#0D2B5A",
+                    margin: "6px 0 12px",
+                  }}
+                >
+                  {activeSectorData.name}
+                </h3>
+                <p
+                  style={{
+                    fontSize: 15,
+                    color: "#4A6080",
+                    lineHeight: 1.6,
+                    marginBottom: 20,
+                  }}
+                >
+                  <strong>Core Challenge:</strong> {activeSectorData.challenges}
+                </p>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                  {activeSectorData.applicableStandards.map((std, i) => (
+                    <span
+                      key={i}
+                      style={{
+                        background: "#EEF4FF",
+                        color: "#1A5EA8",
+                        fontSize: 12,
+                        fontWeight: 700,
+                        padding: "4px 10px",
+                        borderRadius: 6,
+                      }}
+                    >
+                      {std}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Exact Client Proof List for this Sector */}
+              <div
+                style={{
+                  background: "#F8FAFC",
+                  borderRadius: 12,
+                  padding: 24,
+                  border: "1px solid #E2E8F0",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginBottom: 16,
+                  }}
+                >
+                  <h4
+                    style={{
+                      fontSize: 14,
+                      fontWeight: 800,
+                      color: "#0D2B5A",
+                      textTransform: "uppercase",
+                      margin: 0,
+                      letterSpacing: "0.5px",
+                    }}
+                  >
+                    Verified Client Work Proofs
+                  </h4>
+                  <span
+                    style={{ fontSize: 11, fontWeight: 600, color: "#8892B0" }}
+                  >
+                    (Selected amongst many)
+                  </span>
+                </div>
+
+                {filteredSectorClients.length > 0 ? (
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 12,
+                      maxHeight: 220,
+                      overflowY: "auto",
+                    }}
+                  >
+                    {filteredSectorClients.map((client, i) => (
+                      <div
+                        key={i}
+                        style={{
+                          background: "#ffffff",
+                          padding: "10px 14px",
+                          borderRadius: 8,
+                          border: "1px solid #D1DCE8",
+                        }}
+                      >
+                        <div
+                          style={{
+                            fontSize: 14,
+                            fontWeight: 700,
+                            color: "#0D2B5A",
+                          }}
+                        >
+                          {client.name}
+                        </div>
+                        <div
+                          style={{
+                            fontSize: 12,
+                            color: "#1A5EA8",
+                            fontWeight: 600,
+                            marginTop: 2,
+                          }}
+                        >
+                          {client.standards}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p
+                    style={{
+                      fontSize: 14,
+                      color: "#8892B0",
+                      fontStyle: "italic",
+                      margin: 0,
+                    }}
+                  >
+                    Custom confidential assignments delivered in this vertical
+                    amongst many more.
+                  </p>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── 2. Enterprise Client Logo Grid (Top 8 + See More Toggle) ── */}
       <section
         style={{
           background: "#F8FAFC",
           borderBottom: "1px solid #E2E8F0",
-          padding: "48px 40px",
+          padding: "56px 40px",
         }}
       >
-        <div style={{ maxWidth: 1280, margin: "0 auto", textAlign: "center" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", textAlign: "center" }}>
           <p
             style={{
-              fontSize: 21,
+              fontSize: 13,
               fontWeight: 700,
-              color: "#1A5EA8",
-              textTransform: "uppercase",
               letterSpacing: "1.5px",
-              marginBottom: 28,
+              color: "#8892B0",
+              textTransform: "uppercase",
+              marginBottom: 36,
             }}
           >
-            TRUSTED BY INDUSTRY LEADERS
+            Trusted by Industry Leaders & Global Enterprises
           </p>
 
-          {/* Balanced 4-column Grid for 8 items */}
+          {/* Logo Grid */}
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: 16,
-              maxWidth: 1100,
-              margin: "0 auto",
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+              gap: 20,
+              marginBottom: showAllClients ? 16 : 32,
             }}
           >
-            {clientLogos.map((client, index) => (
-              <div
-                key={index}
+            {displayedClients.map((client, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ y: -4 }}
                 style={{
                   background: "#ffffff",
-                  border: "1px solid #E2E8F0",
-                  borderRadius: 8,
-                  padding: "16px 20px",
+                  border: "1px solid #D1DCE8",
+                  borderRadius: 12,
+                  padding: "24px 20px",
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: 15,
-                  color: "#4A6080",
+                  gap: 16,
+                  boxShadow: "0 2px 10px rgba(13,43,90,0.02)",
                   transition: "all 0.2s ease",
-                  boxShadow: "0 2px 6px rgba(13,43,90,0.02)",
-                  ...client.style,
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = "#1A5EA8";
-                  e.currentTarget.style.color = "#0D2B5A";
                   e.currentTarget.style.boxShadow =
-                    "0 6px 16px rgba(26,94,168,0.08)";
+                    "0 6px 20px rgba(26,94,168,0.08)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "#E2E8F0";
-                  e.currentTarget.style.color = "#4A6080";
+                  e.currentTarget.style.borderColor = "#D1DCE8";
                   e.currentTarget.style.boxShadow =
-                    "0 2px 6px rgba(13,43,90,0.02)";
+                    "0 2px 10px rgba(13,43,90,0.02)";
                 }}
               >
-                {client.name}
-              </div>
+                {/* Monogram Badge Logo */}
+                <div
+                  style={{
+                    width: 44,
+                    height: 44,
+                    borderRadius: 10,
+                    background: "#0D2B5A",
+                    color: "#64FFDA",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontWeight: 800,
+                    fontSize: 13,
+                    flexShrink: 0,
+                  }}
+                >
+                  {client.code}
+                </div>
+                <div style={{ textAlign: "left", overflow: "hidden" }}>
+                  <h4
+                    style={{
+                      fontSize: 15,
+                      fontWeight: 700,
+                      color: "#0D2B5A",
+                      margin: "0 0 2px 0",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {client.name}
+                  </h4>
+                  <span
+                    style={{ fontSize: 11, fontWeight: 600, color: "#8892B0" }}
+                  >
+                    {client.sector}
+                  </span>
+                </div>
+              </motion.div>
             ))}
           </div>
+
+          {/* Subtext shown only when expanded */}
+          {showAllClients && (
+            <p
+              style={{
+                fontSize: 20,
+                color: "#64748B",
+                fontStyle: "italic",
+                marginBottom: 24,
+              }}
+            >
+              * Showing representative key enterprises amongst our extensive
+              portfolio of engagements.
+            </p>
+          )}
+
+          {/* See More / See Less Button */}
+          {clients.length > 8 && (
+            <button
+              onClick={() => setShowAllClients(!showAllClients)}
+              style={{
+                background: "transparent",
+                color: "#1A5EA8",
+                border: "1.5px solid #1A5EA8",
+                padding: "12px 28px",
+                fontSize: 14,
+                fontWeight: 700,
+                borderRadius: 8,
+                cursor: "pointer",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                transition: "all 0.2s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "#EEF4FF";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "transparent";
+              }}
+            >
+              {showAllClients ? (
+                <>
+                  Show Less Companies <ChevronUp size={16} />
+                </>
+              ) : (
+                <>
+                  See More Companies <ChevronDown size={16} />
+                </>
+              )}
+            </button>
+          )}
         </div>
       </section>
 

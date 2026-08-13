@@ -129,7 +129,7 @@ const allCourses = [
     format: "Blended",
     level: "Practitioner",
     description:
-      "Intensive workshop for compliance and engineering teams preparing for a Type I or Type II examination.",
+      "Intensive workshop for compliance and engineering teams preparing for operational readiness.",
     isPOSH: false,
   },
   // ISO
@@ -170,12 +170,12 @@ const allCourses = [
   {
     id: "itgc-test",
     track: "ITGC",
-    title: "ITGC Testing for Auditors",
+    title: "ITGC Testing for Internal Auditors",
     duration: "8 hours",
     format: "Live Virtual",
     level: "Practitioner",
     description:
-      "Testing methodology and walkthrough techniques for internal and external auditors evaluating ITGC effectiveness.",
+      "Testing methodology and walkthrough techniques for internal compliance teams evaluating ITGC effectiveness.",
     isPOSH: false,
   },
   // Audit
@@ -187,18 +187,18 @@ const allCourses = [
     format: "Self-Paced",
     level: "Foundational",
     description:
-      "Aligned to IIA standards — covers audit planning, risk assessment, fieldwork, and reporting fundamentals.",
+      "Aligned to internal audit standards — covers audit planning, risk assessment, fieldwork, and reporting fundamentals.",
     isPOSH: false,
   },
   {
     id: "audit-rba",
     track: "Audit",
-    title: "Risk-Based Auditing Workshop",
+    title: "Risk-Based Internal Auditing Workshop",
     duration: "12 hours",
     format: "Live Virtual",
     level: "Intermediate",
     description:
-      "Practical training in risk-based audit methodology — scoping, materiality, sampling, and exception reporting.",
+      "Practical training in risk-based internal audit methodology — scoping, materiality, sampling, and exception reporting.",
     isPOSH: false,
   },
 ];
@@ -483,7 +483,7 @@ export function BrowseAllCourses({ navigate, defaultTrack }: Props) {
                   flexDirection: "column",
                   transition: "box-shadow 0.2s, transform 0.2s",
                   cursor: "pointer",
-                  overflow: "hidden", // Ensures the top color strip respects the border radius
+                  overflow: "hidden",
                 }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLDivElement).style.boxShadow =

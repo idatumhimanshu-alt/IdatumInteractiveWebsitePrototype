@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "motion/react";
 import {
   Award,
@@ -25,7 +25,7 @@ interface Props {
 export function ServicesIntro({ navigate }: Props) {
   const [activeSection, setActiveSection] = useState("cert");
 
-  // Section Refs for Scrollspy & Quick-Nav
+  // Section Refs for Scrollspy & Quick-Nav (Updated with toolkits and ondemand)
   const sectionRefs = {
     cert: useRef<HTMLDivElement>(null),
     mgmt: useRef<HTMLDivElement>(null),
@@ -33,6 +33,8 @@ export function ServicesIntro({ navigate }: Props) {
     dc: useRef<HTMLDivElement>(null),
     risk: useRef<HTMLDivElement>(null),
     framework: useRef<HTMLDivElement>(null),
+    toolkits: useRef<HTMLDivElement>(null),
+    ondemand: useRef<HTMLDivElement>(null),
   };
 
   const scrollToSection = (id: keyof typeof sectionRefs) => {
@@ -100,9 +102,23 @@ export function ServicesIntro({ navigate }: Props) {
     {
       id: "framework",
       title: "Standalone Services",
-      desc: "Tailored consultancy and readiness for ISO, HIPAA, GDPR, SOC 2, CMMI, TISAX, PCI DSS, gap analysis, documentation, and mock audits.",
+      desc: "Targeted GAP assessments, independent internal audits & ongoing compliance maintenance.",
       icon: <CheckCircle2 size={24} color="#64FFDA" />,
       badge: "Global Frameworks",
+    },
+    {
+      id: "toolkits",
+      title: "Compliance Toolkits",
+      desc: "Ready-to-use professional toolkits for ISO Standards, HIPAA, GDPR, SOC 2, CMMI, TISAX, PCI DSS.",
+      icon: <FileText size={24} color="#64FFDA" />,
+      badge: "Toolkits",
+    },
+    {
+      id: "ondemand",
+      title: "On Demand Quality & Security Team",
+      desc: "Outsource QA, Security, and CISO functions (vCISO & vMR) instead of hiring a separate department.",
+      icon: <Users size={24} color="#64FFDA" />,
+      badge: "vCISO & vMR",
     },
   ];
 
@@ -114,7 +130,7 @@ export function ServicesIntro({ navigate }: Props) {
         paddingTop: 64,
       }}
     >
-      {/* ── 1. Hero Header & 6 Quick-Access Gateway Cards ── */}
+      {/* ── 1. Hero Header & 8 Quick-Access Gateway Cards ── */}
       <section
         style={{
           background: "linear-gradient(135deg, #0D2B5A 0%, #15335A 100%)",
@@ -163,11 +179,11 @@ export function ServicesIntro({ navigate }: Props) {
             </p>
           </div>
 
-          {/* The 6 Interactive Gateway Cards Grid */}
+          {/* The 8 Interactive Gateway Cards Grid */}
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
               gap: 20,
             }}
           >
@@ -349,7 +365,7 @@ export function ServicesIntro({ navigate }: Props) {
               </button>
             ))}
 
-            {/* TASK 1: Permanent CTA under Navigation Menu */}
+            {/* Permanent CTA under Navigation Menu */}
             <div
               style={{
                 marginTop: 24,
@@ -471,47 +487,12 @@ export function ServicesIntro({ navigate }: Props) {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+                gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
                 gap: 16,
                 marginBottom: 48,
               }}
             >
-              <div
-                style={{
-                  background: "#ffffff",
-                  border: "1px solid #D1DCE8",
-                  borderRadius: 12,
-                  padding: 24,
-                  boxShadow: "0 2px 10px rgba(13,43,90,0.02)",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 8,
-                    marginBottom: 12,
-                    color: "#1A5EA8",
-                  }}
-                >
-                  <FileText size={20} />{" "}
-                  <h5 style={{ fontSize: 16, fontWeight: 700, margin: 0 }}>
-                    Documentation Design
-                  </h5>
-                </div>
-                <p
-                  style={{
-                    fontSize: 14,
-                    color: "#4A6080",
-                    lineHeight: 1.6,
-                    margin: 0,
-                  }}
-                >
-                  Drafting customized quality manuals, SOPs, ISMS documentation,
-                  policies, and work instructions tailored to workflows.
-                </p>
-              </div>
-
+              {/* GAP Analysis */}
               <div
                 style={{
                   background: "#ffffff",
@@ -548,6 +529,44 @@ export function ServicesIntro({ navigate }: Props) {
                 </p>
               </div>
 
+              {/* Documentation Design */}
+              <div
+                style={{
+                  background: "#ffffff",
+                  border: "1px solid #D1DCE8",
+                  borderRadius: 12,
+                  padding: 24,
+                  boxShadow: "0 2px 10px rgba(13,43,90,0.02)",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 8,
+                    marginBottom: 12,
+                    color: "#1A5EA8",
+                  }}
+                >
+                  <FileText size={20} />{" "}
+                  <h5 style={{ fontSize: 16, fontWeight: 700, margin: 0 }}>
+                    Documentation Design
+                  </h5>
+                </div>
+                <p
+                  style={{
+                    fontSize: 14,
+                    color: "#4A6080",
+                    lineHeight: 1.6,
+                    margin: 0,
+                  }}
+                >
+                  Drafting customized quality manuals, SOPs, ISMS documentation,
+                  policies, and work instructions tailored to workflows.
+                </p>
+              </div>
+
+              {/* Internal Audits */}
               <div
                 style={{
                   background: "#ffffff",
@@ -583,6 +602,7 @@ export function ServicesIntro({ navigate }: Props) {
                 </p>
               </div>
 
+              {/* Awareness & Standard-specific Training */}
               <div
                 style={{
                   background: "#ffffff",
@@ -603,7 +623,7 @@ export function ServicesIntro({ navigate }: Props) {
                 >
                   <Users size={20} />{" "}
                   <h5 style={{ fontSize: 16, fontWeight: 700, margin: 0 }}>
-                    Training & Body Coordination
+                    Awareness & Standard-specific Training
                   </h5>
                 </div>
                 <p
@@ -614,8 +634,46 @@ export function ServicesIntro({ navigate }: Props) {
                     margin: 0,
                   }}
                 >
-                  Conducting internal auditor workshops and liaison with TÜV,
-                  SGS, Bureau Veritas, or NABCB.
+                  Conducting internal auditor workshops and awareness training
+                  sessions for all ISO Standards, HIPAA, GDPR, SOC 2, CMMI,
+                  TISAX, PCI DSS.
+                </p>
+              </div>
+
+              {/* Certification Body Co-ordination */}
+              <div
+                style={{
+                  background: "#ffffff",
+                  border: "1px solid #D1DCE8",
+                  borderRadius: 12,
+                  padding: 24,
+                  boxShadow: "0 2px 10px rgba(13,43,90,0.02)",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 8,
+                    marginBottom: 12,
+                    color: "#1A5EA8",
+                  }}
+                >
+                  <Award size={20} />{" "}
+                  <h5 style={{ fontSize: 16, fontWeight: 700, margin: 0 }}>
+                    Certification Body Co-ordination
+                  </h5>
+                </div>
+                <p
+                  style={{
+                    fontSize: 14,
+                    color: "#4A6080",
+                    lineHeight: 1.6,
+                    margin: 0,
+                  }}
+                >
+                  Full liaison and scheduling support with TÜV, SGS, Bureau
+                  Veritas, NABCB, and other accredited registrars.
                 </p>
               </div>
             </div>
@@ -1237,7 +1295,7 @@ export function ServicesIntro({ navigate }: Props) {
             }}
           />
 
-          {/* BLOCK 6: Standalone Services*/}
+          {/* BLOCK 6: Standalone Services */}
           <div
             id="framework"
             ref={sectionRefs.framework}
@@ -1281,13 +1339,65 @@ export function ServicesIntro({ navigate }: Props) {
                 fontSize: 16,
                 color: "#4A6080",
                 lineHeight: 1.7,
-                marginBottom: 32,
+                marginBottom: 24,
               }}
             >
-              We apply our rigorous Certification Consultancy wording and
-              structured lifecycles directly to these specific global regulatory
-              frameworks. Hover over a framework to reveal our approach.
+              Targeted GAP assessments, independent internal audits & ongoing
+              compliance maintenance. Hover over any service card to see the
+              frameworks (GDPR, HIPAA, SOC 2, CMMI, TISAX, PCI DSS, etc.) they
+              are performed for.
             </p>
+
+            {/* Framework Name Strip */}
+            <div
+              style={{
+                background: "#E0F2FE",
+                border: "1px solid #BAE6FD",
+                borderRadius: 8,
+                padding: "12px 16px",
+                display: "flex",
+                alignItems: "center",
+                gap: 12,
+                marginBottom: 24,
+                flexWrap: "wrap",
+              }}
+            >
+              <span
+                style={{
+                  fontSize: 13,
+                  fontWeight: 700,
+                  color: "#0369A1",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.5px",
+                }}
+              >
+                Covered Frameworks:
+              </span>
+              {[
+                "HIPAA",
+                "GDPR",
+                "SOC 2",
+                "CMMI",
+                "TISAX",
+                "PCI DSS",
+                "ISO Standards",
+              ].map((name, i) => (
+                <span
+                  key={i}
+                  style={{
+                    background: "#ffffff",
+                    color: "#0284C7",
+                    fontSize: 12,
+                    fontWeight: 600,
+                    padding: "4px 10px",
+                    borderRadius: 6,
+                    border: "1px solid #7DD3FC",
+                  }}
+                >
+                  {name}
+                </span>
+              ))}
+            </div>
 
             <div
               style={{
@@ -1297,13 +1407,31 @@ export function ServicesIntro({ navigate }: Props) {
               }}
             >
               {[
-                "HIPAA",
-                "GDPR",
-                "SOC 2",
-                "CMMI (Dev/SVC)",
-                "TISAX",
-                "PCI DSS",
-              ].map((fw, idx) => (
+                {
+                  title: "Gap Analysis",
+                  desc: "Conducted for GDPR, HIPAA, SOC 2, CMMI, TISAX, PCI DSS, and ISO standards to evaluate baseline compliance.",
+                },
+                {
+                  title: "Documentation Design",
+                  desc: "Policies, SOPs, and quality manuals designed for GDPR, HIPAA, SOC 2, CMMI, TISAX, PCI DSS.",
+                },
+                {
+                  title: "Awareness Training",
+                  desc: "Workforce and stakeholder training conducted for GDPR, HIPAA, SOC 2, CMMI, TISAX, PCI DSS.",
+                },
+                {
+                  title: "Readiness Audits",
+                  desc: "Mock audits and pre-assessment checks performed for GDPR, HIPAA, SOC 2, CMMI, TISAX, PCI DSS.",
+                },
+                {
+                  title: "Assessment Body Coordination",
+                  desc: "Liaison and scheduling support with certification bodies across GDPR, HIPAA, SOC 2, CMMI, TISAX, PCI DSS.",
+                },
+                {
+                  title: "Compliance Toolkits",
+                  desc: "Ready-to-use professional toolkits and documentation packs for GDPR, HIPAA, SOC 2, CMMI, TISAX, PCI DSS.",
+                },
+              ].map((service, idx) => (
                 <div
                   key={idx}
                   style={{
@@ -1336,17 +1464,20 @@ export function ServicesIntro({ navigate }: Props) {
                       alignItems: "center",
                       justifyContent: "center",
                       zIndex: 1,
+                      padding: "0 20px",
+                      textAlign: "center",
                     }}
                   >
                     <h3
                       style={{
-                        fontSize: 28,
+                        fontSize: 22,
                         fontWeight: 800,
                         color: "#ffffff",
-                        letterSpacing: "1px",
+                        letterSpacing: "0.5px",
+                        margin: 0,
                       }}
                     >
-                      {fw}
+                      {service.title}
                     </h3>
                   </div>
 
@@ -1367,28 +1498,299 @@ export function ServicesIntro({ navigate }: Props) {
                   >
                     <h4
                       style={{
-                        fontSize: 16,
+                        fontSize: 15,
                         fontWeight: 700,
                         color: "#ffffff",
-                        margin: "0 0 8px 0",
+                        margin: "0 0 6px 0",
                       }}
                     >
-                      {fw} Implementation
+                      {service.title}
                     </h4>
                     <p
                       style={{
-                        fontSize: 12,
+                        fontSize: 13,
                         color: "#E0F2FE",
                         margin: 0,
-                        lineHeight: 1.5,
+                        lineHeight: 1.4,
                       }}
                     >
-                      Gap Analysis • Documentation Design • Awareness Training •
-                      Readiness Audits • Assessment Body Coordination
+                      {service.desc}
                     </p>
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+
+          <hr
+            style={{
+              border: "none",
+              borderTop: "1px dashed #D1DCE8",
+              margin: "20px 0",
+            }}
+          />
+
+          {/* BLOCK 7: Compliance Toolkits */}
+          <div
+            id="toolkits"
+            ref={sectionRefs.toolkits}
+            style={{ scrollMarginTop: 100 }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 16,
+                marginBottom: 20,
+              }}
+            >
+              <div
+                style={{
+                  width: 56,
+                  height: 56,
+                  borderRadius: 14,
+                  background: "#F0FDFA",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <FileText size={28} color="#0D9488" />
+              </div>
+              <h2
+                style={{
+                  fontSize: 32,
+                  fontWeight: 800,
+                  color: "#0D2B5A",
+                  letterSpacing: "-0.5px",
+                  margin: 0,
+                }}
+              >
+                7. Compliance Toolkits for ISO Standards, HIPAA, GDPR, SOC 2,
+                CMMI, TISAX, PCI DSS
+              </h2>
+            </div>
+            <p
+              style={{
+                fontSize: 16,
+                color: "#4A6080",
+                lineHeight: 1.7,
+                marginBottom: 32,
+              }}
+            >
+              Accelerate your compliance journey with our extensive library of
+              audit-ready toolkits, policies, quality manuals, and operational
+              checklists pre-configured for global frameworks.
+            </p>
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+                gap: 20,
+              }}
+            >
+              <div
+                style={{
+                  background: "#ffffff",
+                  borderLeft: "4px solid #0D9488",
+                  borderRadius: "0 12px 12px 0",
+                  padding: "20px 24px",
+                  boxShadow: "0 2px 12px rgba(13,148,136,0.06)",
+                }}
+              >
+                <h5
+                  style={{
+                    fontSize: 16,
+                    fontWeight: 700,
+                    color: "#0D2B5A",
+                    marginBottom: 8,
+                    marginTop: 0,
+                  }}
+                >
+                  Pre-Structured Policies
+                </h5>
+                <p
+                  style={{
+                    fontSize: 14,
+                    color: "#4A6080",
+                    margin: 0,
+                    lineHeight: 1.6,
+                  }}
+                >
+                  Fully customizable policy documents mapped directly to
+                  standard control clauses.
+                </p>
+              </div>
+
+              <div
+                style={{
+                  background: "#ffffff",
+                  borderLeft: "4px solid #0D9488",
+                  borderRadius: "0 12px 12px 0",
+                  padding: "20px 24px",
+                  boxShadow: "0 2px 12px rgba(13,148,136,0.06)",
+                }}
+              >
+                <h5
+                  style={{
+                    fontSize: 16,
+                    fontWeight: 700,
+                    color: "#0D2B5A",
+                    marginBottom: 8,
+                    marginTop: 0,
+                  }}
+                >
+                  Plug-and-Play Checklists
+                </h5>
+                <p
+                  style={{
+                    fontSize: 14,
+                    color: "#4A6080",
+                    margin: 0,
+                    lineHeight: 1.6,
+                  }}
+                >
+                  Operational toolkits designed to streamline internal audits
+                  and evidence collection.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <hr
+            style={{
+              border: "none",
+              borderTop: "1px dashed #D1DCE8",
+              margin: "20px 0",
+            }}
+          />
+
+          {/* BLOCK 8: On Demand Quality & Security Team (vCISO / vMR) */}
+          <div
+            id="ondemand"
+            ref={sectionRefs.ondemand}
+            style={{ scrollMarginTop: 100 }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 16,
+                marginBottom: 20,
+              }}
+            >
+              <div
+                style={{
+                  width: 56,
+                  height: 56,
+                  borderRadius: 14,
+                  background: "#EEF4FF",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Users size={28} color="#1A5EA8" />
+              </div>
+              <h2
+                style={{
+                  fontSize: 32,
+                  fontWeight: 800,
+                  color: "#0D2B5A",
+                  letterSpacing: "-0.5px",
+                  margin: 0,
+                }}
+              >
+                8. On Demand Quality & Security Team (vCISO / vMR)
+              </h2>
+            </div>
+            <p
+              style={{
+                fontSize: 16,
+                color: "#4A6080",
+                lineHeight: 1.7,
+                marginBottom: 32,
+              }}
+            >
+              Outsource your entire QA, Security, and CISO-related operations to
+              our expert team. We act as your dedicated fractional department
+              (vCISO & vMR) so you can scale compliance and quality without the
+              overhead of hiring or maintaining a separate internal department.
+            </p>
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+                gap: 20,
+              }}
+            >
+              <div
+                style={{
+                  background: "#ffffff",
+                  borderLeft: "4px solid #1A5EA8",
+                  borderRadius: "0 12px 12px 0",
+                  padding: "20px 24px",
+                  boxShadow: "0 2px 12px rgba(26,94,168,0.06)",
+                }}
+              >
+                <h5
+                  style={{
+                    fontSize: 16,
+                    fontWeight: 700,
+                    color: "#0D2B5A",
+                    marginBottom: 8,
+                    marginTop: 0,
+                  }}
+                >
+                  Manage Initiatives
+                </h5>
+                <p
+                  style={{
+                    fontSize: 14,
+                    color: "#4A6080",
+                    margin: 0,
+                    lineHeight: 1.6,
+                  }}
+                >
+                  Manage all ongoing compliance, security roadmaps, and quality
+                  improvement initiatives seamlessly.
+                </p>
+              </div>
+
+              <div
+                style={{
+                  background: "#ffffff",
+                  borderLeft: "4px solid #1A5EA8",
+                  borderRadius: "0 12px 12px 0",
+                  padding: "20px 24px",
+                  boxShadow: "0 2px 12px rgba(26,94,168,0.06)",
+                }}
+              >
+                <h5
+                  style={{
+                    fontSize: 16,
+                    fontWeight: 700,
+                    color: "#0D2B5A",
+                    marginBottom: 8,
+                    marginTop: 0,
+                  }}
+                >
+                  Establish & Mentor Team
+                </h5>
+                <p
+                  style={{
+                    fontSize: 14,
+                    color: "#4A6080",
+                    margin: 0,
+                    lineHeight: 1.6,
+                  }}
+                >
+                  Establish your internal Quality and Compliance department from
+                  scratch and mentor your team to operational maturity.
+                </p>
+              </div>
             </div>
           </div>
         </div>
