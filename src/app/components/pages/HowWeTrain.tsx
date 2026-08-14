@@ -1,13 +1,6 @@
-import React from "react";
 import { motion } from "motion/react";
-import {
-  Video,
-  Users,
-  PlayCircle,
-  LayoutGrid,
-  Check,
-  CheckCircle2,
-} from "lucide-react";
+import { Video, Users, PlayCircle, LayoutGrid, Check } from "lucide-react";
+import deskChattingImg from "../../../imports/idatum_desk_chatting.png";
 
 type Page = string;
 interface Props {
@@ -204,7 +197,7 @@ export function HowWeTrain({ navigate }: Props) {
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
+                  gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr",
                   gap: "12px 16px",
                   borderTop: "1px solid #F1F5FA",
                   paddingTop: 24,
@@ -315,12 +308,12 @@ export function HowWeTrain({ navigate }: Props) {
             </button>
           </div>
 
-          {/* Right: Image / Visual */}
+          {/* Right: Custom Local Image */}
           <div style={{ flex: "1 1 400px", position: "relative" }}>
             <div
               style={{
                 width: "100%",
-                paddingBottom: "65%", // Creates a 3:2 aspect ratio container
+                paddingBottom: "65%",
                 position: "relative",
                 borderRadius: 16,
                 overflow: "hidden",
@@ -328,8 +321,8 @@ export function HowWeTrain({ navigate }: Props) {
               }}
             >
               <img
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
-                alt="Team collaborating on training"
+                src={deskChattingImg}
+                alt="Team collaborating on training workflows at desk"
                 style={{
                   position: "absolute",
                   top: 0,
@@ -339,13 +332,12 @@ export function HowWeTrain({ navigate }: Props) {
                   objectFit: "cover",
                 }}
               />
-              {/* Optional: Slight color overlay to match brand */}
               <div
                 style={{
                   position: "absolute",
                   inset: 0,
                   background:
-                    "linear-gradient(to right, rgba(13,43,90,0.2), transparent)",
+                    "linear-gradient(to right, rgba(13,43,90,0.1), transparent)",
                 }}
               />
             </div>

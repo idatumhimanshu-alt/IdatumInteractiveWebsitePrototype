@@ -53,7 +53,7 @@ export function TrainerOnboarding({ navigate }: Props) {
     <div style={{ fontFamily: "var(--font-sans)", paddingTop: 64 }}>
       {/* Header */}
       <section style={{ background: "linear-gradient(135deg, #0D2B5A 0%, #1A4A8A 100%)", padding: "72px 40px" }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr", gap: 80, alignItems: "center" }}>
           <div>
             <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 20, padding: "5px 14px", marginBottom: 24 }}>
               <div style={{ width: 6, height: 6, background: "#4ADE80", borderRadius: "50%" }} />

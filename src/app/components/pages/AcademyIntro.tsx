@@ -1,3 +1,4 @@
+import classroomImg from "../../../imports/idatum_classroom.png";
 type Page = string;
 interface Props {
   navigate: (page: Page) => void;
@@ -62,7 +63,7 @@ export function AcademyIntro({ navigate }: Props) {
             maxWidth: 1280,
             margin: "0 auto",
             display: "grid",
-            gridTemplateColumns: "1fr 1fr",
+            gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr",
             gap: 80,
             alignItems: "center",
             position: "relative",
@@ -178,8 +179,8 @@ export function AcademyIntro({ navigate }: Props) {
           </div>
           <div>
             <img
-              src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=640&h=440&fit=crop&auto=format"
-              alt="Professional compliance training session"
+              src={classroomImg}
+              alt="Professional compliance training classroom session"
               style={{
                 display: "block",
                 width: "100%",
@@ -345,7 +346,7 @@ export function AcademyIntro({ navigate }: Props) {
             maxWidth: 1280,
             margin: "0 auto",
             display: "grid",
-            gridTemplateColumns: "1fr 1fr",
+            gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr",
             gap: 80,
             alignItems: "center",
           }}

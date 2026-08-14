@@ -269,7 +269,7 @@ export function Contact({ navigate: _navigate }: Props) {
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
+                  gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr",
                   gap: 16,
                   marginBottom: 16,
                 }}
@@ -360,7 +360,7 @@ export function Contact({ navigate: _navigate }: Props) {
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
+                  gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr",
                   gap: 16,
                   marginBottom: 16,
                 }}

@@ -104,7 +104,7 @@ export function WhyPartner({ navigate }: Props) {
       <section style={{ background: "#F1F5FA", padding: "64px 40px", borderTop: "1px solid #D1DCE8" }}>
         <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
           <h2 style={{ fontSize: 28, fontWeight: 700, color: "#0D2B5A", marginBottom: 40 }}>What Our Partners Say</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
+          <div style={{ display: "grid", gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr", gap: 24 }}>
             {[
               {
                 quote: "Adding Idatum to our service portfolio was the easiest expansion decision we've made. Our clients trust them, and the revenue share is genuinely competitive.",

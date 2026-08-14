@@ -72,7 +72,7 @@ export function WhyChooseServices({ navigate }: Props) {
 
       {/* Reasons grid */}
       <section style={{ padding: "80px 40px", maxWidth: 1280, margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 28 }}>
+        <div style={{ display: "grid", gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr", gap: 28 }}>
           {reasons.map((r, index) => (
             <motion.div
               key={r.num}

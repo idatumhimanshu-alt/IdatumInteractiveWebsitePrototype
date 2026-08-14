@@ -24,7 +24,7 @@ export function ProcessBuilt({ navigate }: Props) {
 
       {/* Process steps */}
       <section style={{ padding: "80px 40px", maxWidth: 1280, margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56, alignItems: "start" }}>
+        <div style={{ display: "grid", gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr", gap: 56, alignItems: "start" }}>
           {/* Left: steps */}
           <div>
             {[
@@ -103,7 +103,7 @@ export function ProcessBuilt({ navigate }: Props) {
               <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 16 }}>
                 Tailored to Every Industry
               </h3>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+              <div style={{ display: "grid", gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr", gap: 10 }}>
                 {["Financial Services", "Healthcare", "Technology", "Manufacturing", "Professional Services", "Government"].map((ind) => (
                   <div key={ind} style={{ display: "flex", alignItems: "center", gap: 8 }}>
                     <div style={{ width: 6, height: 6, background: "#1A5EA8", borderRadius: "50%" }} />

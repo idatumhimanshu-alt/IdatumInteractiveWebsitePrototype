@@ -358,7 +358,7 @@ export function BecomePartner({
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
+                  gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr",
                   gap: 10,
                 }}
               >
@@ -521,7 +521,7 @@ export function BecomePartner({
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
+                  gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr",
                   gap: 16,
                   marginBottom: 16,
                 }}
@@ -583,7 +583,7 @@ export function BecomePartner({
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
+                  gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr",
                   gap: 16,
                   marginBottom: 16,
                 }}
@@ -671,7 +671,7 @@ export function BecomePartner({
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
+                  gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr",
                   gap: 16,
                   marginBottom: 16,
                 }}

@@ -133,7 +133,7 @@ export function AuditorOnboarding({ navigate }: Props) {
             maxWidth: 1280,
             margin: "0 auto",
             display: "grid",
-            gridTemplateColumns: "1fr 1fr",
+            gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr",
             gap: 80,
             alignItems: "center",
           }}
@@ -300,7 +300,7 @@ export function AuditorOnboarding({ navigate }: Props) {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 1fr",
+            gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr",
             gap: 64,
             alignItems: "start",
           }}
