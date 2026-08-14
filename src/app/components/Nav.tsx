@@ -1,5 +1,5 @@
 import { useState } from "react";
-import logoImg from "../../imports/idatum_logo_1.PNG";
+import logoImg from "../../imports/idatum_logo_1.png";
 
 type Page =
   | "hero"
