@@ -1,13 +1,15 @@
 import { useState } from "react";
 
 type Page = string;
-interface Props { navigate: (page: Page, state?: Record<string, string>) => void; defaultType?: string; }
+interface Props {
+  navigate: (page: Page, state?: Record<string, string>) => void;
+  defaultType?: string;
+}
 
 export function BecomePartner({
   navigate,
   defaultType = "Referral Partner",
 }: Props) {
-  // We use partnerType so it matches your form's onClick and selected logic!
   const [partnerType, setPartnerType] = useState<string>(defaultType);
   const [form, setForm] = useState({
     firstName: "",
@@ -20,10 +22,48 @@ export function BecomePartner({
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setError("");
+
+    try {
+      const formData = new FormData();
+      formData.append("access_key", "1d7886ee-dc1f-490c-92f8-0f0aeb450af0");
+      formData.append(
+        "subject",
+        `New Partner Application (${partnerType}) from ${form.firstName} ${form.lastName}`,
+      );
+      formData.append("Partnership Type", partnerType);
+      formData.append("First Name", form.firstName);
+      formData.append("Last Name", form.lastName);
+      formData.append("Email", form.email);
+      formData.append("Company", form.company);
+      formData.append("Website", form.website);
+      formData.append("Team Size", form.teamSize);
+      formData.append("Business Overview", form.message);
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitted(true);
+      } else {
+        setError(data.message || "Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Network error. Please check your connection.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -290,6 +330,19 @@ export function BecomePartner({
               business day.
             </p>
 
+            {error && (
+              <p
+                style={{
+                  fontSize: 13,
+                  color: "#DC2626",
+                  marginBottom: 16,
+                  fontWeight: 600,
+                }}
+              >
+                {error}
+              </p>
+            )}
+
             {/* Partner type */}
             <div style={{ marginBottom: 28 }}>
               <p
@@ -406,6 +459,7 @@ export function BecomePartner({
                   return (
                     <button
                       key={t}
+                      type="button"
                       onClick={() => setPartnerType(t)}
                       style={{
                         padding: "14px 16px",
@@ -748,26 +802,22 @@ export function BecomePartner({
               <div style={{ display: "flex", gap: 12 }}>
                 <button
                   type="submit"
+                  disabled={isSubmitting}
                   style={{
                     flex: 1,
                     background: "#1A5EA8",
                     color: "#fff",
                     border: "none",
-                    cursor: "pointer",
+                    cursor: isSubmitting ? "not-allowed" : "pointer",
                     padding: "14px 24px",
                     fontSize: 15,
                     fontWeight: 700,
                     borderRadius: 7,
+                    opacity: isSubmitting ? 0.7 : 1,
                     fontFamily: "var(--font-sans)",
                   }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.background = "#0D4A8A")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.background = "#1A5EA8")
-                  }
                 >
-                  Apply to Partner
+                  {isSubmitting ? "Submitting..." : "Apply to Partner"}
                 </button>
                 <button
                   type="button"
@@ -872,6 +922,7 @@ export function BecomePartner({
                 Speak to our Partner Success team — no commitment required.
               </p>
               <button
+                type="button"
                 onClick={() => navigate("contact")}
                 style={{
                   width: "100%",
