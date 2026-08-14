@@ -9,6 +9,7 @@ export function Contact({ navigate: _navigate }: Props) {
   const [inquiry, setInquiry] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -19,14 +20,49 @@ export function Contact({ navigate: _navigate }: Props) {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!inquiry) {
       setError("Please select what you are enquiring about.");
       return;
     }
     setError("");
-    setSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      const formData = new FormData();
+      // Using your contactusidatum access key
+      formData.append("access_key", "31de9044-687f-4a9e-aded-572344017b1a");
+      formData.append(
+        "subject",
+        `New Enquiry: ${inquiry} from ${form.firstName} ${form.lastName}`,
+      );
+      formData.append("Inquiry Type", inquiry);
+      formData.append("First Name", form.firstName);
+      formData.append("Last Name", form.lastName);
+      formData.append("Email", form.email);
+      formData.append("Company", form.company);
+      formData.append("Role", form.role);
+      formData.append("Message", form.message);
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitted(true);
+      } else {
+        setError(data.message || "Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      setError("Network error. Please check your connection.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -90,6 +126,15 @@ export function Contact({ navigate: _navigate }: Props) {
             onClick={() => {
               setSubmitted(false);
               setInquiry("");
+              setForm({
+                firstName: "",
+                lastName: "",
+                email: "",
+                company: "",
+                role: "",
+                phone: "",
+                message: "",
+              });
             }}
             style={{
               background: "#1A5EA8",
@@ -422,27 +467,31 @@ export function Contact({ navigate: _navigate }: Props) {
 
               <button
                 type="submit"
+                disabled={isSubmitting}
                 style={{
                   width: "100%",
                   background: "#1A5EA8",
                   color: "#fff",
                   border: "none",
-                  cursor: "pointer",
+                  cursor: isSubmitting ? "not-allowed" : "pointer",
                   padding: "15px 24px",
                   fontSize: 15,
                   fontWeight: 700,
                   borderRadius: 7,
+                  opacity: isSubmitting ? 0.7 : 1,
                   transition: "background 0.15s",
                   fontFamily: "var(--font-sans)",
                 }}
                 onMouseEnter={(e) =>
+                  !isSubmitting &&
                   (e.currentTarget.style.background = "#0D4A8A")
                 }
                 onMouseLeave={(e) =>
+                  !isSubmitting &&
                   (e.currentTarget.style.background = "#1A5EA8")
                 }
               >
-                Send Message
+                {isSubmitting ? "Sending..." : "Send Message"}
               </button>
 
               <p
