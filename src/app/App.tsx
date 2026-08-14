@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
-import { BackToTop } from "./components/BackToTop"; // <--- Imported BackToTop
+import { BackToTop } from "./components/BackToTop";
 import { Hero } from "./components/pages/Hero";
 import { ChooseYourPath } from "./components/pages/ChooseYourPath";
 import { WhyIdatum } from "./components/pages/WhyIdatum";
@@ -48,13 +48,98 @@ type Page =
   | "trainer-onboarding"
   | "auditor-onboarding";
 
+const VALID_PAGES: Page[] = [
+  "hero",
+  "choose",
+  "why-idatum",
+  "about-us",
+  "services-intro",
+  "syscomply-intro",
+  "partner-vs-vendor",
+  "services-timeline",
+  "process-built",
+  "why-choose-services",
+  "academy-intro",
+  "how-we-train",
+  "training-tracks",
+  "browse-courses",
+  "posh-detail",
+  "contact",
+  "partner-intro",
+  "why-partner",
+  "become-partner",
+  "trainer-onboarding",
+  "auditor-onboarding",
+];
+
+const PAGE_TITLES: Record<Page, string> = {
+  hero: "Idatum | Enterprise Compliance & Tech Solutions",
+  choose: "Idatum | Choose Your Path",
+  "why-idatum": "Idatum | Why Idatum",
+  "about-us": "Idatum | About Us",
+  "services-intro": "Idatum | Services Overview",
+  "syscomply-intro": "Idatum | Syscomply Platform",
+  "partner-vs-vendor": "Idatum | Partner vs Vendor",
+  "services-timeline": "Idatum | Implementation Timeline",
+  "process-built": "Idatum | Our Process",
+  "why-choose-services": "Idatum | Why Choose Our Services",
+  "academy-intro": "Idatum Academy | Overview",
+  "how-we-train": "Idatum Academy | Training Methodology",
+  "training-tracks": "Idatum Academy | Training Tracks",
+  "browse-courses": "Idatum Academy | Browse All Courses",
+  "posh-detail": "Idatum Academy | POSH Compliance Course",
+  contact: "Idatum | Contact Us",
+  "partner-intro": "Idatum Partner Network | Overview",
+  "why-partner": "Idatum Partner Network | Why Partner With Us",
+  "become-partner": "Idatum Partner Network | Partner Application",
+  "trainer-onboarding": "Idatum Partner Network | Trainer Onboarding",
+  "auditor-onboarding": "Idatum Partner Network | Auditor Onboarding",
+};
+
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<Page>("hero");
+  const getInitialPage = (): Page => {
+    const hash = window.location.hash.replace("#", "");
+    if (VALID_PAGES.includes(hash as Page)) {
+      return hash as Page;
+    }
+    return "hero";
+  };
+
+  const [currentPage, setCurrentPage] = useState<Page>(getInitialPage);
   const [navState, setNavState] = useState<Record<string, string>>({});
 
+  // Dynamic Browser Tab Titles Effect
+  useEffect(() => {
+    const title = PAGE_TITLES[currentPage] || "Idatum";
+    document.title = title;
+  }, [currentPage]);
+
+  // Sync state with browser back/forward navigation & handle scroll position
+  useEffect(() => {
+    const handlePopState = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (VALID_PAGES.includes(hash as Page)) {
+        setCurrentPage(hash as Page);
+      } else {
+        setCurrentPage("hero");
+      }
+      // Smooth scroll to top on back/forward navigation
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
   const navigate = (page: string, state?: Record<string, string>) => {
-    setCurrentPage(page as Page);
+    const targetPage = (
+      VALID_PAGES.includes(page as Page) ? page : "hero"
+    ) as Page;
+    setCurrentPage(targetPage);
     setNavState(state || {});
+
+    // Push history state so the browser back button recognizes page changes
+    window.history.pushState({ page: targetPage }, "", `#${targetPage}`);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -378,7 +463,6 @@ export default function App() {
 
       {showFooter && <Footer navigate={navigate} />}
 
-      {/* Global Back to Top Button */}
       <BackToTop />
     </div>
   );
