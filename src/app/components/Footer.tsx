@@ -1,3 +1,4 @@
+import logoImg from "../../imports/idatum_logo_1.PNG";
 type Page = string;
 
 interface FooterProps {
@@ -28,31 +29,19 @@ export function Footer({ navigate }: FooterProps) {
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: 8,
+                gap: 10,
                 marginBottom: 16,
               }}
             >
-              <div
+              <img
+                src={logoImg}
+                alt="Idatum Logo"
                 style={{
-                  width: 32,
                   height: 32,
-                  background: "#1A5EA8",
-                  borderRadius: 6,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  width: "auto",
+                  objectFit: "contain",
                 }}
-              >
-                <span
-                  style={{
-                    color: "#fff",
-                    fontSize: 14,
-                    fontWeight: 700,
-                  }}
-                >
-                  i
-                </span>
-              </div>
+              />
               <span
                 style={{
                   fontSize: 18,
@@ -115,13 +104,13 @@ export function Footer({ navigate }: FooterProps) {
               Idatum Services
             </p>
             {[
-              { label: "Services Overview", page: "Services-intro" },
+              { label: "Services Overview", page: "services-intro" },
               {
                 label: "Partner vs Vendor",
                 page: "partner-vs-vendor",
               },
-              { label: "Services Timeline", page: "Services-timeline" },
-              { label: "Why Choose Us", page: "why-choose-Services" },
+              { label: "Services Timeline", page: "services-timeline" },
+              { label: "Why Choose Us", page: "why-choose-services" },
             ].map((item) => (
               <button
                 key={item.page}

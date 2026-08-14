@@ -1,4 +1,5 @@
 import { useState } from "react";
+import logoImg from "../../imports/idatum_logo_1.PNG";
 
 type Page =
   | "hero"
@@ -61,34 +62,22 @@ export function Nav({ navigate, current }: NavProps) {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 8,
+            gap: 10,
             background: "none",
             border: "none",
             cursor: "pointer",
             padding: 0,
           }}
         >
-          <div
+          <img
+            src={logoImg}
+            alt="Idatum Logo"
             style={{
-              width: 32,
               height: 32,
-              background: "#0D2B5A",
-              borderRadius: 6,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              width: "auto",
+              objectFit: "contain",
             }}
-          >
-            <span
-              style={{
-                color: "#fff",
-                fontSize: 14,
-                fontWeight: 700,
-              }}
-            >
-              i
-            </span>
-          </div>
+          />
           <span
             style={{
               fontSize: 18,
@@ -108,7 +97,7 @@ export function Nav({ navigate, current }: NavProps) {
             gap: 8,
           }}
         >
-          {/* Services Direct Link (Dropdown Removed) */}
+          {/* Services Direct Link */}
           <button
             onMouseEnter={() => {
               setAcademyOpen(false);
@@ -324,7 +313,6 @@ export function Nav({ navigate, current }: NavProps) {
                   boxShadow: "0 8px 24px rgba(13,43,90,0.12)",
                 }}
               >
-                {/* Group 1: Partner Program */}
                 <div
                   style={{
                     padding: "2px 16px 6px",
@@ -465,7 +453,6 @@ export function Nav({ navigate, current }: NavProps) {
                   </button>
                 ))}
 
-                {/* Divider */}
                 <div
                   style={{
                     height: 1,
@@ -474,7 +461,6 @@ export function Nav({ navigate, current }: NavProps) {
                   }}
                 />
 
-                {/* Group 2: Practitioner Network */}
                 <div
                   style={{
                     padding: "2px 16px 6px",
