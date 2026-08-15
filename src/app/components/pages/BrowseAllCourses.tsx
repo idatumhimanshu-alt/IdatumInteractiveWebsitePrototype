@@ -283,14 +283,14 @@ export function BrowseAllCourses({ navigate, defaultTrack }: Props) {
     activeTrack === "All Tracks" ? interleaveCourses(filtered) : filtered;
 
   return (
-    <div style={{ fontFamily: "var(--font-sans)", paddingTop: 64 }}>
+    <div style={{ overflowX: "hidden", maxWidth: "100vw", boxSizing: "border-box", fontFamily: "var(--font-sans)", paddingTop: 64 }}>
       {/* Header */}
       <section style={{ background: "#0D2B5A", padding: "56px 40px" }}>
         <div
           style={{
             maxWidth: 1280,
             margin: "0 auto",
-            display: "flex",
+            display: "flex", flexWrap: "wrap",
             justifyContent: "space-between",
             alignItems: "flex-end",
           }}
@@ -353,7 +353,7 @@ export function BrowseAllCourses({ navigate, defaultTrack }: Props) {
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
           <div
             style={{
-              display: "flex",
+              display: "flex", flexWrap: "wrap",
               gap: 24,
               alignItems: "center",
               flexWrap: "wrap",
@@ -361,7 +361,7 @@ export function BrowseAllCourses({ navigate, defaultTrack }: Props) {
           >
             <div
               style={{
-                display: "flex",
+                display: "flex", flexWrap: "wrap",
                 gap: 8,
                 alignItems: "center",
               }}
@@ -377,7 +377,7 @@ export function BrowseAllCourses({ navigate, defaultTrack }: Props) {
               >
                 Track:
               </span>
-              <div style={{ display: "flex", gap: 6 }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                 {trackList.map((t) => (
                   <button
                     key={t}
@@ -402,7 +402,7 @@ export function BrowseAllCourses({ navigate, defaultTrack }: Props) {
             </div>
             <div
               style={{
-                display: "flex",
+                display: "flex", flexWrap: "wrap",
                 gap: 8,
                 alignItems: "center",
               }}
@@ -418,7 +418,7 @@ export function BrowseAllCourses({ navigate, defaultTrack }: Props) {
               >
                 Level:
               </span>
-              <div style={{ display: "flex", gap: 6 }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                 {levels.map((l) => (
                   <button
                     key={l}
@@ -465,7 +465,7 @@ export function BrowseAllCourses({ navigate, defaultTrack }: Props) {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
+            gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "repeat(3, 1fr)",
             gap: 20,
           }}
         >
@@ -479,7 +479,7 @@ export function BrowseAllCourses({ navigate, defaultTrack }: Props) {
                   background: "#fff",
                   border: "1px solid #D1DCE8",
                   borderRadius: 10,
-                  display: "flex",
+                  display: "flex", flexWrap: "wrap",
                   flexDirection: "column",
                   transition: "box-shadow 0.2s, transform 0.2s",
                   cursor: "pointer",
@@ -502,7 +502,7 @@ export function BrowseAllCourses({ navigate, defaultTrack }: Props) {
                   style={{
                     background: color,
                     padding: "12px 24px",
-                    display: "flex",
+                    display: "flex", flexWrap: "wrap",
                     justifyContent: "space-between",
                     alignItems: "center",
                   }}
@@ -538,7 +538,7 @@ export function BrowseAllCourses({ navigate, defaultTrack }: Props) {
                 <div
                   style={{
                     padding: 24,
-                    display: "flex",
+                    display: "flex", flexWrap: "wrap",
                     flexDirection: "column",
                     flex: 1,
                   }}
@@ -567,7 +567,7 @@ export function BrowseAllCourses({ navigate, defaultTrack }: Props) {
                   </p>
                   <div
                     style={{
-                      display: "flex",
+                      display: "flex", flexWrap: "wrap",
                       gap: 12,
                       marginBottom: 16,
                     }}
@@ -576,7 +576,7 @@ export function BrowseAllCourses({ navigate, defaultTrack }: Props) {
                       style={{
                         fontSize: 11,
                         color: "#4A6080",
-                        display: "flex",
+                        display: "flex", flexWrap: "wrap",
                         alignItems: "center",
                         gap: 4,
                       }}

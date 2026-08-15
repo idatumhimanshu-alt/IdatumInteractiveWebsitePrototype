@@ -40,9 +40,9 @@ export function PartnerVsVendor({ navigate }: Props) {
   ];
 
   return (
-    <div style={{ fontFamily: "var(--font-sans)", paddingTop: 64 }}>
+    <div style={{ overflowX: "hidden", maxWidth: "100vw", boxSizing: "border-box", fontFamily: "var(--font-sans)", paddingTop: 64 }}>
       {/* Header */}
-      <section style={{ background: "#0D2B5A", padding: "64px 40px" }}>
+      <section style={{ background: "#0D2B5A", padding: "64px 16px" }}>
         <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
           <p
             style={{
@@ -78,7 +78,7 @@ export function PartnerVsVendor({ navigate }: Props) {
 
       {/* Comparison table */}
       <section
-        style={{ padding: "80px 40px", maxWidth: 1100, margin: "0 auto" }}
+        style={{ padding: "60px 16px", maxWidth: 1100, margin: "0 auto" }}
       >
         <div
           style={{

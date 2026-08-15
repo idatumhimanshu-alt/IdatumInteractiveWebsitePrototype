@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "motion/react";
 
 type Page = string;
 interface Props {
@@ -70,6 +71,9 @@ export function BecomePartner({
     return (
       <div
         style={{
+          overflowX: "hidden",
+          maxWidth: "100vw",
+          boxSizing: "border-box",
           fontFamily: "var(--font-sans)",
           paddingTop: 64,
           minHeight: "80vh",
@@ -83,6 +87,8 @@ export function BecomePartner({
             textAlign: "center",
             maxWidth: 540,
             padding: 40,
+            boxSizing: "border-box",
+            width: "100%",
           }}
         >
           <div
@@ -241,12 +247,22 @@ export function BecomePartner({
   }
 
   return (
-    <div style={{ fontFamily: "var(--font-sans)", paddingTop: 64 }}>
+    <div
+      style={{
+        overflowX: "hidden",
+        maxWidth: "100vw",
+        boxSizing: "border-box",
+        fontFamily: "var(--font-sans)",
+        paddingTop: 64,
+      }}
+    >
       {/* Header */}
       <section
         style={{
           background: "linear-gradient(135deg, #0D2B5A 0%, #1A4A8A 100%)",
-          padding: "72px 40px",
+          padding: "72px 16px",
+          boxSizing: "border-box",
+          width: "100%",
         }}
       >
         <div
@@ -260,7 +276,7 @@ export function BecomePartner({
             style={{
               fontSize: 12,
               fontWeight: 600,
-              color: "#1e3a8a",
+              color: "#64FFDA",
               letterSpacing: "1.5px",
               textTransform: "uppercase",
               marginBottom: 12,
@@ -296,16 +312,20 @@ export function BecomePartner({
       {/* Application form */}
       <section
         style={{
-          padding: "72px 40px",
+          padding: "72px 16px",
           maxWidth: 1100,
           margin: "0 auto",
+          boxSizing: "border-box",
+          width: "100%",
         }}
       >
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 340px",
-            gap: 60,
+            gridTemplateColumns: window.innerWidth < 900 ? "1fr" : "1fr 340px",
+            gap: 40,
+            boxSizing: "border-box",
+            width: "100%",
           }}
         >
           <div>
@@ -358,8 +378,10 @@ export function BecomePartner({
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr",
+                  gridTemplateColumns:
+                    window.innerWidth < 768 ? "1fr" : "1fr 1fr",
                   gap: 10,
+                  boxSizing: "border-box",
                 }}
               >
                 {[
@@ -471,6 +493,8 @@ export function BecomePartner({
                         textAlign: "left",
                         fontFamily: "var(--font-sans)",
                         transition: "all 0.15s",
+                        boxSizing: "border-box",
+                        width: "100%",
                       }}
                     >
                       <div
@@ -521,9 +545,11 @@ export function BecomePartner({
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr",
+                  gridTemplateColumns:
+                    window.innerWidth < 768 ? "1fr" : "1fr 1fr",
                   gap: 16,
                   marginBottom: 16,
+                  boxSizing: "border-box",
                 }}
               >
                 {[
@@ -583,9 +609,11 @@ export function BecomePartner({
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr",
+                  gridTemplateColumns:
+                    window.innerWidth < 768 ? "1fr" : "1fr 1fr",
                   gap: 16,
                   marginBottom: 16,
+                  boxSizing: "border-box",
                 }}
               >
                 <div>
@@ -671,9 +699,11 @@ export function BecomePartner({
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr",
+                  gridTemplateColumns:
+                    window.innerWidth < 768 ? "1fr" : "1fr 1fr",
                   gap: 16,
                   marginBottom: 16,
+                  boxSizing: "border-box",
                 }}
               >
                 <div>
@@ -799,12 +829,13 @@ export function BecomePartner({
                 />
               </div>
 
-              <div style={{ display: "flex", gap: 12 }}>
+              <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                 <button
                   type="submit"
                   disabled={isSubmitting}
                   style={{
                     flex: 1,
+                    minWidth: "200px",
                     background: "#1A5EA8",
                     color: "#fff",
                     border: "none",

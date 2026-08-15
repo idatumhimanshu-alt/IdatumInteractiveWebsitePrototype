@@ -102,7 +102,7 @@ const tracks = [
 export function TrainingTracks({ navigate }: Props) {
   return (
     <div
-      style={{ fontFamily: "var(--font-sans)", paddingTop: 64 }}
+      style={{ overflowX: "hidden", maxWidth: "100vw", boxSizing: "border-box", fontFamily: "var(--font-sans)", paddingTop: 64 }}
     >
       {/* Header */}
       <section
@@ -169,7 +169,7 @@ export function TrainingTracks({ navigate }: Props) {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
+            gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "repeat(3, 1fr)",
             gap: 24,
           }}
         >

@@ -476,7 +476,17 @@ export function Hero({ navigate }: HeroProps) {
             >
               Building Trust.
               <br />
-              <span style={{ color: "#1e3a8a" }}>Enhancing Business.</span>
+              <span
+                style={{
+                  background:
+                    "linear-gradient(135deg, #60A5FA 0%, #38BDF8 50%, #64FFDA 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  display: "inline-block",
+                }}
+              >
+                Enhancing Business.
+              </span>
               <br />
               <span
                 style={{
@@ -721,24 +731,10 @@ export function Hero({ navigate }: HeroProps) {
                 <Check size={16} color="#64FFDA" strokeWidth={2.5} />
               </div>
               <div>
-                <p
-                  style={{
-                    fontSize: 11,
-                    fontWeight: 700,
-                    color: "#ffffff",
-                    margin: 0,
-                  }}
-                >
+                <p style={{ fontSize: 11, fontWeight: 700, color: "#ffffff", margin: 0 }}>
                   Compliance
                 </p>
-                <p
-                  style={{
-                    fontSize: 9,
-                    color: "#64FFDA",
-                    margin: 0,
-                    fontWeight: 600,
-                  }}
-                >
+                <p style={{ fontSize: 9, color: "#64FFDA", margin: 0, fontWeight: 600 }}>
                   ● AUDIT READY
                 </p>
               </div>
@@ -746,12 +742,7 @@ export function Hero({ navigate }: HeroProps) {
 
             <motion.div
               animate={{ y: [0, 10, 0] }}
-              transition={{
-                repeat: Infinity,
-                duration: 5,
-                ease: "easeInOut",
-                delay: 1,
-              }}
+              transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
               style={{
                 position: "absolute",
                 bottom: "10%",
@@ -770,14 +761,7 @@ export function Hero({ navigate }: HeroProps) {
             >
               <Activity size={22} color="#64FFDA" />
               <div>
-                <p
-                  style={{
-                    fontSize: 11,
-                    fontWeight: 700,
-                    color: "#ffffff",
-                    margin: 0,
-                  }}
-                >
+                <p style={{ fontSize: 11, fontWeight: 700, color: "#ffffff", margin: 0 }}>
                   Risk Assessment
                 </p>
                 <p style={{ fontSize: 9, color: "#B0C4DE", margin: 0 }}>
@@ -788,12 +772,7 @@ export function Hero({ navigate }: HeroProps) {
 
             <motion.div
               animate={{ y: [0, -8, 0] }}
-              transition={{
-                repeat: Infinity,
-                duration: 4.5,
-                ease: "easeInOut",
-                delay: 0.5,
-              }}
+              transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut", delay: 0.5 }}
               style={{
                 position: "absolute",
                 bottom: "5%",
@@ -818,12 +797,7 @@ export function Hero({ navigate }: HeroProps) {
 
             <motion.div
               animate={{ y: [0, 8, 0] }}
-              transition={{
-                repeat: Infinity,
-                duration: 5.5,
-                ease: "easeInOut",
-                delay: 1.5,
-              }}
+              transition={{ repeat: Infinity, duration: 5.5, ease: "easeInOut", delay: 1.5 }}
               style={{
                 position: "absolute",
                 top: "12%",
@@ -848,12 +822,7 @@ export function Hero({ navigate }: HeroProps) {
 
             <motion.div
               animate={{ y: [0, -10, 0] }}
-              transition={{
-                repeat: Infinity,
-                duration: 4.8,
-                ease: "easeInOut",
-                delay: 0.8,
-              }}
+              transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut", delay: 0.8 }}
               style={{
                 position: "absolute",
                 top: "45%",
@@ -943,11 +912,12 @@ export function Hero({ navigate }: HeroProps) {
                       "0 2px 10px rgba(13,43,90,0.02)";
                   }}
                 >
+                  {/* Larger Multi-Tier Logo Container (64x64px) */}
                   <div
                     style={{
-                      width: 44,
-                      height: 44,
-                      borderRadius: 10,
+                      width: 64,
+                      height: 64,
+                      borderRadius: 12,
                       background: tier >= 3 ? "#0D2B5A" : "#ffffff",
                       border: "1px solid #e2e8f0",
                       display: "flex",
@@ -955,7 +925,7 @@ export function Hero({ navigate }: HeroProps) {
                       justifyContent: "center",
                       flexShrink: 0,
                       overflow: "hidden",
-                      padding: tier >= 3 ? 0 : 6,
+                      padding: tier >= 3 ? 0 : 8,
                     }}
                   >
                     {tier < 3 ? (
@@ -973,7 +943,7 @@ export function Hero({ navigate }: HeroProps) {
                       <span
                         style={{
                           fontWeight: 800,
-                          fontSize: 12,
+                          fontSize: 14,
                           color: "#64FFDA",
                         }}
                       >

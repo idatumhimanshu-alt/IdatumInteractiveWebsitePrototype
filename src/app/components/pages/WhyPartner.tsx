@@ -48,9 +48,9 @@ const benefits = [
 
 export function WhyPartner({ navigate }: Props) {
   return (
-    <div style={{ fontFamily: "var(--font-sans)", paddingTop: 64 }}>
+    <div style={{ overflowX: "hidden", maxWidth: "100vw", boxSizing: "border-box", fontFamily: "var(--font-sans)", paddingTop: 64 }}>
       {/* Header */}
-      <section style={{ background: "#0D2B5A", padding: "72px 40px" }}>
+      <section style={{ background: "#0D2B5A", padding: "72px 16px" }}>
         <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
           <p style={{ fontSize: 12, fontWeight: 600, color: "#1e3a8a", letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: 12 }}>
             Partnership Benefits
@@ -65,7 +65,7 @@ export function WhyPartner({ navigate }: Props) {
       </section>
 
       {/* Benefits */}
-      <section style={{ padding: "80px 40px", maxWidth: 1280, margin: "0 auto" }}>
+      <section style={{ padding: "60px 16px", maxWidth: 1280, margin: "0 auto" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
           {benefits.map((b) => (
             <div
@@ -101,7 +101,7 @@ export function WhyPartner({ navigate }: Props) {
       </section>
 
       {/* Testimonials / social proof */}
-      <section style={{ background: "#F1F5FA", padding: "64px 40px", borderTop: "1px solid #D1DCE8" }}>
+      <section style={{ background: "#F1F5FA", padding: "64px 16px", borderTop: "1px solid #D1DCE8" }}>
         <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
           <h2 style={{ fontSize: 28, fontWeight: 700, color: "#0D2B5A", marginBottom: 40 }}>What Our Partners Say</h2>
           <div style={{ display: "grid", gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr", gap: 24 }}>
@@ -140,7 +140,7 @@ export function WhyPartner({ navigate }: Props) {
       </section>
 
       {/* Partner FAQ */}
-      <section style={{ padding: "64px 40px", maxWidth: 900, margin: "0 auto" }}>
+      <section style={{ padding: "64px 16px", maxWidth: 900, margin: "0 auto" }}>
         <h2 style={{ fontSize: 26, fontWeight: 700, color: "#0D2B5A", marginBottom: 8 }}>Common Questions</h2>
         <p style={{ fontSize: 14, color: "#4A6080", marginBottom: 32 }}>
           Answers to what every serious partnership candidate asks before applying.
@@ -177,7 +177,7 @@ export function WhyPartner({ navigate }: Props) {
       </section>
 
       {/* CTA */}
-      <section style={{ background: "#0D2B5A", padding: "64px 40px" }}>
+      <section style={{ background: "#0D2B5A", padding: "64px 16px" }}>
         <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
           <h2 style={{ fontSize: 32, fontWeight: 700, color: "#fff", marginBottom: 12 }}>
             Ready to Apply?

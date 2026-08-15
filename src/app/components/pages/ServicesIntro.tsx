@@ -68,63 +68,65 @@ export function ServicesIntro({ navigate }: Props) {
       id: "cert",
       title: "Certification Consultancy",
       desc: "All ISO standards, HIPAA, GDPR, SOC 2, CMMI, TISAX, PCI DSS, gap analysis, documentation, and mock audits.",
-      icon: <Award size={24} color="#64FFDA" />,
+      icon: <Award size={24} />,
       badge: "ISO & Standards",
     },
     {
       id: "mgmt",
       title: "Management System Compliance",
       desc: "Yearly end-to-end compliance maintenance, internal audits, and CAPA.",
-      icon: <ShieldCheck size={24} color="#64FFDA" />,
+      icon: <ShieldCheck size={24} />,
       badge: "Annual Maintenance",
     },
     {
       id: "audit",
       title: "Second Party Auditing Services",
       desc: "Rigorous Supplier Assessment Framework and third-party vendor evaluations.",
-      icon: <FileSearch size={24} color="#64FFDA" />,
+      icon: <FileSearch size={24} />,
       badge: "Vendor Assessments",
     },
     {
       id: "dc",
       title: "Data Center Certification Compliance",
       desc: "ISO 9k, 14k, 45k, 27k, 27701, 22301 tailored for Data Center operations.",
-      icon: <Server size={24} color="#64FFDA" />,
+      icon: <Server size={24} />,
       badge: "Data Centers",
     },
     {
       id: "risk",
       title: "Risk Management",
       desc: "Identify, assess, design mitigation action plans, and monitor continuously.",
-      icon: <Lock size={24} color="#64FFDA" />,
+      icon: <Lock size={24} />,
       badge: "Governance",
     },
     {
       id: "framework",
       title: "Standalone Services",
       desc: "Targeted GAP assessments, independent internal audits & ongoing compliance maintenance.",
-      icon: <CheckCircle2 size={24} color="#64FFDA" />,
+      icon: <CheckCircle2 size={24} />,
       badge: "Global Frameworks",
     },
     {
       id: "toolkits",
       title: "Compliance Toolkits",
       desc: "Ready-to-use professional toolkits for ISO Standards, HIPAA, GDPR, SOC 2, CMMI, TISAX, PCI DSS.",
-      icon: <FileText size={24} color="#64FFDA" />,
+      icon: <FileText size={24} />,
       badge: "Toolkits",
     },
     {
       id: "ondemand",
       title: "On Demand Quality & Security Team",
       desc: "Outsource QA, Security, and CISO functions (vCISO & vMR) instead of hiring a separate department.",
-      icon: <Users size={24} color="#64FFDA" />,
+      icon: <Users size={24} />,
       badge: "vCISO & vMR",
     },
   ];
 
   return (
     <div
-      style={{ overflowX: "hidden", fontFamily: "var(--font-sans)",
+      style={{
+        overflowX: "hidden",
+        fontFamily: "var(--font-sans)",
         background: "#F8FAFC",
         paddingTop: 64,
       }}
@@ -182,7 +184,8 @@ export function ServicesIntro({ navigate }: Props) {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
+              gridTemplateColumns:
+                "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
               gap: 20,
             }}
           >
@@ -298,11 +301,19 @@ export function ServicesIntro({ navigate }: Props) {
           maxWidth: 1400,
           margin: "0 auto",
           padding: "64px 16px",
-          display: "flex", flexDirection: window.innerWidth < 1024 ? "column" : "row", gap: 32, position: "relative",
+          display: "flex",
+          flexDirection: window.innerWidth < 1024 ? "column" : "row",
+          gap: 32,
+          position: "relative",
         }}
       >
         {/* LEFT: Sticky Scrollspy Sidebar */}
-        <div style={{ width: window.innerWidth < 1024 ? "100%" : "280px", flexShrink: 0 }}>
+        <div
+          style={{
+            width: window.innerWidth < 1024 ? "100%" : "280px",
+            flexShrink: 0,
+          }}
+        >
           <div
             style={{
               position: "sticky",
@@ -320,47 +331,62 @@ export function ServicesIntro({ navigate }: Props) {
                 textTransform: "uppercase",
                 letterSpacing: "1px",
                 marginBottom: 16,
+                paddingLeft: 4,
               }}
             >
               Navigation Menu
             </h3>
-            {serviceBlocks.map((item) => (
-              <button
-                key={item.id}
-                onClick={() =>
-                  scrollToSection(item.id as keyof typeof sectionRefs)
-                }
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 12,
-                  width: "100%",
-                  textAlign: "left",
-                  background:
-                    activeSection === item.id ? "#ffffff" : "transparent",
-                  border:
-                    activeSection === item.id
-                      ? "1px solid #1A5EA8"
-                      : "1px solid transparent",
-                  color: activeSection === item.id ? "#1A5EA8" : "#4A6080",
-                  padding: "12px 16px",
-                  borderRadius: 10,
-                  fontSize: 14,
-                  fontWeight: 600,
-                  cursor: "pointer",
-                  transition: "all 0.2s ease",
-                  boxShadow:
-                    activeSection === item.id
+            {serviceBlocks.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() =>
+                    scrollToSection(item.id as keyof typeof sectionRefs)
+                  }
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 14,
+                    width: "100%",
+                    textAlign: "left",
+                    background: isActive ? "#ffffff" : "transparent",
+                    border: isActive
+                      ? "1.5px solid #1A5EA8"
+                      : "1.5px solid transparent",
+                    color: "#1A5EA8",
+                    padding: "12px 16px",
+                    borderRadius: 12,
+                    fontSize: 14,
+                    fontWeight: isActive ? 700 : 500,
+                    cursor: "pointer",
+                    transition: "all 0.2s ease",
+                    boxShadow: isActive
                       ? "0 4px 12px rgba(26,94,168,0.08)"
                       : "none",
-                }}
-              >
-                <div style={{ opacity: activeSection === item.id ? 1 : 0.6 }}>
-                  {item.icon}
-                </div>
-                {item.title}
-              </button>
-            ))}
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isActive) e.currentTarget.style.background = "#F8FAFC";
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isActive)
+                      e.currentTarget.style.background = "transparent";
+                  }}
+                >
+                  <span
+                    style={{
+                      color: "#1A5EA8",
+                      display: "flex",
+                      alignItems: "center",
+                      flexShrink: 0,
+                    }}
+                  >
+                    {item.icon}
+                  </span>
+                  <span>{item.title}</span>
+                </button>
+              );
+            })}
 
             {/* Permanent CTA under Navigation Menu */}
             <div

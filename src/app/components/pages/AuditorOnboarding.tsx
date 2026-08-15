@@ -122,17 +122,38 @@ const specialisations = [
 
 export function AuditorOnboarding({ navigate }: Props) {
   return (
-    <div style={{ fontFamily: "var(--font-sans)", paddingTop: 64 }}>
+    <div
+      style={{
+        overflowX: "hidden",
+        maxWidth: "100vw",
+        boxSizing: "border-box",
+        fontFamily: "var(--font-sans)",
+        paddingTop: 64,
+      }}
+    >
       {/* Header */}
       <section
         style={{
           background: "linear-gradient(135deg, #0D2B5A 0%, #0D4870 100%)",
-          padding: "72px 40px",
+          padding: "72px 16px",
+          boxSizing: "border-box",
+          width: "100%",
         }}
       >
-        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-          <ResponsiveGrid minColWidth={450} gap={80} style={{ alignItems: "center" }}>
-            <div>
+        <div
+          style={{
+            maxWidth: 1280,
+            margin: "0 auto",
+            boxSizing: "border-box",
+            width: "100%",
+          }}
+        >
+          <ResponsiveGrid
+            minColWidth={window.innerWidth < 768 ? 280 : 450}
+            gap={40}
+            style={{ alignItems: "center" }}
+          >
+            <div style={{ boxSizing: "border-box", width: "100%" }}>
               <div
                 style={{
                   display: "inline-flex",
@@ -153,7 +174,9 @@ export function AuditorOnboarding({ navigate }: Props) {
                     borderRadius: "50%",
                   }}
                 />
-                <span style={{ fontSize: 12, color: "#C5D8EE", fontWeight: 500 }}>
+                <span
+                  style={{ fontSize: 12, color: "#C5D8EE", fontWeight: 500 }}
+                >
                   Partner with Us
                 </span>
               </div>
@@ -165,6 +188,7 @@ export function AuditorOnboarding({ navigate }: Props) {
                   lineHeight: 1.2,
                   letterSpacing: "-0.8px",
                   marginBottom: 20,
+                  wordBreak: "break-word",
                 }}
               >
                 Auditor Onboarding
@@ -178,9 +202,9 @@ export function AuditorOnboarding({ navigate }: Props) {
                 }}
               >
                 Idatum QA delivers its client engagements through a panel of
-                credentialed, practitioner-grade auditors. If you are a certified
-                professional with active audit experience, we want to explore
-                working together.
+                credentialed, practitioner-grade auditors. If you are a
+                certified professional with active audit experience, we want to
+                explore working together.
               </p>
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                 <button
@@ -229,7 +253,7 @@ export function AuditorOnboarding({ navigate }: Props) {
                 </button>
               </div>
             </div>
-            <div>
+            <div style={{ boxSizing: "border-box", width: "100%" }}>
               <img
                 src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=640&h=420&fit=crop&auto=format"
                 alt="Auditor reviewing compliance documentation"
@@ -252,18 +276,33 @@ export function AuditorOnboarding({ navigate }: Props) {
         style={{
           background: "#F1F5FA",
           borderBottom: "1px solid #D1DCE8",
-          padding: "36px 40px",
+          padding: "36px 16px",
+          boxSizing: "border-box",
+          width: "100%",
         }}
       >
-        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-          <ResponsiveGrid minColWidth={200} gap={24}>
+        <div
+          style={{
+            maxWidth: 1280,
+            margin: "0 auto",
+            boxSizing: "border-box",
+            width: "100%",
+          }}
+        >
+          <ResponsiveGrid
+            minColWidth={window.innerWidth < 768 ? 140 : 200}
+            gap={24}
+          >
             {[
               { label: "Experience Required", value: "5+ years" },
               { label: "Certification", value: "Mandatory" },
               { label: "Engagement Type", value: "Contract / Panel" },
               { label: "First Engagement", value: "Supervised" },
             ].map((s) => (
-              <div key={s.label} style={{ textAlign: "center" }}>
+              <div
+                key={s.label}
+                style={{ textAlign: "center", boxSizing: "border-box" }}
+              >
                 <p
                   style={{
                     fontSize: 26,
@@ -284,10 +323,20 @@ export function AuditorOnboarding({ navigate }: Props) {
 
       {/* Standards we expect */}
       <section
-        style={{ padding: "72px 40px", maxWidth: 1280, margin: "0 auto" }}
+        style={{
+          padding: "72px 16px",
+          maxWidth: 1280,
+          margin: "0 auto",
+          boxSizing: "border-box",
+          width: "100%",
+        }}
       >
-        <ResponsiveGrid minColWidth={450} gap={64} style={{ alignItems: "start" }}>
-          <div>
+        <ResponsiveGrid
+          minColWidth={window.innerWidth < 768 ? 280 : 450}
+          gap={40}
+          style={{ alignItems: "start" }}
+        >
+          <div style={{ boxSizing: "border-box", width: "100%" }}>
             <h2
               style={{
                 fontSize: 30,
@@ -376,7 +425,7 @@ export function AuditorOnboarding({ navigate }: Props) {
           </div>
 
           {/* Onboarding timeline */}
-          <div>
+          <div style={{ boxSizing: "border-box", width: "100%" }}>
             <h2
               style={{
                 fontSize: 22,
@@ -437,6 +486,7 @@ export function AuditorOnboarding({ navigate }: Props) {
                       borderRadius: 8,
                       padding: 18,
                       marginTop: 2,
+                      boxSizing: "border-box",
                     }}
                   >
                     <div
@@ -445,6 +495,8 @@ export function AuditorOnboarding({ navigate }: Props) {
                         justifyContent: "space-between",
                         alignItems: "flex-start",
                         marginBottom: 6,
+                        flexWrap: "wrap",
+                        gap: 8,
                       }}
                     >
                       <p
@@ -465,7 +517,6 @@ export function AuditorOnboarding({ navigate }: Props) {
                           padding: "3px 10px",
                           borderRadius: 20,
                           whiteSpace: "nowrap",
-                          marginLeft: 12,
                           flexShrink: 0,
                         }}
                       >
@@ -493,11 +544,20 @@ export function AuditorOnboarding({ navigate }: Props) {
       <section
         style={{
           background: "#F1F5FA",
-          padding: "64px 40px",
+          padding: "64px 16px",
           borderTop: "1px solid #D1DCE8",
+          boxSizing: "border-box",
+          width: "100%",
         }}
       >
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+        <div
+          style={{
+            maxWidth: 1100,
+            margin: "0 auto",
+            boxSizing: "border-box",
+            width: "100%",
+          }}
+        >
           <h2
             style={{
               fontSize: 26,
@@ -513,7 +573,7 @@ export function AuditorOnboarding({ navigate }: Props) {
             Idatum panel. You may apply for multiple specialisations if you meet
             the requirements across each.
           </p>
-          <ResponsiveGrid minColWidth={320} gap={16}>
+          <ResponsiveGrid minColWidth={280} gap={16}>
             {specialisations.map((s) => (
               <div
                 key={s.label}
@@ -522,6 +582,8 @@ export function AuditorOnboarding({ navigate }: Props) {
                   border: "1px solid #D1DCE8",
                   borderRadius: 10,
                   overflow: "hidden",
+                  boxSizing: "border-box",
+                  width: "100%",
                 }}
               >
                 <div style={{ background: s.color, padding: "14px 20px" }}>
@@ -545,10 +607,28 @@ export function AuditorOnboarding({ navigate }: Props) {
       </section>
 
       {/* CTA */}
-      <section style={{ background: "#0D2B5A", padding: "56px 40px" }}>
-        <div style={{ maxWidth: 840, margin: "0 auto" }}>
-          <ResponsiveGrid minColWidth={400} gap={30} style={{ alignItems: "center" }}>
-            <div>
+      <section
+        style={{
+          background: "#0D2B5A",
+          padding: "56px 16px",
+          boxSizing: "border-box",
+          width: "100%",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: 840,
+            margin: "0 auto",
+            boxSizing: "border-box",
+            width: "100%",
+          }}
+        >
+          <ResponsiveGrid
+            minColWidth={window.innerWidth < 768 ? 280 : 400}
+            gap={30}
+            style={{ alignItems: "center" }}
+          >
+            <div style={{ boxSizing: "border-box", width: "100%" }}>
               <h2
                 style={{
                   fontSize: 26,
@@ -559,12 +639,12 @@ export function AuditorOnboarding({ navigate }: Props) {
               >
                 Apply to Join the Idatum Auditor Panel
               </h2>
-              <p style={{ fontSize: 14, color: "#1e3a8a" }}>
-                We review applications within two business days. Strong candidates
-                are fast-tracked to an orientation call.
+              <p style={{ fontSize: 14, color: "#C5D8EE" }}>
+                We review applications within two business days. Strong
+                candidates are fast-tracked to an orientation call.
               </p>
             </div>
-            <div>
+            <div style={{ boxSizing: "border-box", width: "100%" }}>
               <button
                 onClick={() => navigate("contact")}
                 style={{
@@ -578,9 +658,14 @@ export function AuditorOnboarding({ navigate }: Props) {
                   borderRadius: 6,
                   whiteSpace: "nowrap",
                   width: "100%",
+                  boxSizing: "border-box",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = "#F1F5FA")}
-                onMouseLeave={(e) => (e.currentTarget.style.background = "#fff")}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.background = "#F1F5FA")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.background = "#fff")
+                }
               >
                 Apply Now
               </button>

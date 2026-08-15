@@ -62,6 +62,9 @@ export function HowWeTrain({ navigate }: Props) {
   return (
     <div
       style={{
+        overflowX: "hidden",
+        maxWidth: "100vw",
+        boxSizing: "border-box",
         fontFamily: "var(--font-sans)",
         background: "#F8FAFC",
         minHeight: "100vh",
@@ -72,7 +75,7 @@ export function HowWeTrain({ navigate }: Props) {
       <section
         style={{
           background: "linear-gradient(135deg, #102847 0%, #15335A 100%)",
-          padding: "100px 40px 80px",
+          padding: "80px 16px 60px",
           textAlign: "center",
         }}
       >
@@ -122,16 +125,20 @@ export function HowWeTrain({ navigate }: Props) {
         style={{
           maxWidth: 1280,
           margin: "-40px auto 80px",
-          padding: "0 40px",
+          padding: "0 16px",
           position: "relative",
           zIndex: 10,
+          boxSizing: "border-box",
+          width: "100%",
         }}
       >
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(450px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
             gap: 24,
+            boxSizing: "border-box",
+            width: "100%",
           }}
         >
           {formats.map((format) => (
@@ -142,11 +149,14 @@ export function HowWeTrain({ navigate }: Props) {
                 background: "#ffffff",
                 border: "1px solid #E2E8F0",
                 borderRadius: 16,
-                padding: 40,
+                padding: 24,
                 boxShadow: "0 10px 30px rgba(13,43,90,0.04)",
                 display: "flex",
                 flexDirection: "column",
                 transition: "border-color 0.2s ease",
+                boxSizing: "border-box",
+                width: "100%",
+                wordBreak: "break-word",
               }}
               onMouseEnter={(e) =>
                 (e.currentTarget.style.borderColor = "#CBD5E1")
@@ -197,10 +207,13 @@ export function HowWeTrain({ navigate }: Props) {
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr",
+                  gridTemplateColumns:
+                    window.innerWidth < 768 ? "1fr" : "1fr 1fr",
                   gap: "12px 16px",
                   borderTop: "1px solid #F1F5FA",
                   paddingTop: 24,
+                  boxSizing: "border-box",
+                  width: "100%",
                 }}
               >
                 {format.bullets.map((bullet, i) => (
@@ -234,7 +247,9 @@ export function HowWeTrain({ navigate }: Props) {
       </section>
 
       {/* ── 3. Competency vs Checkboxes (Split Screen) ── */}
-      <section style={{ maxWidth: 1280, margin: "0 auto", padding: "40px" }}>
+      <section
+        style={{ maxWidth: 1280, margin: "0 auto", padding: "40px 16px" }}
+      >
         <div
           style={{
             display: "flex",

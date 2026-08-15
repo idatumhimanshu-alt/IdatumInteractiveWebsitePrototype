@@ -65,7 +65,7 @@ export function PartnerIntro({ navigate }: Props) {
 
   return (
     <div
-      style={{
+      style={{ overflowX: "hidden", maxWidth: "100vw", boxSizing: "border-box",
         fontFamily: "var(--font-sans)",
         background: "#F8FAFC",
         minHeight: "100vh",
@@ -436,7 +436,7 @@ export function PartnerIntro({ navigate }: Props) {
       {/* ── 3. Partnership Models Grid ── */}
       <section
         id="models-section"
-        style={{ padding: "100px 40px", maxWidth: 1280, margin: "0 auto" }}
+        style={{ padding: "80px 16px", maxWidth: 1280, margin: "0 auto" }}
       >
         <div style={{ textAlign: "center", marginBottom: 60 }}>
           <h2
