@@ -11,7 +11,7 @@ export function Footer({ navigate }: FooterProps) {
       style={{
         background: "#0D2B5A",
         color: "#fff",
-        padding: "64px 40px 32px",
+        padding: "48px 16px 24px",
         fontFamily: "var(--font-sans)",
       }}
     >
@@ -19,7 +19,7 @@ export function Footer({ navigate }: FooterProps) {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "2fr 1fr 1fr 1fr",
+            gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "2fr 1fr 1fr 1fr",
             gap: 48,
             marginBottom: 48,
           }}
@@ -56,7 +56,7 @@ export function Footer({ navigate }: FooterProps) {
               style={{
                 fontSize: 13,
                 lineHeight: 1.7,
-                color: "#1e3a8a",
+                color: "#C5D8EE",
                 maxWidth: 280,
               }}
             >
@@ -76,7 +76,7 @@ export function Footer({ navigate }: FooterProps) {
                   style={{
                     background: "rgba(26,94,168,0.3)",
                     border: "1px solid rgba(26,94,168,0.5)",
-                    color: "#1e3a8a",
+                    color: "#C5D8EE",
                     fontSize: 10,
                     fontWeight: 600,
                     padding: "3px 8px",
@@ -93,9 +93,7 @@ export function Footer({ navigate }: FooterProps) {
           <div>
             <p
               style={{
-                fontSize: 11,
-                fontWeight: 600,
-                color: "#1e3a8a",
+                fontSize: 12, fontWeight: 700, color: "#fff", textTransform: "uppercase", letterSpacing: "1px",
                 letterSpacing: "1px",
                 textTransform: "uppercase",
                 marginBottom: 16,
@@ -138,9 +136,7 @@ export function Footer({ navigate }: FooterProps) {
           <div>
             <p
               style={{
-                fontSize: 11,
-                fontWeight: 600,
-                color: "#1e3a8a",
+                fontSize: 12, fontWeight: 700, color: "#fff", textTransform: "uppercase", letterSpacing: "1px",
                 letterSpacing: "1px",
                 textTransform: "uppercase",
                 marginBottom: 16,
@@ -189,9 +185,7 @@ export function Footer({ navigate }: FooterProps) {
           <div>
             <p
               style={{
-                fontSize: 11,
-                fontWeight: 600,
-                color: "#1e3a8a",
+                fontSize: 12, fontWeight: 700, color: "#fff", textTransform: "uppercase", letterSpacing: "1px",
                 letterSpacing: "1px",
                 textTransform: "uppercase",
                 marginBottom: 16,
@@ -244,10 +238,10 @@ export function Footer({ navigate }: FooterProps) {
             alignItems: "center",
           }}
         >
-          <p style={{ fontSize: 12, color: "#1e3a8a" }}>
+          <p style={{ fontSize: 12, color: "#C5D8EE" }}>
             © {new Date().getFullYear()} Idatum. All rights reserved.
           </p>
-          <p style={{ fontSize: 12, color: "#1e3a8a" }}>
+          <p style={{ fontSize: 12, color: "#C5D8EE" }}>
             Privacy Policy · Terms of Service
           </p>
         </div>

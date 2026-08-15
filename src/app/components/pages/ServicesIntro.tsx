@@ -124,8 +124,7 @@ export function ServicesIntro({ navigate }: Props) {
 
   return (
     <div
-      style={{
-        fontFamily: "var(--font-sans)",
+      style={{ overflowX: "hidden", fontFamily: "var(--font-sans)",
         background: "#F8FAFC",
         paddingTop: 64,
       }}
@@ -134,7 +133,7 @@ export function ServicesIntro({ navigate }: Props) {
       <section
         style={{
           background: "linear-gradient(135deg, #0D2B5A 0%, #15335A 100%)",
-          padding: "80px 40px 100px",
+          padding: "60px 16px 80px",
           borderBottom: "1px solid #1A5EA8",
         }}
       >
@@ -183,7 +182,7 @@ export function ServicesIntro({ navigate }: Props) {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
               gap: 20,
             }}
           >
@@ -298,14 +297,12 @@ export function ServicesIntro({ navigate }: Props) {
         style={{
           maxWidth: 1400,
           margin: "0 auto",
-          padding: "64px 40px",
-          display: "flex",
-          gap: 64,
-          position: "relative",
+          padding: "64px 16px",
+          display: "flex", flexDirection: window.innerWidth < 1024 ? "column" : "row", gap: 32, position: "relative",
         }}
       >
         {/* LEFT: Sticky Scrollspy Sidebar */}
-        <div style={{ flex: "0 0 280px" }}>
+        <div style={{ width: window.innerWidth < 1024 ? "100%" : "280px", flexShrink: 0 }}>
           <div
             style={{
               position: "sticky",
