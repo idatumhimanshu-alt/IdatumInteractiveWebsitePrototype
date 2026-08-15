@@ -37,47 +37,141 @@ interface HeroProps {
   navigate: (page: Page, state?: Record<string, string>) => void;
 }
 
-// Complete list of all 23 enterprise clients with your requested top 8 ordered first
+// Complete list of all 23 enterprise clients with official domains for multi-tier ensemble logo fetching
 const clients = [
-  { name: "Bajaj Allianz", code: "BAL", sector: "Insurance" },
-  { name: "Syntys- Qatar", code: "SYN", sector: "Data Center" },
-  { name: "VFS Global", code: "VFS", sector: "Global Services" },
+  {
+    name: "Bajaj Allianz",
+    code: "BAL",
+    sector: "Insurance",
+    domain: "bajajallianz.com",
+  },
+  {
+    name: "Syntys- Qatar",
+    code: "SYN",
+    sector: "Data Center",
+    domain: "syntys.qa",
+  },
+  {
+    name: "VFS Global",
+    code: "VFS",
+    sector: "Global Services",
+    domain: "vfsglobal.com",
+  },
   {
     name: "HDFC (Internal development team)",
     code: "HDFC",
     sector: "Financial Services",
+    domain: "hdfcbank.com",
   },
-  { name: "Century Enka", code: "CE", sector: "Manufacturing" },
-  { name: "L&T Finance", code: "LTF", sector: "Financial Services" },
-  { name: "Bitwise Global", code: "BIT", sector: "Data & IT Services" },
-  { name: "Bond.ai (USA)", code: "BAI", sector: "AI & Technology" },
+  {
+    name: "Century Enka",
+    code: "CE",
+    sector: "Manufacturing",
+    domain: "centuryenka.com",
+  },
+  {
+    name: "L&T Finance",
+    code: "LTF",
+    sector: "Financial Services",
+    domain: "ltfs.com",
+  },
+  {
+    name: "Bitwise Global",
+    code: "BIT",
+    sector: "Data & IT Services",
+    domain: "bitwiseglobal.com",
+  },
+  {
+    name: "Bond.ai (USA)",
+    code: "BAI",
+    sector: "AI & Technology",
+    domain: "bond.ai",
+  },
   {
     name: "IL&FS Education, Schoolnet India",
     code: "ILF",
     sector: "Education & Infrastructure",
+    domain: "ilfseducation.com",
   },
-  { name: "Wurth IT India", code: "WUR", sector: "IT Services" },
-  { name: "Milliontech- Hongkong", code: "MIL", sector: "Technology" },
-  { name: "Tridiagonal.ai", code: "TRI", sector: "Simulation & Engineering" },
-  { name: "VDA Infosolutions Pvt. Ltd.", code: "VDA", sector: "IT Solutions" },
+  {
+    name: "Wurth IT India",
+    code: "WUR",
+    sector: "IT Services",
+    domain: "wurth-it.in",
+  },
+  {
+    name: "Milliontech- Hongkong",
+    code: "MIL",
+    sector: "Technology",
+    domain: "milliontech.com",
+  },
+  {
+    name: "Tridiagonal.ai",
+    code: "TRI",
+    sector: "Simulation & Engineering",
+    domain: "tridiagonal.ai",
+  },
+  {
+    name: "VDA Infosolutions Pvt. Ltd.",
+    code: "VDA",
+    sector: "IT Solutions",
+    domain: "vdainfosolutions.com",
+  },
   {
     name: "Qorix India (KPIT Venture)",
     code: "QRX",
     sector: "Automotive Software",
+    domain: "qorix.io",
   },
-  { name: "AurionPro Solutions", code: "APS", sector: "Enterprise Software" },
-  { name: "ISRC Otis", code: "OTI", sector: "Engineering" },
-  { name: "RePlus Engitech Pvt. Ltd", code: "REP", sector: "Energy & Tech" },
+  {
+    name: "AurionPro Solutions",
+    code: "APS",
+    sector: "Enterprise Software",
+    domain: "aurionpro.com",
+  },
+  { name: "ISRC Otis", code: "OTI", sector: "Engineering", domain: "otis.com" },
+  {
+    name: "RePlus Engitech Pvt. Ltd",
+    code: "REP",
+    sector: "Energy & Tech",
+    domain: "replusengitech.com",
+  },
   {
     name: "Datametica Solutions Pvt. Ltd",
     code: "DAT",
     sector: "Data Analytics",
+    domain: "datametica.com",
   },
-  { name: "Wide Wings Pvt. Ltd.", code: "WWP", sector: "Media & Production" },
-  { name: "tCognition Consultancy", code: "TCG", sector: "IT Consulting" },
-  { name: "Xpanxion International", code: "XPX", sector: "Software Solutions" },
-  { name: "Opus Software", code: "OPS", sector: "Fintech Solutions" },
-  { name: "Minda Stoneridge", code: "MSI", sector: "Automotive Components" },
+  {
+    name: "Wide Wings Pvt. Ltd.",
+    code: "WWP",
+    sector: "Media & Production",
+    domain: "widewingsmedia.com",
+  },
+  {
+    name: "tCognition Consultancy",
+    code: "TCG",
+    sector: "IT Consulting",
+    domain: "tcognition.com",
+  },
+  {
+    name: "Xpanxion International",
+    code: "XPX",
+    sector: "Software Solutions",
+    domain: "xpanxion.com",
+  },
+  {
+    name: "Opus Software",
+    code: "OPS",
+    sector: "Fintech Solutions",
+    domain: "opussoftware.com",
+  },
+  {
+    name: "Minda Stoneridge",
+    code: "MSI",
+    sector: "Automotive Components",
+    domain: "mindastoneridge.com",
+  },
 ];
 
 const consultingItems = [
@@ -292,6 +386,14 @@ export function Hero({ navigate }: HeroProps) {
     "consulting" | "training" | "syscomply"
   >("consulting");
   const [showAllClients, setShowAllClients] = useState(false);
+  const [logoTiers, setLogoTiers] = useState<{ [key: string]: number }>({});
+
+  const handleNextTier = (code: string) => {
+    setLogoTiers((prev) => {
+      const currentTier = prev[code] || 0;
+      return { ...prev, [code]: currentTier + 1 };
+    });
+  };
 
   const currentItems =
     activeTab === "consulting"
@@ -462,7 +564,7 @@ export function Hero({ navigate }: HeroProps) {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Cybernetic Compliance */}
+          {/* RIGHT COLUMN: Cybernetic Radar & All 5 Floating Badges */}
           <div
             style={{
               flex: "1 1 480px",
@@ -585,7 +687,7 @@ export function Hero({ navigate }: HeroProps) {
               }}
             />
 
-            {/* Floating Badges */}
+            {/* All 5 Floating Badges */}
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
@@ -777,7 +879,7 @@ export function Hero({ navigate }: HeroProps) {
         </div>
       </section>
 
-      {/* ── 2. Enterprise Client Logo Grid (Top 8 + See More Toggle) ── */}
+      {/* ── 2. Enterprise Client Multi-Tier Ensemble Logo Grid ── */}
       <section
         style={{
           background: "#F8FAFC",
@@ -788,7 +890,7 @@ export function Hero({ navigate }: HeroProps) {
         <div style={{ maxWidth: 1200, margin: "0 auto", textAlign: "center" }}>
           <p
             style={{
-              fontSize: 13,
+              fontSize: 25,
               fontWeight: 700,
               letterSpacing: "1.5px",
               color: "#475569",
@@ -799,119 +901,166 @@ export function Hero({ navigate }: HeroProps) {
             Trusted by Industry Leaders & Global Enterprises
           </p>
 
-          {/* Logo Grid */}
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
               gap: 20,
-              marginBottom: 32,
+              marginBottom: 24,
             }}
           >
-            {displayedClients.map((client, idx) => (
-              <motion.div
-                key={idx}
-                whileHover={{ y: -4 }}
-                style={{
-                  background: "#ffffff",
-                  border: "1px solid #D1DCE8",
-                  borderRadius: 12,
-                  padding: "24px 20px",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 16,
-                  boxShadow: "0 2px 10px rgba(13,43,90,0.02)",
-                  transition: "all 0.2s ease",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "#1A5EA8";
-                  e.currentTarget.style.boxShadow =
-                    "0 6px 20px rgba(26,94,168,0.08)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "#D1DCE8";
-                  e.currentTarget.style.boxShadow =
-                    "0 2px 10px rgba(13,43,90,0.02)";
-                }}
-              >
-                {/* Monogram Badge Logo */}
-                <div
+            {displayedClients.map((client) => {
+              const tier = logoTiers[client.code] || 0;
+              const logoUrls = [
+                `https://logo.clearbit.com/${client.domain}`,
+                `https://logos.hunter.io/${client.domain}`,
+                `https://unavatar.io/${client.domain}`,
+              ];
+
+              return (
+                <motion.div
+                  key={client.code}
+                  whileHover={{ y: -4 }}
                   style={{
-                    width: 44,
-                    height: 44,
-                    borderRadius: 10,
-                    background: "#0D2B5A",
-                    color: "#64FFDA",
+                    background: "#ffffff",
+                    border: "1px solid #D1DCE8",
+                    borderRadius: 12,
+                    padding: "24px 20px",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
-                    fontWeight: 800,
-                    fontSize: 13,
-                    flexShrink: 0,
+                    gap: 16,
+                    boxShadow: "0 2px 10px rgba(13,43,90,0.02)",
+                    transition: "all 0.2s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "#1A5EA8";
+                    e.currentTarget.style.boxShadow =
+                      "0 6px 20px rgba(26,94,168,0.08)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "#D1DCE8";
+                    e.currentTarget.style.boxShadow =
+                      "0 2px 10px rgba(13,43,90,0.02)";
                   }}
                 >
-                  {client.code}
-                </div>
-                <div style={{ textAlign: "left", overflow: "hidden" }}>
-                  <h3
+                  <div
                     style={{
-                      fontSize: 15,
-                      fontWeight: 700,
-                      color: "#0D2B5A",
-                      margin: "0 0 2px 0",
-                      whiteSpace: "nowrap",
+                      width: 44,
+                      height: 44,
+                      borderRadius: 10,
+                      background: tier >= 3 ? "#0D2B5A" : "#ffffff",
+                      border: "1px solid #e2e8f0",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
                       overflow: "hidden",
-                      textOverflow: "ellipsis",
+                      padding: tier >= 3 ? 0 : 6,
                     }}
                   >
-                    {client.name}
-                  </h3>
-                  <span
-                    style={{ fontSize: 11, fontWeight: 600, color: "#475569" }}
-                  >
-                    {client.sector}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
+                    {tier < 3 ? (
+                      <img
+                        src={logoUrls[tier]}
+                        alt={`${client.name} logo`}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "contain",
+                        }}
+                        onError={() => handleNextTier(client.code)}
+                      />
+                    ) : (
+                      <span
+                        style={{
+                          fontWeight: 800,
+                          fontSize: 12,
+                          color: "#64FFDA",
+                        }}
+                      >
+                        {client.code}
+                      </span>
+                    )}
+                  </div>
+                  <div style={{ textAlign: "left", overflow: "hidden" }}>
+                    <h3
+                      style={{
+                        fontSize: 15,
+                        fontWeight: 700,
+                        color: "#0D2B5A",
+                        margin: "0 0 2px 0",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      {client.name}
+                    </h3>
+                    <span
+                      style={{
+                        fontSize: 11,
+                        fontWeight: 600,
+                        color: "#475569",
+                      }}
+                    >
+                      {client.sector}
+                    </span>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
 
-          {/* See More / See Less Button */}
-          {clients.length > 8 && (
-            <button
-              onClick={() => setShowAllClients(!showAllClients)}
-              style={{
-                background: "transparent",
-                color: "#1A5EA8",
-                border: "1.5px solid #1A5EA8",
-                padding: "12px 28px",
-                fontSize: 14,
-                fontWeight: 700,
-                borderRadius: 8,
-                cursor: "pointer",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                transition: "all 0.2s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "#EEF4FF";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "transparent";
-              }}
-            >
-              {showAllClients ? (
-                <>
-                  Show Less Companies <ChevronUp size={16} />
-                </>
-              ) : (
-                <>
-                  See More Companies <ChevronDown size={16} />
-                </>
-              )}
-            </button>
-          )}
+          {/* Subtitle Line & See More Toggle Button */}
+          <div style={{ marginTop: 24, textAlign: "center" }}>
+            {showAllClients && (
+              <p
+                style={{
+                  fontSize: 22,
+                  color: "#64748b",
+                  marginBottom: 16,
+                  fontStyle: "italic",
+                  fontWeight: 500,
+                }}
+              >
+                ...and many more clients across global industries.
+              </p>
+            )}
+            {clients.length > 8 && (
+              <button
+                onClick={() => setShowAllClients(!showAllClients)}
+                style={{
+                  background: "transparent",
+                  color: "#1A5EA8",
+                  border: "1.5px solid #1A5EA8",
+                  padding: "12px 28px",
+                  fontSize: 14,
+                  fontWeight: 700,
+                  borderRadius: 8,
+                  cursor: "pointer",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  transition: "all 0.2s",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "#EEF4FF";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "transparent";
+                }}
+              >
+                {showAllClients ? (
+                  <>
+                    Show Less Companies <ChevronUp size={16} />
+                  </>
+                ) : (
+                  <>
+                    See More Companies <ChevronDown size={16} />
+                  </>
+                )}
+              </button>
+            )}
+          </div>
         </div>
       </section>
 
@@ -940,7 +1089,6 @@ export function Hero({ navigate }: HeroProps) {
           offerings.
         </p>
 
-        {/* 3-Way Segmented Control Switch */}
         <div
           style={{
             display: "inline-flex",
@@ -1017,7 +1165,6 @@ export function Hero({ navigate }: HeroProps) {
           </button>
         </div>
 
-        {/* Dynamic Cards Grid */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
@@ -1058,7 +1205,6 @@ export function Hero({ navigate }: HeroProps) {
                   e.currentTarget.style.boxShadow = "none";
                 }}
               >
-                {/* Icon & Number Row */}
                 <div
                   style={{
                     display: "flex",
@@ -1150,99 +1296,6 @@ export function Hero({ navigate }: HeroProps) {
             ))}
           </motion.div>
         </AnimatePresence>
-
-        {/* Bottom Hub Routing Buttons */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: 16,
-            flexWrap: "wrap",
-            paddingTop: 16,
-            borderTop: "1px solid #EEF2F7",
-          }}
-        >
-          <button
-            onClick={() => navigate("services-intro")}
-            style={{
-              background: "#15335A",
-              color: "#ffffff",
-              border: "none",
-              cursor: "pointer",
-              padding: "14px 24px",
-              fontSize: 14,
-              fontWeight: 600,
-              borderRadius: 6,
-              transition: "background 0.2s ease",
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "#0D213B")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "#15335A")}
-          >
-            <Briefcase size={18} />
-            Explore Services
-          </button>
-
-          <button
-            onClick={() => navigate("academy-intro")}
-            style={{
-              background: "#F1F5FA",
-              color: "#15335A",
-              border: "1px solid #D1DCE8",
-              cursor: "pointer",
-              padding: "14px 24px",
-              fontSize: 14,
-              fontWeight: 600,
-              borderRadius: 6,
-              transition: "all 0.2s ease",
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = "#15335A";
-              e.currentTarget.style.color = "#15335A";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "#D1DCE8";
-              e.currentTarget.style.color = "#15335A";
-            }}
-          >
-            <BookOpen size={18} />
-            Explore Training Hub
-          </button>
-
-          <button
-            onClick={() => navigate("syscomply-intro")}
-            style={{
-              background: "#F1F5FA",
-              color: "#15335A",
-              border: "1px solid #D1DCE8",
-              cursor: "pointer",
-              padding: "14px 24px",
-              fontSize: 14,
-              fontWeight: 600,
-              borderRadius: 6,
-              transition: "all 0.2s ease",
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = "#15335A";
-              e.currentTarget.style.color = "#15335A";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "#D1DCE8";
-              e.currentTarget.style.color = "#15335A";
-            }}
-          >
-            <MonitorSmartphone size={18} />
-            Explore Syscomply
-          </button>
-        </div>
       </section>
     </div>
   );
