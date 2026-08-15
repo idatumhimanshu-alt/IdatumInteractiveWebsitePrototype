@@ -1,3 +1,4 @@
+import { ResponsiveGrid } from "../ResponsiveGrid";
 import { useState } from "react";
 
 type Page = string;
@@ -200,9 +201,8 @@ export function Contact({ navigate: _navigate }: Props) {
       <section
         style={{ padding: "72px 40px", maxWidth: 1100, margin: "0 auto" }}
       >
-        <div
-          style={{ display: "grid", gridTemplateColumns: "1fr 340px", gap: 60 }}
-        >
+        {/* Replaced rigid grid with ResponsiveGrid: stacks on mobile, side-by-side on desktop */}
+        <ResponsiveGrid minColWidth={400} gap={60}>
           {/* Form */}
           <div>
             {/* Inquiry type selector */}
@@ -269,7 +269,8 @@ export function Contact({ navigate: _navigate }: Props) {
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr",
+                  gridTemplateColumns:
+                    window.innerWidth < 768 ? "1fr" : "1fr 1fr",
                   gap: 16,
                   marginBottom: 16,
                 }}
@@ -360,7 +361,8 @@ export function Contact({ navigate: _navigate }: Props) {
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr",
+                  gridTemplateColumns:
+                    window.innerWidth < 768 ? "1fr" : "1fr 1fr",
                   gap: 16,
                   marginBottom: 16,
                 }}
@@ -650,7 +652,7 @@ export function Contact({ navigate: _navigate }: Props) {
               </div>
             </div>
           </div>
-        </div>
+        </ResponsiveGrid>
       </section>
     </div>
   );

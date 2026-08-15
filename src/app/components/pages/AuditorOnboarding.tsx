@@ -1,3 +1,5 @@
+import { ResponsiveGrid } from "../ResponsiveGrid";
+
 type Page = string;
 interface Props {
   navigate: (page: Page) => void;
@@ -128,127 +130,120 @@ export function AuditorOnboarding({ navigate }: Props) {
           padding: "72px 40px",
         }}
       >
-        <div
-          style={{
-            maxWidth: 1280,
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr",
-            gap: 80,
-            alignItems: "center",
-          }}
-        >
-          <div>
-            <div
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                background: "rgba(255,255,255,0.1)",
-                border: "1px solid rgba(255,255,255,0.2)",
-                borderRadius: 20,
-                padding: "5px 14px",
-                marginBottom: 24,
-              }}
-            >
+        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+          <ResponsiveGrid minColWidth={450} gap={80} style={{ alignItems: "center" }}>
+            <div>
               <div
                 style={{
-                  width: 6,
-                  height: 6,
-                  background: "#4ADE80",
-                  borderRadius: "50%",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  background: "rgba(255,255,255,0.1)",
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  borderRadius: 20,
+                  padding: "5px 14px",
+                  marginBottom: 24,
+                }}
+              >
+                <div
+                  style={{
+                    width: 6,
+                    height: 6,
+                    background: "#4ADE80",
+                    borderRadius: "50%",
+                  }}
+                />
+                <span style={{ fontSize: 12, color: "#C5D8EE", fontWeight: 500 }}>
+                  Partner with Us
+                </span>
+              </div>
+              <h1
+                style={{
+                  fontSize: 44,
+                  fontWeight: 700,
+                  color: "#fff",
+                  lineHeight: 1.2,
+                  letterSpacing: "-0.8px",
+                  marginBottom: 20,
+                }}
+              >
+                Auditor Onboarding
+              </h1>
+              <p
+                style={{
+                  fontSize: 17,
+                  color: "#C5D8EE",
+                  lineHeight: 1.8,
+                  marginBottom: 36,
+                }}
+              >
+                Idatum QA delivers its client engagements through a panel of
+                credentialed, practitioner-grade auditors. If you are a certified
+                professional with active audit experience, we want to explore
+                working together.
+              </p>
+              <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+                <button
+                  onClick={() => navigate("contact")}
+                  style={{
+                    background: "#fff",
+                    color: "#0D2B5A",
+                    border: "none",
+                    cursor: "pointer",
+                    padding: "14px 28px",
+                    fontSize: 15,
+                    fontWeight: 700,
+                    borderRadius: 6,
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.background = "#F1F5FA")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.background = "#fff")
+                  }
+                >
+                  Apply to Join the Panel
+                </button>
+                <button
+                  onClick={() => navigate("become-partner")}
+                  style={{
+                    background: "transparent",
+                    color: "#fff",
+                    border: "2px solid rgba(255,255,255,0.4)",
+                    cursor: "pointer",
+                    padding: "14px 28px",
+                    fontSize: 15,
+                    fontWeight: 600,
+                    borderRadius: 6,
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "#fff";
+                    e.currentTarget.style.background = "rgba(255,255,255,0.08)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)";
+                    e.currentTarget.style.background = "transparent";
+                  }}
+                >
+                  Full Partner Application
+                </button>
+              </div>
+            </div>
+            <div>
+              <img
+                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=640&h=420&fit=crop&auto=format"
+                alt="Auditor reviewing compliance documentation"
+                style={{
+                  display: "block",
+                  width: "100%",
+                  height: 380,
+                  objectFit: "cover",
+                  borderRadius: 12,
+                  boxShadow: "0 24px 56px rgba(0,0,0,0.3)",
                 }}
               />
-              <span style={{ fontSize: 12, color: "#C5D8EE", fontWeight: 500 }}>
-                Partner with Us
-              </span>
             </div>
-            <h1
-              style={{
-                fontSize: 44,
-                fontWeight: 700,
-                color: "#fff",
-                lineHeight: 1.2,
-                letterSpacing: "-0.8px",
-                marginBottom: 20,
-              }}
-            >
-              Auditor Onboarding
-            </h1>
-            <p
-              style={{
-                fontSize: 17,
-                color: "#C5D8EE",
-                lineHeight: 1.8,
-                marginBottom: 36,
-              }}
-            >
-              Idatum QA delivers its client engagements through a panel of
-              credentialed, practitioner-grade auditors. If you are a certified
-              professional with active audit experience, we want to explore
-              working together.
-            </p>
-            <div style={{ display: "flex", gap: 12 }}>
-              <button
-                onClick={() => navigate("contact")}
-                style={{
-                  background: "#fff",
-                  color: "#0D2B5A",
-                  border: "none",
-                  cursor: "pointer",
-                  padding: "14px 28px",
-                  fontSize: 15,
-                  fontWeight: 700,
-                  borderRadius: 6,
-                }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.background = "#F1F5FA")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.background = "#fff")
-                }
-              >
-                Apply to Join the Panel
-              </button>
-              <button
-                onClick={() => navigate("become-partner")}
-                style={{
-                  background: "transparent",
-                  color: "#fff",
-                  border: "2px solid rgba(255,255,255,0.4)",
-                  cursor: "pointer",
-                  padding: "14px 28px",
-                  fontSize: 15,
-                  fontWeight: 600,
-                  borderRadius: 6,
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "#fff";
-                  e.currentTarget.style.background = "rgba(255,255,255,0.08)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)";
-                  e.currentTarget.style.background = "transparent";
-                }}
-              >
-                Full Partner Application
-              </button>
-            </div>
-          </div>
-          <div>
-            <img
-              src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=640&h=420&fit=crop&auto=format"
-              alt="Auditor reviewing compliance documentation"
-              style={{
-                display: "block",
-                width: "100%",
-                height: 380,
-                objectFit: "cover",
-                borderRadius: 12,
-                boxShadow: "0 24px 56px rgba(0,0,0,0.3)",
-              }}
-            />
-          </div>
+          </ResponsiveGrid>
         </div>
       </section>
 
@@ -260,36 +255,30 @@ export function AuditorOnboarding({ navigate }: Props) {
           padding: "36px 40px",
         }}
       >
-        <div
-          style={{
-            maxWidth: 1280,
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: 24,
-          }}
-        >
-          {[
-            { label: "Experience Required", value: "5+ years" },
-            { label: "Certification", value: "Mandatory" },
-            { label: "Engagement Type", value: "Contract / Panel" },
-            { label: "First Engagement", value: "Supervised" },
-          ].map((s) => (
-            <div key={s.label} style={{ textAlign: "center" }}>
-              <p
-                style={{
-                  fontSize: 26,
-                  fontWeight: 800,
-                  color: "#0D2B5A",
-                  lineHeight: 1,
-                  marginBottom: 6,
-                }}
-              >
-                {s.value}
-              </p>
-              <p style={{ fontSize: 12, color: "#4A6080" }}>{s.label}</p>
-            </div>
-          ))}
+        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+          <ResponsiveGrid minColWidth={200} gap={24}>
+            {[
+              { label: "Experience Required", value: "5+ years" },
+              { label: "Certification", value: "Mandatory" },
+              { label: "Engagement Type", value: "Contract / Panel" },
+              { label: "First Engagement", value: "Supervised" },
+            ].map((s) => (
+              <div key={s.label} style={{ textAlign: "center" }}>
+                <p
+                  style={{
+                    fontSize: 26,
+                    fontWeight: 800,
+                    color: "#0D2B5A",
+                    lineHeight: 1,
+                    marginBottom: 6,
+                  }}
+                >
+                  {s.value}
+                </p>
+                <p style={{ fontSize: 12, color: "#4A6080" }}>{s.label}</p>
+              </div>
+            ))}
+          </ResponsiveGrid>
         </div>
       </section>
 
@@ -297,14 +286,7 @@ export function AuditorOnboarding({ navigate }: Props) {
       <section
         style={{ padding: "72px 40px", maxWidth: 1280, margin: "0 auto" }}
       >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr",
-            gap: 64,
-            alignItems: "start",
-          }}
-        >
+        <ResponsiveGrid minColWidth={450} gap={64} style={{ alignItems: "start" }}>
           <div>
             <h2
               style={{
@@ -504,7 +486,7 @@ export function AuditorOnboarding({ navigate }: Props) {
               ))}
             </div>
           </div>
-        </div>
+        </ResponsiveGrid>
       </section>
 
       {/* Specialisation requirements */}
@@ -531,13 +513,7 @@ export function AuditorOnboarding({ navigate }: Props) {
             Idatum panel. You may apply for multiple specialisations if you meet
             the requirements across each.
           </p>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: 16,
-            }}
-          >
+          <ResponsiveGrid minColWidth={320} gap={16}>
             {specialisations.map((s) => (
               <div
                 key={s.label}
@@ -564,57 +540,52 @@ export function AuditorOnboarding({ navigate }: Props) {
                 </div>
               </div>
             ))}
-          </div>
+          </ResponsiveGrid>
         </div>
       </section>
 
       {/* CTA */}
       <section style={{ background: "#0D2B5A", padding: "56px 40px" }}>
-        <div
-          style={{
-            maxWidth: 840,
-            margin: "0 auto",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <div>
-            <h2
-              style={{
-                fontSize: 26,
-                fontWeight: 700,
-                color: "#fff",
-                marginBottom: 8,
-              }}
-            >
-              Apply to Join the Idatum Auditor Panel
-            </h2>
-            <p style={{ fontSize: 14, color: "#9BB5D4" }}>
-              We review applications within two business days. Strong candidates
-              are fast-tracked to an orientation call.
-            </p>
-          </div>
-          <button
-            onClick={() => navigate("contact")}
-            style={{
-              background: "#fff",
-              color: "#0D2B5A",
-              border: "none",
-              cursor: "pointer",
-              padding: "14px 28px",
-              fontSize: 15,
-              fontWeight: 700,
-              borderRadius: 6,
-              whiteSpace: "nowrap",
-              marginLeft: 40,
-              flexShrink: 0,
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "#F1F5FA")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "#fff")}
-          >
-            Apply Now
-          </button>
+        <div style={{ maxWidth: 840, margin: "0 auto" }}>
+          <ResponsiveGrid minColWidth={400} gap={30} style={{ alignItems: "center" }}>
+            <div>
+              <h2
+                style={{
+                  fontSize: 26,
+                  fontWeight: 700,
+                  color: "#fff",
+                  marginBottom: 8,
+                }}
+              >
+                Apply to Join the Idatum Auditor Panel
+              </h2>
+              <p style={{ fontSize: 14, color: "#9BB5D4" }}>
+                We review applications within two business days. Strong candidates
+                are fast-tracked to an orientation call.
+              </p>
+            </div>
+            <div>
+              <button
+                onClick={() => navigate("contact")}
+                style={{
+                  background: "#fff",
+                  color: "#0D2B5A",
+                  border: "none",
+                  cursor: "pointer",
+                  padding: "14px 28px",
+                  fontSize: 15,
+                  fontWeight: 700,
+                  borderRadius: 6,
+                  whiteSpace: "nowrap",
+                  width: "100%",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.background = "#F1F5FA")}
+                onMouseLeave={(e) => (e.currentTarget.style.background = "#fff")}
+              >
+                Apply Now
+              </button>
+            </div>
+          </ResponsiveGrid>
         </div>
       </section>
     </div>

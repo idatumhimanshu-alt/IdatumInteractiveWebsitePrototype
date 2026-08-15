@@ -1,3 +1,5 @@
+import { ResponsiveGrid } from "../ResponsiveGrid";
+
 type Page = string;
 interface Props { navigate: (page: Page) => void; }
 
@@ -53,44 +55,46 @@ export function TrainerOnboarding({ navigate }: Props) {
     <div style={{ fontFamily: "var(--font-sans)", paddingTop: 64 }}>
       {/* Header */}
       <section style={{ background: "linear-gradient(135deg, #0D2B5A 0%, #1A4A8A 100%)", padding: "72px 40px" }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr", gap: 80, alignItems: "center" }}>
-          <div>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 20, padding: "5px 14px", marginBottom: 24 }}>
-              <div style={{ width: 6, height: 6, background: "#4ADE80", borderRadius: "50%" }} />
-              <span style={{ fontSize: 12, color: "#C5D8EE", fontWeight: 500 }}>Partner with Us</span>
+        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+          <ResponsiveGrid minColWidth={450} gap={80} style={{ alignItems: "center" }}>
+            <div>
+              <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)", borderRadius: 20, padding: "5px 14px", marginBottom: 24 }}>
+                <div style={{ width: 6, height: 6, background: "#4ADE80", borderRadius: "50%" }} />
+                <span style={{ fontSize: 12, color: "#C5D8EE", fontWeight: 500 }}>Partner with Us</span>
+              </div>
+              <h1 style={{ fontSize: 44, fontWeight: 700, color: "#fff", lineHeight: 1.2, letterSpacing: "-0.8px", marginBottom: 20 }}>
+                Trainer Onboarding
+              </h1>
+              <p style={{ fontSize: 17, color: "#C5D8EE", lineHeight: 1.8, marginBottom: 36 }}>
+                Idatum Academy delivers training through a network of domain-certified practitioners. If you hold active credentials in any of our six training tracks, we'd like to hear from you.
+              </p>
+              <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+                <button
+                  onClick={() => navigate("contact")}
+                  style={{ background: "#fff", color: "#0D2B5A", border: "none", cursor: "pointer", padding: "14px 28px", fontSize: 15, fontWeight: 700, borderRadius: 6 }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "#F1F5FA")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "#fff")}
+                >
+                  Apply as a Trainer
+                </button>
+                <button
+                  onClick={() => navigate("become-partner")}
+                  style={{ background: "transparent", color: "#fff", border: "2px solid rgba(255,255,255,0.4)", cursor: "pointer", padding: "14px 28px", fontSize: 15, fontWeight: 600, borderRadius: 6 }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#fff"; e.currentTarget.style.background = "rgba(255,255,255,0.08)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)"; e.currentTarget.style.background = "transparent"; }}
+                >
+                  Partner Application
+                </button>
+              </div>
             </div>
-            <h1 style={{ fontSize: 44, fontWeight: 700, color: "#fff", lineHeight: 1.2, letterSpacing: "-0.8px", marginBottom: 20 }}>
-              Trainer Onboarding
-            </h1>
-            <p style={{ fontSize: 17, color: "#C5D8EE", lineHeight: 1.8, marginBottom: 36 }}>
-              Idatum Academy delivers training through a network of domain-certified practitioners. If you hold active credentials in any of our six training tracks, we'd like to hear from you.
-            </p>
-            <div style={{ display: "flex", gap: 12 }}>
-              <button
-                onClick={() => navigate("contact")}
-                style={{ background: "#fff", color: "#0D2B5A", border: "none", cursor: "pointer", padding: "14px 28px", fontSize: 15, fontWeight: 700, borderRadius: 6 }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = "#F1F5FA")}
-                onMouseLeave={(e) => (e.currentTarget.style.background = "#fff")}
-              >
-                Apply as a Trainer
-              </button>
-              <button
-                onClick={() => navigate("become-partner")}
-                style={{ background: "transparent", color: "#fff", border: "2px solid rgba(255,255,255,0.4)", cursor: "pointer", padding: "14px 28px", fontSize: 15, fontWeight: 600, borderRadius: 6 }}
-                onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#fff"; e.currentTarget.style.background = "rgba(255,255,255,0.08)"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)"; e.currentTarget.style.background = "transparent"; }}
-              >
-                Partner Application
-              </button>
+            <div>
+              <img
+                src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=640&h=420&fit=crop&auto=format"
+                alt="Professional trainer delivering a compliance workshop"
+                style={{ display: "block", width: "100%", height: 380, objectFit: "cover", borderRadius: 12, boxShadow: "0 24px 56px rgba(0,0,0,0.3)" }}
+              />
             </div>
-          </div>
-          <div>
-            <img
-              src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?w=640&h=420&fit=crop&auto=format"
-              alt="Professional trainer delivering a compliance workshop"
-              style={{ display: "block", width: "100%", height: 380, objectFit: "cover", borderRadius: 12, boxShadow: "0 24px 56px rgba(0,0,0,0.3)" }}
-            />
-          </div>
+          </ResponsiveGrid>
         </div>
       </section>
 
@@ -98,7 +102,7 @@ export function TrainerOnboarding({ navigate }: Props) {
       <section style={{ background: "#F1F5FA", borderBottom: "1px solid #D1DCE8", padding: "48px 40px" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
           <h2 style={{ fontSize: 22, fontWeight: 700, color: "#0D2B5A", marginBottom: 24 }}>What We Look for in a Trainer</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20 }}>
+          <ResponsiveGrid minColWidth={260} gap={20}>
             {[
               { title: "Active Practitioner", desc: "You are currently working in the domain you train — not just teaching it. We don't engage career trainers without domain experience." },
               { title: "Certified & Current", desc: "You hold a recognized certification in your domain and keep it current. Expired credentials are not accepted." },
@@ -111,7 +115,7 @@ export function TrainerOnboarding({ navigate }: Props) {
                 <p style={{ fontSize: 13, color: "#4A6080", lineHeight: 1.7 }}>{c.desc}</p>
               </div>
             ))}
-          </div>
+          </ResponsiveGrid>
         </div>
       </section>
 
@@ -155,7 +159,7 @@ export function TrainerOnboarding({ navigate }: Props) {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <h2 style={{ fontSize: 26, fontWeight: 700, color: "#0D2B5A", marginBottom: 8 }}>Track-Specific Requirements</h2>
           <p style={{ fontSize: 14, color: "#4A6080", marginBottom: 32 }}>Minimum credential requirements vary by training track. All tracks require active practitioner status.</p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
+          <ResponsiveGrid minColWidth={320} gap={16}>
             {tracks.map((t) => (
               <div key={t.label} style={{ background: "#fff", border: "1px solid #D1DCE8", borderRadius: 10, overflow: "hidden" }}>
                 <div style={{ background: t.color, padding: "14px 20px" }}>
@@ -166,7 +170,7 @@ export function TrainerOnboarding({ navigate }: Props) {
                 </div>
               </div>
             ))}
-          </div>
+          </ResponsiveGrid>
         </div>
       </section>
 

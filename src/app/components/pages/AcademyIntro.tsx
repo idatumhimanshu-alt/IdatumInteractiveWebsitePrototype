@@ -1,3 +1,4 @@
+import { ResponsiveGrid } from "../ResponsiveGrid";
 import classroomImg from "../../../imports/idatum_classroom.png";
 type Page = string;
 interface Props {
@@ -58,139 +59,138 @@ export function AcademyIntro({ navigate }: Props) {
               "radial-gradient(ellipse at 70% 40%, rgba(26,94,168,0.25) 0%, transparent 65%)",
           }}
         />
-        <div
-          style={{
-            maxWidth: 1280,
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr",
-            gap: 80,
-            alignItems: "center",
-            position: "relative",
-            zIndex: 1,
-          }}
-        >
-          <div>
-            <div
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                background: "rgba(255,255,255,0.1)",
-                border: "1px solid rgba(255,255,255,0.2)",
-                borderRadius: 20,
-                padding: "5px 14px",
-                marginBottom: 24,
-              }}
-            >
+        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+          <ResponsiveGrid
+            minColWidth={450}
+            gap={80}
+            style={{
+              alignItems: "center",
+              position: "relative",
+              zIndex: 1,
+            }}
+          >
+            <div>
               <div
                 style={{
-                  width: 6,
-                  height: 6,
-                  background: "#4ADE80",
-                  borderRadius: "50%",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  background: "rgba(255,255,255,0.1)",
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  borderRadius: 20,
+                  padding: "5px 14px",
+                  marginBottom: 24,
+                }}
+              >
+                <div
+                  style={{
+                    width: 6,
+                    height: 6,
+                    background: "#4ADE80",
+                    borderRadius: "50%",
+                  }}
+                />
+                <span
+                  style={{
+                    fontSize: 12,
+                    color: "#C5D8EE",
+                    fontWeight: 500,
+                  }}
+                >
+                  Professional Training Programs
+                </span>
+              </div>
+              <h1
+                style={{
+                  fontSize: 44,
+                  fontWeight: 700,
+                  color: "#fff",
+                  lineHeight: 1.2,
+                  letterSpacing: "-0.8px",
+                  marginBottom: 20,
+                }}
+              >
+                Training Hub: Training That Builds Real Competency
+              </h1>
+              <p
+                style={{
+                  fontSize: 17,
+                  color: "#C5D8EE",
+                  lineHeight: 1.8,
+                  marginBottom: 40,
+                }}
+              >
+                Training Hub delivers certification-aligned training across the
+                most critical compliance and workplace domains. Led by active
+                practitioners — not just trainers — every course is built around
+                what your team will actually encounter on the job.
+              </p>
+              <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+                <button
+                  onClick={() => navigate("training-tracks")}
+                  style={{
+                    background: "#fff",
+                    color: "#0D2B5A",
+                    border: "none",
+                    cursor: "pointer",
+                    padding: "14px 28px",
+                    fontSize: 15,
+                    fontWeight: 700,
+                    borderRadius: 6,
+                    transition: "all 0.15s",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "#F1F5FA";
+                    e.currentTarget.style.transform = "translateY(-1px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "#fff";
+                    e.currentTarget.style.transform = "translateY(0)";
+                  }}
+                >
+                  View Courses
+                </button>
+                <button
+                  onClick={() => navigate("contact")}
+                  style={{
+                    background: "transparent",
+                    color: "#fff",
+                    border: "2px solid rgba(255,255,255,0.4)",
+                    cursor: "pointer",
+                    padding: "14px 28px",
+                    fontSize: 15,
+                    fontWeight: 600,
+                    borderRadius: 6,
+                    transition: "all 0.15s",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "#fff";
+                    e.currentTarget.style.background = "rgba(255,255,255,0.08)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)";
+                    e.currentTarget.style.background = "transparent";
+                  }}
+                >
+                  Request a Demo
+                </button>
+              </div>
+            </div>
+            <div>
+              <img
+                src={classroomImg}
+                alt="Professional compliance training classroom session"
+                style={{
+                  display: "block",
+                  width: "100%",
+                  height: 400,
+                  objectFit: "cover",
+                  borderRadius: 12,
+                  boxShadow: "0 24px 56px rgba(0,0,0,0.3)",
                 }}
               />
-              <span
-                style={{
-                  fontSize: 12,
-                  color: "#C5D8EE",
-                  fontWeight: 500,
-                }}
-              >
-                Professional Training Programs
-              </span>
             </div>
-            <h1
-              style={{
-                fontSize: 44,
-                fontWeight: 700,
-                color: "#fff",
-                lineHeight: 1.2,
-                letterSpacing: "-0.8px",
-                marginBottom: 20,
-              }}
-            >
-              Training Hub: Training That Builds Real Competency
-            </h1>
-            <p
-              style={{
-                fontSize: 17,
-                color: "#C5D8EE",
-                lineHeight: 1.8,
-                marginBottom: 40,
-              }}
-            >
-              Training Hub delivers certification-aligned training across the
-              most critical compliance and workplace domains. Led by active
-              practitioners — not just trainers — every course is built around
-              what your team will actually encounter on the job.
-            </p>
-            <div style={{ display: "flex", gap: 12 }}>
-              <button
-                onClick={() => navigate("training-tracks")}
-                style={{
-                  background: "#fff",
-                  color: "#0D2B5A",
-                  border: "none",
-                  cursor: "pointer",
-                  padding: "14px 28px",
-                  fontSize: 15,
-                  fontWeight: 700,
-                  borderRadius: 6,
-                  transition: "all 0.15s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "#F1F5FA";
-                  e.currentTarget.style.transform = "translateY(-1px)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "#fff";
-                  e.currentTarget.style.transform = "translateY(0)";
-                }}
-              >
-                View Courses
-              </button>
-              <button
-                onClick={() => navigate("contact")}
-                style={{
-                  background: "transparent",
-                  color: "#fff",
-                  border: "2px solid rgba(255,255,255,0.4)",
-                  cursor: "pointer",
-                  padding: "14px 28px",
-                  fontSize: 15,
-                  fontWeight: 600,
-                  borderRadius: 6,
-                  transition: "all 0.15s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "#fff";
-                  e.currentTarget.style.background = "rgba(255,255,255,0.08)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)";
-                  e.currentTarget.style.background = "transparent";
-                }}
-              >
-                Request a Demo
-              </button>
-            </div>
-          </div>
-          <div>
-            <img
-              src={classroomImg}
-              alt="Professional compliance training classroom session"
-              style={{
-                display: "block",
-                width: "100%",
-                height: 400,
-                objectFit: "cover",
-                borderRadius: 12,
-                boxShadow: "0 24px 56px rgba(0,0,0,0.3)",
-              }}
-            />
-          </div>
+          </ResponsiveGrid>
         </div>
       </section>
 
@@ -238,13 +238,7 @@ export function AcademyIntro({ navigate }: Props) {
             operational competency — not just exam preparation.
           </p>
         </div>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 20,
-          }}
-        >
+        <ResponsiveGrid minColWidth={320} gap={20}>
           {tracks.map((t) => (
             <button
               key={t.label}
@@ -330,7 +324,7 @@ export function AcademyIntro({ navigate }: Props) {
               </svg>
             </button>
           ))}
-        </div>
+        </ResponsiveGrid>
       </section>
 
       {/* Why Academy */}
@@ -341,101 +335,98 @@ export function AcademyIntro({ navigate }: Props) {
           borderTop: "1px solid #D1DCE8",
         }}
       >
-        <div
-          style={{
-            maxWidth: 1280,
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr",
-            gap: 80,
-            alignItems: "center",
-          }}
-        >
-          <div>
-            <img
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=580&h=380&fit=crop&auto=format"
-              alt="Corporate training workshop"
-              style={{
-                display: "block",
-                width: "100%",
-                height: 340,
-                objectFit: "cover",
-                borderRadius: 12,
-              }}
-            />
-          </div>
-          <div>
-            <h2
-              style={{
-                fontSize: 32,
-                fontWeight: 700,
-                color: "#0D2B5A",
-                letterSpacing: "-0.5px",
-                marginBottom: 20,
-              }}
-            >
-              Why Train with Training Hub?
-            </h2>
-            {[
-              {
-                title: "Practitioner-Led",
-                desc: "Instructors are active compliance professionals — not career trainers — who bring real-world scenarios into every session.",
-              },
-              {
-                title: "Certification-Aligned",
-                desc: "All courses are mapped to recognized certification bodies and audit standards, so learning translates directly to verifiable credentials.",
-              },
-              {
-                title: "Flexible Delivery",
-                desc: "Live virtual, in-person, and self-paced modules available. We match delivery to your team's schedule and learning preferences.",
-              },
-              {
-                title: "Customizable Content",
-                desc: "Programs can be tailored to your industry, regulatory context, and organizational maturity level.",
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
+        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+          <ResponsiveGrid
+            minColWidth={450}
+            gap={80}
+            style={{ alignItems: "center" }}
+          >
+            <div>
+              <img
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=580&h=380&fit=crop&auto=format"
+                alt="Corporate training workshop"
                 style={{
-                  display: "flex",
-                  gap: 14,
+                  display: "block",
+                  width: "100%",
+                  height: 340,
+                  objectFit: "cover",
+                  borderRadius: 12,
+                }}
+              />
+            </div>
+            <div>
+              <h2
+                style={{
+                  fontSize: 32,
+                  fontWeight: 700,
+                  color: "#0D2B5A",
+                  letterSpacing: "-0.5px",
                   marginBottom: 20,
                 }}
               >
+                Why Train with Training Hub?
+              </h2>
+              {[
+                {
+                  title: "Practitioner-Led",
+                  desc: "Instructors are active compliance professionals — not career trainers — who bring real-world scenarios into every session.",
+                },
+                {
+                  title: "Certification-Aligned",
+                  desc: "All courses are mapped to recognized certification bodies and audit standards, so learning translates directly to verifiable credentials.",
+                },
+                {
+                  title: "Flexible Delivery",
+                  desc: "Live virtual, in-person, and self-paced modules available. We match delivery to your team's schedule and learning preferences.",
+                },
+                {
+                  title: "Customizable Content",
+                  desc: "Programs can be tailored to your industry, regulatory context, and organizational maturity level.",
+                },
+              ].map((item) => (
                 <div
+                  key={item.title}
                   style={{
-                    width: 6,
-                    height: 6,
-                    background: "#1A5EA8",
-                    borderRadius: "50%",
-                    marginTop: 8,
-                    flexShrink: 0,
+                    display: "flex",
+                    gap: 14,
+                    marginBottom: 20,
                   }}
-                />
-                <div>
-                  <p
+                >
+                  <div
                     style={{
-                      fontSize: 15,
-                      fontWeight: 700,
-                      color: "#0D2B5A",
-                      marginBottom: 4,
+                      width: 6,
+                      height: 6,
+                      background: "#1A5EA8",
+                      borderRadius: "50%",
+                      marginTop: 8,
+                      flexShrink: 0,
                     }}
-                  >
-                    {item.title}
-                  </p>
-                  <p
-                    style={{
-                      fontSize: 14,
-                      color: "#4A6080",
-                      lineHeight: 1.7,
-                    }}
-                  >
-                    {item.desc}
-                  </p>
+                  />
+                  <div>
+                    <p
+                      style={{
+                        fontSize: 15,
+                        fontWeight: 700,
+                        color: "#0D2B5A",
+                        marginBottom: 4,
+                      }}
+                    >
+                      {item.title}
+                    </p>
+                    <p
+                      style={{
+                        fontSize: 14,
+                        color: "#4A6080",
+                        lineHeight: 1.7,
+                      }}
+                    >
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </ResponsiveGrid>
         </div>
       </section>
     </div>
