@@ -92,7 +92,7 @@ export function Nav({ navigate, current }: NavProps) {
         >
           <img
             src={logoImg}
-            alt="Idatum Logo"
+            alt="Idatum Logo" width="120" height="32"
             style={{
               height: 32,
               width: "auto",
@@ -338,7 +338,7 @@ export function Nav({ navigate, current }: NavProps) {
                       padding: "2px 16px 6px",
                       fontSize: 10,
                       fontWeight: 700,
-                      color: "#9BB5D4",
+                      color: "#1e3a8a",
                       letterSpacing: "1px",
                       textTransform: "uppercase",
                     }}
@@ -460,7 +460,7 @@ export function Nav({ navigate, current }: NavProps) {
                         <p
                           style={{
                             fontSize: 11,
-                            color: "#9BB5D4",
+                            color: "#1e3a8a",
                             margin: "2px 0 0",
                           }}
                         >
@@ -483,7 +483,7 @@ export function Nav({ navigate, current }: NavProps) {
                       padding: "2px 16px 6px",
                       fontSize: 10,
                       fontWeight: 700,
-                      color: "#9BB5D4",
+                      color: "#1e3a8a",
                       letterSpacing: "1px",
                       textTransform: "uppercase",
                     }}
@@ -586,7 +586,7 @@ export function Nav({ navigate, current }: NavProps) {
                         <p
                           style={{
                             fontSize: 11,
-                            color: "#9BB5D4",
+                            color: "#1e3a8a",
                             margin: "2px 0 0",
                           }}
                         >
@@ -647,7 +647,7 @@ export function Nav({ navigate, current }: NavProps) {
           </div>
         ) : (
           /* Mobile Hamburger Button */
-          <button
+          <button aria-label="Toggle mobile menu"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             style={{
               background: "none",

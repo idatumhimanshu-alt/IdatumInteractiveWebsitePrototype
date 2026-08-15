@@ -302,7 +302,7 @@ export default function App() {
                 style={{
                   fontSize: 11,
                   fontWeight: 600,
-                  color: "#9BB5D4",
+                  color: "#1e3a8a",
                   textTransform: "uppercase",
                   letterSpacing: "0.8px",
                   alignSelf: "center",
@@ -360,7 +360,7 @@ export default function App() {
                 style={{
                   fontSize: 11,
                   fontWeight: 600,
-                  color: "#9BB5D4",
+                  color: "#1e3a8a",
                   textTransform: "uppercase",
                   letterSpacing: "0.8px",
                   alignSelf: "center",
@@ -414,7 +414,7 @@ export default function App() {
                 style={{
                   fontSize: 11,
                   fontWeight: 600,
-                  color: "#9BB5D4",
+                  color: "#1e3a8a",
                   textTransform: "uppercase",
                   letterSpacing: "0.8px",
                   alignSelf: "center",

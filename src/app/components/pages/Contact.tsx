@@ -169,7 +169,7 @@ export function Contact({ navigate: _navigate }: Props) {
             style={{
               fontSize: 12,
               fontWeight: 600,
-              color: "#9BB5D4",
+              color: "#1e3a8a",
               letterSpacing: "1.5px",
               textTransform: "uppercase",
               marginBottom: 12,
@@ -499,7 +499,7 @@ export function Contact({ navigate: _navigate }: Props) {
               <p
                 style={{
                   fontSize: 12,
-                  color: "#9BB5D4",
+                  color: "#1e3a8a",
                   textAlign: "center",
                   marginTop: 12,
                 }}
@@ -577,7 +577,7 @@ export function Contact({ navigate: _navigate }: Props) {
                     <p
                       style={{
                         fontSize: 12,
-                        color: "#9BB5D4",
+                        color: "#1e3a8a",
                         lineHeight: 1.6,
                       }}
                     >

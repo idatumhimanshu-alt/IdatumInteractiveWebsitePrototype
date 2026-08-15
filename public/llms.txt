@@ -1,0 +1,12 @@
+# Idatum Systems & Tech
+
+> Enterprise Compliance, QA Auditing, and Professional Training Hub.
+
+## Core Pages
+- [Home](https://idatumsystemstech.com/)
+- [Services](https://idatumsystemstech.com/services)
+- [Training Academy](https://idatumsystemstech.com/academy)
+- [Syscomply](https://idatumsystemstech.com/syscomply)
+- [Trainer Onboarding](https://idatumsystemstech.com/trainer-onboarding)
+- [Auditor Onboarding](https://idatumsystemstech.com/auditor-onboarding)
+- [Contact Us](https://idatumsystemstech.com/contact)

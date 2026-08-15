@@ -374,7 +374,7 @@ export function Hero({ navigate }: HeroProps) {
             >
               Building Trust.
               <br />
-              <span style={{ color: "#9BB5D4" }}>Enhancing Business.</span>
+              <span style={{ color: "#1e3a8a" }}>Enhancing Business.</span>
               <br />
               <span
                 style={{
@@ -791,7 +791,7 @@ export function Hero({ navigate }: HeroProps) {
               fontSize: 13,
               fontWeight: 700,
               letterSpacing: "1.5px",
-              color: "#8892B0",
+              color: "#475569",
               textTransform: "uppercase",
               marginBottom: 36,
             }}
@@ -853,7 +853,7 @@ export function Hero({ navigate }: HeroProps) {
                   {client.code}
                 </div>
                 <div style={{ textAlign: "left", overflow: "hidden" }}>
-                  <h4
+                  <h3
                     style={{
                       fontSize: 15,
                       fontWeight: 700,
@@ -865,9 +865,9 @@ export function Hero({ navigate }: HeroProps) {
                     }}
                   >
                     {client.name}
-                  </h4>
+                  </h3>
                   <span
-                    style={{ fontSize: 11, fontWeight: 600, color: "#8892B0" }}
+                    style={{ fontSize: 11, fontWeight: 600, color: "#475569" }}
                   >
                     {client.sector}
                   </span>

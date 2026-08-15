@@ -621,7 +621,7 @@ export function AboutUs({ navigate }: Props) {
                 borderLeft: "4px solid #1A5EA8",
               }}
             >
-              <h4
+              <h3
                 style={{
                   fontSize: 14,
                   fontWeight: 700,
@@ -632,7 +632,7 @@ export function AboutUs({ navigate }: Props) {
                 }}
               >
                 Business Challenges
-              </h4>
+              </h3>
               <p
                 style={{
                   fontSize: 15,
@@ -653,7 +653,7 @@ export function AboutUs({ navigate }: Props) {
                 borderLeft: "4px solid #0D6B4E",
               }}
             >
-              <h4
+              <h3
                 style={{
                   fontSize: 14,
                   fontWeight: 700,
@@ -664,7 +664,7 @@ export function AboutUs({ navigate }: Props) {
                 }}
               >
                 Our Approach & Deliverables
-              </h4>
+              </h3>
               <p
                 style={{
                   fontSize: 15,

@@ -333,7 +333,7 @@ export function PartnerIntro({ navigate }: Props) {
                 >
                   Zero Lock-in
                 </p>
-                <p style={{ fontSize: 9, color: "#9BB5D4", margin: 0 }}>
+                <p style={{ fontSize: 9, color: "#1e3a8a", margin: 0 }}>
                   Transparent terms
                 </p>
               </div>
@@ -377,7 +377,7 @@ export function PartnerIntro({ navigate }: Props) {
                 >
                   Shared Success
                 </p>
-                <p style={{ fontSize: 9, color: "#9BB5D4", margin: 0 }}>
+                <p style={{ fontSize: 9, color: "#1e3a8a", margin: 0 }}>
                   Co-delivered value
                 </p>
               </div>

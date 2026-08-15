@@ -30,7 +30,7 @@ export function POSHCourseDetail({ navigate }: Props) {
               >
                 {crumb.label}
               </button>
-              <span style={{ color: "#9BB5D4", fontSize: 13 }}>›</span>
+              <span style={{ color: "#1e3a8a", fontSize: 13 }}>›</span>
             </span>
           ))}
           <span style={{ fontSize: 13, color: "#4A6080" }}>IC Member Certification</span>
@@ -59,7 +59,7 @@ export function POSHCourseDetail({ navigate }: Props) {
                 { label: "Participants", value: "Up to 25" },
               ].map((m) => (
                 <div key={m.label}>
-                  <p style={{ fontSize: 11, color: "#9BB5D4", textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: 4 }}>{m.label}</p>
+                  <p style={{ fontSize: 11, color: "#1e3a8a", textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: 4 }}>{m.label}</p>
                   <p style={{ fontSize: 16, fontWeight: 700, color: "#fff" }}>{m.value}</p>
                 </div>
               ))}
@@ -109,7 +109,7 @@ export function POSHCourseDetail({ navigate }: Props) {
             >
               Contact Us
             </button>
-            <p style={{ fontSize: 11, color: "#9BB5D4", textAlign: "center", marginTop: 12 }}>
+            <p style={{ fontSize: 11, color: "#1e3a8a", textAlign: "center", marginTop: 12 }}>
               No commitment required. We'll discuss your requirements first.
             </p>
           </div>
@@ -149,7 +149,7 @@ export function POSHCourseDetail({ navigate }: Props) {
                   </div>
                   <div style={{ flex: 1 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
-                      <h4 style={{ fontSize: 15, fontWeight: 700, color: "#0D2B5A" }}>{mod.title}</h4>
+                      <h3 style={{ fontSize: 15, fontWeight: 700, color: "#0D2B5A" }}>{mod.title}</h3>
                       <span style={{ fontSize: 12, color: "#4A6080", flexShrink: 0, marginLeft: 16 }}>{mod.duration}</span>
                     </div>
                     <p style={{ fontSize: 13, color: "#4A6080", lineHeight: 1.65 }}>{mod.desc}</p>

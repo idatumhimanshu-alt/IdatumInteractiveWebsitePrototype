@@ -83,7 +83,7 @@ export function ServicesTimeline({ navigate }: Props) {
             style={{
               fontSize: 12,
               fontWeight: 600,
-              color: "#9BB5D4",
+              color: "#1e3a8a",
               letterSpacing: "1.5px",
               textTransform: "uppercase",
               marginBottom: 12,
@@ -254,7 +254,7 @@ export function ServicesTimeline({ navigate }: Props) {
             >
               Ready to start your compliance journey?
             </h3>
-            <p style={{ fontSize: 14, color: "#9BB5D4" }}>
+            <p style={{ fontSize: 14, color: "#1e3a8a" }}>
               Discuss your timeline and scope with one of our specialists.
             </p>
           </div>

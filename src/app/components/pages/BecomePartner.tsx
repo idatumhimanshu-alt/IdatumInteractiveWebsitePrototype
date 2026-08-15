@@ -260,7 +260,7 @@ export function BecomePartner({
             style={{
               fontSize: 12,
               fontWeight: 600,
-              color: "#9BB5D4",
+              color: "#1e3a8a",
               letterSpacing: "1.5px",
               textTransform: "uppercase",
               marginBottom: 12,
@@ -505,7 +505,7 @@ export function BecomePartner({
                       <p
                         style={{
                           fontSize: 11,
-                          color: "#9BB5D4",
+                          color: "#1e3a8a",
                           margin: 0,
                         }}
                       >
@@ -740,7 +740,7 @@ export function BecomePartner({
                       border: "1.5px solid #D1DCE8",
                       borderRadius: 7,
                       fontSize: 14,
-                      color: form.teamSize ? "#0D2B5A" : "#9BB5D4",
+                      color: form.teamSize ? "#0D2B5A" : "#1e3a8a",
                       background: "#fff",
                       outline: "none",
                       boxSizing: "border-box",

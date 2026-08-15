@@ -52,7 +52,7 @@ export function WhyPartner({ navigate }: Props) {
       {/* Header */}
       <section style={{ background: "#0D2B5A", padding: "72px 40px" }}>
         <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
-          <p style={{ fontSize: 12, fontWeight: 600, color: "#9BB5D4", letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: 12 }}>
+          <p style={{ fontSize: 12, fontWeight: 600, color: "#1e3a8a", letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: 12 }}>
             Partnership Benefits
           </p>
           <h1 style={{ fontSize: 44, fontWeight: 700, color: "#fff", lineHeight: 1.2, letterSpacing: "-0.8px", marginBottom: 20 }}>
@@ -131,7 +131,7 @@ export function WhyPartner({ navigate }: Props) {
                 <div style={{ borderTop: "1px solid #EEF2F7", paddingTop: 14 }}>
                   <p style={{ fontSize: 13, fontWeight: 700, color: "#0D2B5A", marginBottom: 2 }}>{t.name}</p>
                   <p style={{ fontSize: 12, color: "#4A6080" }}>{t.org}</p>
-                  <p style={{ fontSize: 11, color: "#9BB5D4", marginTop: 3 }}>{t.since}</p>
+                  <p style={{ fontSize: 11, color: "#1e3a8a", marginTop: 3 }}>{t.since}</p>
                 </div>
               </div>
             ))}

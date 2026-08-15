@@ -58,7 +58,7 @@ export function WhyChooseServices({ navigate }: Props) {
       {/* Header */}
       <section style={{ background: "linear-gradient(135deg, #0D2B5A 0%, #1A4A8A 100%)", padding: "72px 40px" }}>
         <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
-          <p style={{ fontSize: 12, fontWeight: 600, color: "#9BB5D4", letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: 12 }}>
+          <p style={{ fontSize: 12, fontWeight: 600, color: "#1e3a8a", letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: 12 }}>
             Why Idatum QA
           </p>
           <h1 style={{ fontSize: 44, fontWeight: 700, color: "#fff", lineHeight: 1.2, letterSpacing: "-0.8px", marginBottom: 20 }}>
@@ -105,7 +105,7 @@ export function WhyChooseServices({ navigate }: Props) {
                     marginBottom: 12,
                   }}
                 >
-                  <span style={{ fontSize: 13, fontWeight: 700, color: "#9BB5D4" }}>{r.num}</span>
+                  <span style={{ fontSize: 13, fontWeight: 700, color: "#1e3a8a" }}>{r.num}</span>
                 </div>
                 <p style={{ fontSize: 28, fontWeight: 800, color: "#1A5EA8", lineHeight: 1 }}>{r.stat}</p>
                 <p style={{ fontSize: 11, color: "#4A6080", lineHeight: 1.4, maxWidth: 80 }}>{r.statLabel}</p>
@@ -171,7 +171,7 @@ export function WhyChooseServices({ navigate }: Props) {
             <h2 style={{ fontSize: 28, fontWeight: 700, color: "#fff", marginBottom: 8 }}>
               Ready to discuss your compliance needs?
             </h2>
-            <p style={{ fontSize: 15, color: "#9BB5D4" }}>
+            <p style={{ fontSize: 15, color: "#1e3a8a" }}>
               Schedule a consultation with our QA team — no obligation, no sales pressure.
             </p>
           </div>

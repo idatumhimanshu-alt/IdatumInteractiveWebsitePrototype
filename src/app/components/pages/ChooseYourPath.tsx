@@ -15,7 +15,7 @@ export function ChooseYourPath({ navigate }: Props) {
         }}
       >
         <div style={{ maxWidth: 720, margin: "0 auto" }}>
-          <p style={{ fontSize: 12, fontWeight: 600, color: "#9BB5D4", letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: 12 }}>
+          <p style={{ fontSize: 12, fontWeight: 600, color: "#1e3a8a", letterSpacing: "1.5px", textTransform: "uppercase", marginBottom: 12 }}>
             Get Started
           </p>
           <h1 style={{ fontSize: 44, fontWeight: 700, color: "#fff", lineHeight: 1.2, letterSpacing: "-0.8px", marginBottom: 20 }}>

@@ -315,18 +315,18 @@ export function ServicesIntro({ navigate }: Props) {
               gap: 8,
             }}
           >
-            <h4
+            <h3
               style={{
                 fontSize: 12,
                 fontWeight: 700,
-                color: "#8892B0",
+                color: "#475569",
                 textTransform: "uppercase",
                 letterSpacing: "1px",
                 marginBottom: 16,
               }}
             >
               Navigation Menu
-            </h4>
+            </h3>
             {serviceBlocks.map((item) => (
               <button
                 key={item.id}
@@ -471,18 +471,18 @@ export function ServicesIntro({ navigate }: Props) {
               ISO 17025, IATF 16949, SPICE).
             </p>
 
-            <h4
+            <h3
               style={{
                 fontSize: 14,
                 fontWeight: 700,
-                color: "#8892B0",
+                color: "#475569",
                 textTransform: "uppercase",
                 letterSpacing: "1px",
                 marginBottom: 16,
               }}
             >
               Core Services Offered
-            </h4>
+            </h3>
 
             <div
               style={{
@@ -678,18 +678,18 @@ export function ServicesIntro({ navigate }: Props) {
               </div>
             </div>
 
-            <h4
+            <h3
               style={{
                 fontSize: 14,
                 fontWeight: 700,
-                color: "#8892B0",
+                color: "#475569",
                 textTransform: "uppercase",
                 letterSpacing: "1px",
                 marginBottom: 24,
               }}
             >
               Step-by-Step Implementation Lifecycle
-            </h4>
+            </h3>
 
             <div style={{ position: "relative", paddingLeft: 40 }}>
               <div
@@ -1051,7 +1051,7 @@ export function ServicesIntro({ navigate }: Props) {
 
             <div style={{ display: "flex", gap: 32, flexWrap: "wrap" }}>
               <div style={{ flex: "1 1 300px" }}>
-                <h4
+                <h3
                   style={{
                     fontSize: 14,
                     fontWeight: 700,
@@ -1062,7 +1062,7 @@ export function ServicesIntro({ navigate }: Props) {
                   }}
                 >
                   Core Services
-                </h4>
+                </h3>
                 <ul
                   style={{
                     listStyle: "none",
@@ -1111,7 +1111,7 @@ export function ServicesIntro({ navigate }: Props) {
                   boxShadow: "0 4px 12px rgba(0,0,0,0.03)",
                 }}
               >
-                <h4
+                <h3
                   style={{
                     fontSize: 14,
                     fontWeight: 700,
@@ -1122,7 +1122,7 @@ export function ServicesIntro({ navigate }: Props) {
                   }}
                 >
                   Implementation Lifecycle
-                </h4>
+                </h3>
                 <div
                   style={{ display: "flex", flexDirection: "column", gap: 16 }}
                 >
@@ -1262,7 +1262,7 @@ export function ServicesIntro({ navigate }: Props) {
                   >
                     {idx + 1}
                   </div>
-                  <h4
+                  <h3
                     style={{
                       fontSize: 18,
                       fontWeight: 800,
@@ -1271,7 +1271,7 @@ export function ServicesIntro({ navigate }: Props) {
                     }}
                   >
                     {item.title}
-                  </h4>
+                  </h3>
                   <p
                     style={{
                       fontSize: 14,
@@ -1496,7 +1496,7 @@ export function ServicesIntro({ navigate }: Props) {
                       zIndex: 2,
                     }}
                   >
-                    <h4
+                    <h3
                       style={{
                         fontSize: 15,
                         fontWeight: 700,
@@ -1505,7 +1505,7 @@ export function ServicesIntro({ navigate }: Props) {
                       }}
                     >
                       {service.title}
-                    </h4>
+                    </h3>
                     <p
                       style={{
                         fontSize: 13,

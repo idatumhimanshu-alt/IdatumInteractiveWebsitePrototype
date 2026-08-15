@@ -559,7 +559,7 @@ export function AuditorOnboarding({ navigate }: Props) {
               >
                 Apply to Join the Idatum Auditor Panel
               </h2>
-              <p style={{ fontSize: 14, color: "#9BB5D4" }}>
+              <p style={{ fontSize: 14, color: "#1e3a8a" }}>
                 We review applications within two business days. Strong candidates
                 are fast-tracked to an orientation call.
               </p>

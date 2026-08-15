@@ -300,7 +300,7 @@ export function BrowseAllCourses({ navigate, defaultTrack }: Props) {
               style={{
                 fontSize: 12,
                 fontWeight: 600,
-                color: "#9BB5D4",
+                color: "#1e3a8a",
                 letterSpacing: "1.5px",
                 textTransform: "uppercase",
                 marginBottom: 12,

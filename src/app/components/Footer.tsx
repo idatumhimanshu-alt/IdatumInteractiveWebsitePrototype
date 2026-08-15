@@ -35,7 +35,7 @@ export function Footer({ navigate }: FooterProps) {
             >
               <img
                 src={logoImg}
-                alt="Idatum Logo"
+                alt="Idatum Logo" width="120" height="32"
                 style={{
                   height: 32,
                   width: "auto",
@@ -56,7 +56,7 @@ export function Footer({ navigate }: FooterProps) {
               style={{
                 fontSize: 13,
                 lineHeight: 1.7,
-                color: "#9BB5D4",
+                color: "#1e3a8a",
                 maxWidth: 280,
               }}
             >
@@ -76,7 +76,7 @@ export function Footer({ navigate }: FooterProps) {
                   style={{
                     background: "rgba(26,94,168,0.3)",
                     border: "1px solid rgba(26,94,168,0.5)",
-                    color: "#9BB5D4",
+                    color: "#1e3a8a",
                     fontSize: 10,
                     fontWeight: 600,
                     padding: "3px 8px",
@@ -95,7 +95,7 @@ export function Footer({ navigate }: FooterProps) {
               style={{
                 fontSize: 11,
                 fontWeight: 600,
-                color: "#9BB5D4",
+                color: "#1e3a8a",
                 letterSpacing: "1px",
                 textTransform: "uppercase",
                 marginBottom: 16,
@@ -140,7 +140,7 @@ export function Footer({ navigate }: FooterProps) {
               style={{
                 fontSize: 11,
                 fontWeight: 600,
-                color: "#9BB5D4",
+                color: "#1e3a8a",
                 letterSpacing: "1px",
                 textTransform: "uppercase",
                 marginBottom: 16,
@@ -191,7 +191,7 @@ export function Footer({ navigate }: FooterProps) {
               style={{
                 fontSize: 11,
                 fontWeight: 600,
-                color: "#9BB5D4",
+                color: "#1e3a8a",
                 letterSpacing: "1px",
                 textTransform: "uppercase",
                 marginBottom: 16,
@@ -244,10 +244,10 @@ export function Footer({ navigate }: FooterProps) {
             alignItems: "center",
           }}
         >
-          <p style={{ fontSize: 12, color: "#9BB5D4" }}>
+          <p style={{ fontSize: 12, color: "#1e3a8a" }}>
             © {new Date().getFullYear()} Idatum. All rights reserved.
           </p>
-          <p style={{ fontSize: 12, color: "#9BB5D4" }}>
+          <p style={{ fontSize: 12, color: "#1e3a8a" }}>
             Privacy Policy · Terms of Service
           </p>
         </div>
