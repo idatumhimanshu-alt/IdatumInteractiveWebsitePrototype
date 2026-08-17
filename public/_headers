@@ -1,0 +1,7 @@
+# API Catalog Content-Type
+/.well-known/api-catalog
+  Content-Type: application/linkset+json
+
+# Homepage Link Headers for Agent Discovery
+/
+  Link: </.well-known/api-catalog>; rel="api-catalog"
