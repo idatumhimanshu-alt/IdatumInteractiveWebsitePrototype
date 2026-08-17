@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 type Page = string;
 interface Props { navigate: (page: Page) => void; }
 
@@ -47,6 +49,15 @@ const benefits = [
 ];
 
 export function WhyPartner({ navigate }: Props) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize(); // Set initial value
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div style={{ overflowX: "hidden", maxWidth: "100vw", boxSizing: "border-box", fontFamily: "var(--font-sans)", paddingTop: 64 }}>
       {/* Header */}
@@ -66,7 +77,14 @@ export function WhyPartner({ navigate }: Props) {
 
       {/* Benefits */}
       <section style={{ padding: "60px 16px", maxWidth: 1280, margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
+        <div 
+          style={{ 
+            display: "grid", 
+            // 🚨 THIS FIXES THE ISSUE: Switches from fixed 3 columns to responsive auto-stacking columns
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", 
+            gap: 24 
+          }}
+        >
           {benefits.map((b) => (
             <div
               key={b.title}
@@ -104,7 +122,14 @@ export function WhyPartner({ navigate }: Props) {
       <section style={{ background: "#F1F5FA", padding: "64px 16px", borderTop: "1px solid #D1DCE8" }}>
         <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
           <h2 style={{ fontSize: 28, fontWeight: 700, color: "#0D2B5A", marginBottom: 40 }}>What Our Partners Say</h2>
-          <div style={{ display: "grid", gridTemplateColumns: window.innerWidth < 768 ? "1fr" : "1fr 1fr", gap: 24 }}>
+          <div 
+            style={{ 
+              display: "grid", 
+              // Removed window.innerWidth logic in favor of robust auto-fit to prevent hydration/resizing bugs
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", 
+              gap: 24 
+            }}
+          >
             {[
               {
                 quote: "Adding Idatum to our service portfolio was the easiest expansion decision we've made. Our clients trust them, and the revenue share is genuinely competitive.",
