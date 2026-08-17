@@ -24,8 +24,15 @@ interface Props {
 
 export function ServicesIntro({ navigate }: Props) {
   const [activeSection, setActiveSection] = useState("cert");
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
 
-  // Section Refs for Scrollspy & Quick-Nav (Updated with toolkits and ondemand)
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth >= 1024);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Section Refs for Scrollspy & Quick-Nav
   const sectionRefs = {
     cert: useRef<HTMLDivElement>(null),
     mgmt: useRef<HTMLDivElement>(null),
@@ -125,7 +132,8 @@ export function ServicesIntro({ navigate }: Props) {
   return (
     <div
       style={{
-        overflowX: "hidden",
+        // 🚨 OVERFLOW HIDDEN WAS REMOVED HERE 🚨
+        // This is what previously broke `position: sticky` and forced the sidebar to scroll away!
         fontFamily: "var(--font-sans)",
         background: "#F8FAFC",
         paddingTop: 64,
@@ -180,7 +188,6 @@ export function ServicesIntro({ navigate }: Props) {
             </p>
           </div>
 
-          {/* The 8 Interactive Gateway Cards Grid */}
           <div
             style={{
               display: "grid",
@@ -295,29 +302,34 @@ export function ServicesIntro({ navigate }: Props) {
         </div>
       </section>
 
-      {/* ── 2. Story-Scroller Split Layout (Deep Dives) ── */}
+      {/* ── 2. Split Layout with Native Sticky Sidebar ── */}
       <section
         style={{
           maxWidth: 1400,
           margin: "0 auto",
-          padding: "64px 16px",
+          padding: "64px 24px",
           display: "flex",
-          flexDirection: window.innerWidth < 1024 ? "column" : "row",
+          flexDirection: isDesktop ? "row" : "column",
+          alignItems: "flex-start", // Crucial: prevents sidebar from stretching to 100% height
           gap: 32,
-          position: "relative",
         }}
       >
-        {/* LEFT: Sticky Scrollspy Sidebar */}
+        {/* LEFT: Perfectly Sticky Sidebar */}
         <div
           style={{
-            width: window.innerWidth < 1024 ? "100%" : "280px",
+            width: isDesktop ? "280px" : "100%",
             flexShrink: 0,
+            position: isDesktop ? "sticky" : "relative", // Changed from Fixed to Sticky
+            top: isDesktop ? 100 : "auto", // Triggers 100px from the top of the viewport
+            height: isDesktop ? "calc(100vh - 120px)" : "auto",
+            overflowY: isDesktop ? "auto" : "visible",
+            paddingRight: isDesktop ? 12 : 0,
+            background: "#F8FAFC", // Prevents transparency overlap issues
+            zIndex: 10,
           }}
         >
           <div
             style={{
-              position: "sticky",
-              top: 100,
               display: "flex",
               flexDirection: "column",
               gap: 8,
@@ -515,7 +527,6 @@ export function ServicesIntro({ navigate }: Props) {
                 marginBottom: 48,
               }}
             >
-              {/* GAP Analysis */}
               <div
                 style={{
                   background: "#ffffff",
@@ -552,7 +563,6 @@ export function ServicesIntro({ navigate }: Props) {
                 </p>
               </div>
 
-              {/* Documentation Design */}
               <div
                 style={{
                   background: "#ffffff",
@@ -589,7 +599,6 @@ export function ServicesIntro({ navigate }: Props) {
                 </p>
               </div>
 
-              {/* Internal Audits */}
               <div
                 style={{
                   background: "#ffffff",
@@ -625,7 +634,6 @@ export function ServicesIntro({ navigate }: Props) {
                 </p>
               </div>
 
-              {/* Awareness & Standard-specific Training */}
               <div
                 style={{
                   background: "#ffffff",
@@ -663,7 +671,6 @@ export function ServicesIntro({ navigate }: Props) {
                 </p>
               </div>
 
-              {/* Certification Body Co-ordination */}
               <div
                 style={{
                   background: "#ffffff",
