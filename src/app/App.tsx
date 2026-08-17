@@ -73,7 +73,7 @@ const VALID_PAGES: Page[] = [
 ];
 
 const PAGE_TITLES: Record<Page, string> = {
-  hero: "Idatum | Enterprise Compliance & Tech Solutions",
+  hero: "Idatum | Compliance",
   choose: "Idatum | Choose Your Path",
   "why-idatum": "Idatum | Why Idatum",
   "about-us": "Idatum | About Us",
