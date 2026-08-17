@@ -75,15 +75,39 @@ const phases = [
 
 export function ServicesTimeline({ navigate }: Props) {
   return (
-    <div style={{ fontFamily: "var(--font-sans)", paddingTop: 64 }}>
+    <div
+      style={{
+        overflowX: "hidden",
+        maxWidth: "100vw",
+        boxSizing: "border-box",
+        fontFamily: "var(--font-sans)",
+        paddingTop: 64,
+        paddingBottom: 120, // 👈 Prevents the "Back to Top" button from covering bottom elements
+      }}
+    >
       {/* Header */}
-      <section style={{ background: "#0D2B5A", padding: "64px 40px" }}>
-        <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
+      <section
+        style={{
+          background: "#0D2B5A",
+          padding: "64px 16px",
+          boxSizing: "border-box",
+          width: "100%",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: 720,
+            margin: "0 auto",
+            textAlign: "center",
+            boxSizing: "border-box",
+            width: "100%",
+          }}
+        >
           <p
             style={{
               fontSize: 12,
               fontWeight: 600,
-              color: "#1e3a8a",
+              color: "#64FFDA",
               letterSpacing: "1.5px",
               textTransform: "uppercase",
               marginBottom: 12,
@@ -99,6 +123,7 @@ export function ServicesTimeline({ navigate }: Props) {
               lineHeight: 1.2,
               letterSpacing: "-0.8px",
               marginBottom: 20,
+              wordBreak: "break-word",
             }}
           >
             The Quality Assurance Engagement Timeline
@@ -112,7 +137,13 @@ export function ServicesTimeline({ navigate }: Props) {
 
       {/* Timeline */}
       <section
-        style={{ padding: "80px 40px", maxWidth: 900, margin: "0 auto" }}
+        style={{
+          padding: "80px 16px",
+          maxWidth: 900,
+          margin: "0 auto",
+          boxSizing: "border-box",
+          width: "100%",
+        }}
       >
         <div style={{ position: "relative" }}>
           {/* Vertical line */}
@@ -132,7 +163,7 @@ export function ServicesTimeline({ navigate }: Props) {
               key={phase.num}
               style={{
                 display: "flex",
-                gap: 32,
+                gap: 24,
                 marginBottom: i < phases.length - 1 ? 48 : 0,
                 position: "relative",
               }}
@@ -166,8 +197,10 @@ export function ServicesTimeline({ navigate }: Props) {
                   background: "#fff",
                   border: "1px solid #D1DCE8",
                   borderRadius: 10,
-                  padding: 28,
+                  padding: 24,
                   marginTop: 4,
+                  boxSizing: "border-box",
+                  width: "100%",
                 }}
               >
                 <div
@@ -176,10 +209,16 @@ export function ServicesTimeline({ navigate }: Props) {
                     justifyContent: "space-between",
                     alignItems: "flex-start",
                     marginBottom: 12,
+                    flexWrap: "wrap",
+                    gap: 8,
                   }}
                 >
                   <h3
-                    style={{ fontSize: 19, fontWeight: 700, color: "#0D2B5A" }}
+                    style={{
+                      fontSize: 19,
+                      fontWeight: 700,
+                      color: "#0D2B5A",
+                    }}
                   >
                     {phase.title}
                   </h3>
@@ -192,7 +231,6 @@ export function ServicesTimeline({ navigate }: Props) {
                       padding: "4px 12px",
                       borderRadius: 20,
                       whiteSpace: "nowrap",
-                      marginLeft: 16,
                     }}
                   >
                     {phase.duration}
@@ -237,10 +275,14 @@ export function ServicesTimeline({ navigate }: Props) {
             marginTop: 64,
             background: "#0D2B5A",
             borderRadius: 12,
-            padding: "40px 48px",
+            padding: "32px 24px",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            flexWrap: "wrap",
+            gap: 20,
+            boxSizing: "border-box",
+            width: "100%",
           }}
         >
           <div>
@@ -254,7 +296,7 @@ export function ServicesTimeline({ navigate }: Props) {
             >
               Ready to start your compliance journey?
             </h3>
-            <p style={{ fontSize: 14, color: "#1e3a8a" }}>
+            <p style={{ fontSize: 14, color: "#C5D8EE" }}>
               Discuss your timeline and scope with one of our specialists.
             </p>
           </div>
@@ -270,7 +312,6 @@ export function ServicesTimeline({ navigate }: Props) {
               fontWeight: 700,
               borderRadius: 6,
               whiteSpace: "nowrap",
-              marginLeft: 32,
             }}
           >
             Discuss Your Timeline

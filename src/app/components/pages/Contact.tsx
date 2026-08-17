@@ -32,7 +32,6 @@ export function Contact({ navigate: _navigate }: Props) {
 
     try {
       const formData = new FormData();
-      // Using your contactusidatum access key
       formData.append("access_key", "31de9044-687f-4a9e-aded-572344017b1a");
       formData.append(
         "subject",
@@ -70,15 +69,27 @@ export function Contact({ navigate: _navigate }: Props) {
     return (
       <div
         style={{
+          overflowX: "hidden",
+          maxWidth: "100vw",
+          boxSizing: "border-box",
           fontFamily: "var(--font-sans)",
           paddingTop: 64,
+          paddingBottom: 120,
           minHeight: "80vh",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
         }}
       >
-        <div style={{ textAlign: "center", maxWidth: 520, padding: "40px" }}>
+        <div
+          style={{
+            textAlign: "center",
+            maxWidth: 520,
+            padding: "40px",
+            boxSizing: "border-box",
+            width: "100%",
+          }}
+        >
           <div
             style={{
               width: 72,
@@ -156,20 +167,39 @@ export function Contact({ navigate: _navigate }: Props) {
   }
 
   return (
-    <div style={{ fontFamily: "var(--font-sans)", paddingTop: 64 }}>
+    <div
+      style={{
+        overflowX: "hidden",
+        maxWidth: "100vw",
+        boxSizing: "border-box",
+        fontFamily: "var(--font-sans)",
+        paddingTop: 64,
+        paddingBottom: 120,
+      }}
+    >
       {/* Header */}
       <section
         style={{
           background: "linear-gradient(135deg, #0D2B5A 0%, #1A4A8A 100%)",
-          padding: "72px 40px",
+          padding: "72px 16px",
+          boxSizing: "border-box",
+          width: "100%",
         }}
       >
-        <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
+        <div
+          style={{
+            maxWidth: 720,
+            margin: "0 auto",
+            textAlign: "center",
+            boxSizing: "border-box",
+            width: "100%",
+          }}
+        >
           <p
             style={{
               fontSize: 12,
               fontWeight: 600,
-              color: "#1e3a8a",
+              color: "#64FFDA",
               letterSpacing: "1.5px",
               textTransform: "uppercase",
               marginBottom: 12,
@@ -185,6 +215,7 @@ export function Contact({ navigate: _navigate }: Props) {
               lineHeight: 1.2,
               letterSpacing: "-0.8px",
               marginBottom: 16,
+              wordBreak: "break-word",
             }}
           >
             Let's Start the Right Conversation.
@@ -199,12 +230,20 @@ export function Contact({ navigate: _navigate }: Props) {
 
       {/* Form + sidebar */}
       <section
-        style={{ padding: "72px 40px", maxWidth: 1100, margin: "0 auto" }}
+        style={{
+          padding: "72px 16px",
+          maxWidth: 1100,
+          margin: "0 auto",
+          boxSizing: "border-box",
+          width: "100%",
+        }}
       >
-        {/* Replaced rigid grid with ResponsiveGrid: stacks on mobile, side-by-side on desktop */}
-        <ResponsiveGrid minColWidth={400} gap={60}>
+        <ResponsiveGrid
+          minColWidth={window.innerWidth < 768 ? 280 : 400}
+          gap={40}
+        >
           {/* Form */}
-          <div>
+          <div style={{ boxSizing: "border-box", width: "100%" }}>
             {/* Inquiry type selector */}
             <div style={{ marginBottom: 36 }}>
               <p
@@ -245,6 +284,7 @@ export function Contact({ navigate: _navigate }: Props) {
                       cursor: "pointer",
                       transition: "all 0.15s",
                       fontFamily: "var(--font-sans)",
+                      boxSizing: "border-box",
                     }}
                   >
                     {opt}
@@ -273,6 +313,7 @@ export function Contact({ navigate: _navigate }: Props) {
                     window.innerWidth < 768 ? "1fr" : "1fr 1fr",
                   gap: 16,
                   marginBottom: 16,
+                  boxSizing: "border-box",
                 }}
               >
                 {[
@@ -283,7 +324,10 @@ export function Contact({ navigate: _navigate }: Props) {
                   },
                   { label: "Last Name", key: "lastName", placeholder: "Smith" },
                 ].map((field) => (
-                  <div key={field.key}>
+                  <div
+                    key={field.key}
+                    style={{ boxSizing: "border-box", width: "100%" }}
+                  >
                     <label
                       style={{
                         display: "block",
@@ -323,7 +367,13 @@ export function Contact({ navigate: _navigate }: Props) {
                 ))}
               </div>
 
-              <div style={{ marginBottom: 16 }}>
+              <div
+                style={{
+                  marginBottom: 16,
+                  boxSizing: "border-box",
+                  width: "100%",
+                }}
+              >
                 <label
                   style={{
                     display: "block",
@@ -365,6 +415,7 @@ export function Contact({ navigate: _navigate }: Props) {
                     window.innerWidth < 768 ? "1fr" : "1fr 1fr",
                   gap: 16,
                   marginBottom: 16,
+                  boxSizing: "border-box",
                 }}
               >
                 {[
@@ -379,7 +430,10 @@ export function Contact({ navigate: _navigate }: Props) {
                     placeholder: "VP of Compliance",
                   },
                 ].map((field) => (
-                  <div key={field.key}>
+                  <div
+                    key={field.key}
+                    style={{ boxSizing: "border-box", width: "100%" }}
+                  >
                     <label
                       style={{
                         display: "block",
@@ -418,7 +472,13 @@ export function Contact({ navigate: _navigate }: Props) {
                 ))}
               </div>
 
-              <div style={{ marginBottom: 24 }}>
+              <div
+                style={{
+                  marginBottom: 24,
+                  boxSizing: "border-box",
+                  width: "100%",
+                }}
+              >
                 <label
                   style={{
                     display: "block",
@@ -483,6 +543,7 @@ export function Contact({ navigate: _navigate }: Props) {
                   opacity: isSubmitting ? 0.7 : 1,
                   transition: "background 0.15s",
                   fontFamily: "var(--font-sans)",
+                  boxSizing: "border-box",
                 }}
                 onMouseEnter={(e) =>
                   !isSubmitting &&
@@ -499,7 +560,7 @@ export function Contact({ navigate: _navigate }: Props) {
               <p
                 style={{
                   fontSize: 12,
-                  color: "#1e3a8a",
+                  color: "#4A6080",
                   textAlign: "center",
                   marginTop: 12,
                 }}
@@ -511,7 +572,7 @@ export function Contact({ navigate: _navigate }: Props) {
           </div>
 
           {/* Sidebar */}
-          <div>
+          <div style={{ boxSizing: "border-box", width: "100%" }}>
             <div
               style={{
                 background: "#0D2B5A",
@@ -519,6 +580,8 @@ export function Contact({ navigate: _navigate }: Props) {
                 padding: 28,
                 marginBottom: 20,
                 color: "#fff",
+                boxSizing: "border-box",
+                width: "100%",
               }}
             >
               <h3 style={{ fontSize: 17, fontWeight: 700, marginBottom: 20 }}>
@@ -577,7 +640,7 @@ export function Contact({ navigate: _navigate }: Props) {
                     <p
                       style={{
                         fontSize: 12,
-                        color: "#1e3a8a",
+                        color: "#C5D8EE",
                         lineHeight: 1.6,
                       }}
                     >
@@ -594,6 +657,8 @@ export function Contact({ navigate: _navigate }: Props) {
                 border: "1px solid #D1DCE8",
                 borderRadius: 12,
                 padding: 24,
+                boxSizing: "border-box",
+                width: "100%",
               }}
             >
               <h3
@@ -604,41 +669,24 @@ export function Contact({ navigate: _navigate }: Props) {
                   marginBottom: 16,
                 }}
               >
-                Our Offices
+                Our Office
               </h3>
-              {[
-                {
-                  city: "Mumbai",
-                  address:
-                    "Level 14, One BKC, Bandra Kurla Complex, Mumbai 400 051",
-                },
-                {
-                  city: "Bangalore",
-                  address: "Embassy Golf Links, Block N, Bangalore 560 071",
-                },
-                {
-                  city: "Delhi NCR",
-                  address: "Unitech Cyber Park, Sector 39, Gurugram 122 001",
-                },
-              ].map((office) => (
-                <div key={office.city} style={{ marginBottom: 16 }}>
-                  <p
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 700,
-                      color: "#0D2B5A",
-                      marginBottom: 3,
-                    }}
-                  >
-                    {office.city}
-                  </p>
-                  <p
-                    style={{ fontSize: 12, color: "#4A6080", lineHeight: 1.5 }}
-                  >
-                    {office.address}
-                  </p>
-                </div>
-              ))}
+              <div style={{ marginBottom: 16 }}>
+                <p
+                  style={{
+                    fontSize: 13,
+                    fontWeight: 700,
+                    color: "#0D2B5A",
+                    marginBottom: 3,
+                  }}
+                >
+                  Pune
+                </p>
+                <p style={{ fontSize: 12, color: "#4A6080", lineHeight: 1.5 }}>
+                  Flat no 2, Shriniketan Apartments, Sheela Vihar Colony, Karve
+                  Road, Pune 411038
+                </p>
+              </div>
               <div
                 style={{
                   borderTop: "1px solid #D1DCE8",
@@ -647,7 +695,7 @@ export function Contact({ navigate: _navigate }: Props) {
                 }}
               >
                 <p style={{ fontSize: 13, color: "#1A5EA8", fontWeight: 600 }}>
-                  enquiries@idatum.in
+                  idatumconsultants@gmail.com
                 </p>
               </div>
             </div>
