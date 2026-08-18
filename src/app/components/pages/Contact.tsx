@@ -131,8 +131,7 @@ export function Contact({ navigate: _navigate }: Props) {
             }}
           >
             Thank you for reaching out. One of our specialists will review your
-            enquiry regarding <strong>{inquiry}</strong> and respond within one
-            business day.
+            enquiry regarding <strong>{inquiry}</strong> and respond shortly.
           </p>
           <button
             onClick={() => {
@@ -565,8 +564,7 @@ export function Contact({ navigate: _navigate }: Props) {
                   marginTop: 12,
                 }}
               >
-                We respond within one business day. Your information is kept
-                strictly confidential.
+                Your information is kept strictly confidential.
               </p>
             </form>
           </div>
@@ -591,7 +589,7 @@ export function Contact({ navigate: _navigate }: Props) {
                 {
                   step: "1",
                   title: "We review your enquiry",
-                  desc: "Our team reads every message personally and routes it to the right specialist within hours.",
+                  desc: "Our team reads every message personally and routes it to the right specialist.",
                 },
                 {
                   step: "2",

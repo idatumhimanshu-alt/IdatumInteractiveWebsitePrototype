@@ -143,8 +143,7 @@ export function BecomePartner({
             }}
           >
             Our Partner Success team will review your application and reach out
-            within <strong>one business day</strong> to schedule a discovery
-            call.
+            shortly to schedule a discovery call.
           </p>
           <div
             style={{
@@ -169,7 +168,7 @@ export function BecomePartner({
             {[
               {
                 step: "1",
-                text: "We review your application — usually within a few hours during business days.",
+                text: "We review your application carefully to ensure a mutual fit.",
               },
               {
                 step: "2",
@@ -177,7 +176,7 @@ export function BecomePartner({
               },
               {
                 step: "3",
-                text: "If there's a mutual fit, we move to a Partner Agreement — straightforward, no lock-in.",
+                text: "If aligned, we move to a Partner Agreement — straightforward, no lock-in.",
               },
             ].map((s) => (
               <div
@@ -303,8 +302,8 @@ export function BecomePartner({
               lineHeight: 1.8,
             }}
           >
-            Apply today. Onboard in 48 hours. Start delivering value to your
-            clients tomorrow. No joining fee. No long-term lock-in.
+            Apply today. Start delivering value to your clients. No joining fee.
+            No long-term lock-in.
           </p>
         </div>
       </section>
@@ -346,8 +345,8 @@ export function BecomePartner({
                 marginBottom: 32,
               }}
             >
-              Complete the form below. We review every application within one
-              business day.
+              Complete the form below. Our Partner Success team reviews every
+              application carefully.
             </p>
 
             {error && (
@@ -899,7 +898,7 @@ export function BecomePartner({
                 "Co-branded marketing materials",
                 "Deal registration protection",
                 "White-label option available",
-                "48-hour onboarding",
+                "Fast, streamlined onboarding",
               ].map((item) => (
                 <div
                   key={item}
