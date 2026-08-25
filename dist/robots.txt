@@ -1,4 +1,21 @@
+# https://www.robotstxt.org/robotstxt.html
+
 User-agent: *
 Allow: /
 
+# Explicitly allow AI Crawlers so they know they are welcome
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+
+# Sitemap reference
 Sitemap: https://idatumsystemstech.com/sitemap.xml

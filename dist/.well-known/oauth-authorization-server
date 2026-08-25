@@ -1,0 +1,25 @@
+{
+  "issuer": "https://idatumsystemstech.com",
+  "agent_auth": {
+    "skill": "https://idatumsystemstech.com/agent-registration",
+    "register_uri": "https://api.idatumsystemstech.com/agent/register",
+    "identity_types_supported": [
+      "anonymous",
+      "identity_assertion"
+    ],
+    "anonymous": {
+      "credential_types_supported": ["client_secret_basic"]
+    },
+    "identity_assertion": {
+      "assertion_types_supported": [
+        "urn:ietf:params:oauth:token-type:id-jag",
+        "verified_email"
+      ]
+    },
+    "claim_uri": "https://api.idatumsystemstech.com/agent/claim",
+    "revocation_uri": "https://api.idatumsystemstech.com/agent/revoke"
+  },
+  "events_supported": [
+    "https://schemas.openid.net/secevent/oauth/token-revoked"
+  ]
+}

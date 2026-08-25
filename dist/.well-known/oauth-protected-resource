@@ -1,0 +1,8 @@
+{
+  "resource": "https://api.idatumsystemstech.com",
+  "authorization_servers": [
+    "https://idatumsystemstech.com"
+  ],
+  "scopes_supported": ["read", "write"],
+  "bearer_methods_supported": ["header"]
+}
