@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "build": "vite build && node scripts/prerender.js",
+    "build": "vite build && npx tsx scripts/prerender.js",
     "dev": "vite"
   },
   "dependencies": {
@@ -68,7 +68,10 @@
   "devDependencies": {
     "@tailwindcss/vite": "4.1.12",
     "@vitejs/plugin-react": "4.7.0",
+    "playwright": "^1.62.1",
+    "serve-handler": "^6.1.7",
     "tailwindcss": "4.1.12",
+    "tsx": "^4.23.12",
     "vite": "6.3.5"
   },
   "peerDependencies": {
