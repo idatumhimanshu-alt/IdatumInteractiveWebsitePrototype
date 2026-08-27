@@ -97,7 +97,40 @@ const PAGE_TITLES: Record<Page, string> = {
 };
 
 export default function App() {
+  // Real URL path -> Page. Must match the folder structure written by
+  // scripts/prerender.js.
+  const PATH_TO_PAGE: Record<string, Page> = {
+    "/": "hero",
+    "/explore": "choose",
+    "/why-idatum": "why-idatum",
+    "/about-us": "about-us",
+    "/services": "services-intro",
+    "/services/partner-vs-vendor": "partner-vs-vendor",
+    "/services/timeline": "services-timeline",
+    "/services/process": "process-built",
+    "/services/why-choose-us": "why-choose-services",
+    "/syscomply": "syscomply-intro",
+    "/academy": "academy-intro",
+    "/academy/how-we-train": "how-we-train",
+    "/academy/tracks": "training-tracks",
+    "/academy/courses": "browse-courses",
+    "/academy/courses/posh": "posh-detail",
+    "/partner": "partner-intro",
+    "/partner/why-partner": "why-partner",
+    "/partner/apply": "become-partner",
+    "/trainer-onboarding": "trainer-onboarding",
+    "/auditor-onboarding": "auditor-onboarding",
+    "/contact": "contact",
+  };
+
   const getInitialPage = (): Page => {
+    // 1. Real URL path takes priority (this is what crawlers and direct
+    //    visits/refreshes use).
+    const path = window.location.pathname.replace(/\/$/, "") || "/";
+    if (PATH_TO_PAGE[path]) {
+      return PATH_TO_PAGE[path];
+    }
+    // 2. Fall back to hash (keeps old #hash links / in-app nav working).
     const hash = window.location.hash.replace("#", "");
     if (VALID_PAGES.includes(hash as Page)) {
       return hash as Page;
