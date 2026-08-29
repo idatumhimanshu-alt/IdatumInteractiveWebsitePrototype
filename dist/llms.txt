@@ -6,27 +6,27 @@
 - [Home](https://idatumsystemstech.com/) — Enterprise compliance consulting, QA auditing, and training hub.
 - [About Us](https://idatumsystemstech.com/about-us) — Company background and mission.
 - [Why Idatum](https://idatumsystemstech.com/why-idatum) — What differentiates Idatum from competitors.
-- [Choose Your Path](https://idatumsystemstech.com/choose-your-path) — Guided navigation for visitors.
+- [Choose Your Path](https://idatumsystemstech.com/explore) — Guided navigation for visitors.
 - [Contact Us](https://idatumsystemstech.com/contact) — Direct communication channels for inquiries.
 
 ## Services & Solutions
 - [Services Overview](https://idatumsystemstech.com/services) — Comprehensive audit and certification consulting.
-- [Implementation Timeline](https://idatumsystemstech.com/services-timeline) — Step-by-step service delivery roadmap.
-- [Why Choose Our Services](https://idatumsystemstech.com/why-choose-services) — Benefits of partnering with Idatum.
-- [Our Process](https://idatumsystemstech.com/process-built) — How compliance and QA processes are engineered.
+- [Implementation Timeline](https://idatumsystemstech.com/services/timeline) — Step-by-step service delivery roadmap.
+- [Why Choose Our Services](https://idatumsystemstech.com/services/why-choose-us) — Benefits of partnering with Idatum.
+- [Our Process](https://idatumsystemstech.com/services/process) — How compliance and QA processes are engineered.
 - [Syscomply Platform](https://idatumsystemstech.com/syscomply) — Proprietary continuous compliance software.
 
 ## Training Academy
 - [Academy Overview](https://idatumsystemstech.com/academy) — Professional certification courses and corporate training.
-- [Training Tracks](https://idatumsystemstech.com/training-tracks) — Specialized professional learning paths.
-- [Browse All Courses](https://idatumsystemstech.com/browse-all-courses) — Complete course catalog.
-- [How We Train](https://idatumsystemstech.com/how-we-train) — Training methodology and delivery model.
-- [POSH Compliance Course](https://idatumsystemstech.com/posh-course-detail) — Specialized Prevention of Sexual Harassment course.
+- [Training Tracks](https://idatumsystemstech.com/academy/tracks) — Specialized professional learning paths.
+- [Browse All Courses](https://idatumsystemstech.com/academy/courses) — Complete course catalog.
+- [How We Train](https://idatumsystemstech.com/academy/how-we-train) — Training methodology and delivery model.
+- [POSH Compliance Course](https://idatumsystemstech.com/academy/courses/posh) — Specialized Prevention of Sexual Harassment course.
 
 ## Partner Network & Careers
-- [Partners](https://idatumsystemstech.com/partners) — Overview of Idatum's partner network.
-- [Partner Application](https://idatumsystemstech.com/become-partner) — Apply to become a partner.
-- [Why Partner With Us](https://idatumsystemstech.com/why-partner) — Benefits for ecosystem partners.
-- [Partner vs Vendor](https://idatumsystemstech.com/partner-vs-vendor) — Collaborative partnership model breakdown.
+- [Partners](https://idatumsystemstech.com/partner) — Overview of Idatum's partner network.
+- [Partner Application](https://idatumsystemstech.com/partner/apply) — Apply to become a partner.
+- [Why Partner With Us](https://idatumsystemstech.com/partner/why-partner) — Benefits for ecosystem partners.
+- [Partner vs Vendor](https://idatumsystemstech.com/services/partner-vs-vendor) — Collaborative partnership model breakdown.
 - [Trainer Onboarding](https://idatumsystemstech.com/trainer-onboarding) — Portal for professional trainers joining the academy.
 - [Auditor Onboarding](https://idatumsystemstech.com/auditor-onboarding) — Portal for compliance auditors joining the consultancy network.
