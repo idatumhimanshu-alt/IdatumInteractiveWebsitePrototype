@@ -15,6 +15,7 @@ import {
   Activity,
   ChevronRight,
   MessageSquare,
+  Terminal, // Added for VAPT icon
 } from "lucide-react";
 
 type Page = string;
@@ -32,7 +33,6 @@ export function ServicesIntro({ navigate }: Props) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Section Refs for Scrollspy & Quick-Nav
   const sectionRefs = {
     cert: useRef<HTMLDivElement>(null),
     mgmt: useRef<HTMLDivElement>(null),
@@ -74,14 +74,14 @@ export function ServicesIntro({ navigate }: Props) {
     {
       id: "cert",
       title: "Certification Consultancy",
-      desc: "All ISO standards, HIPAA, GDPR, SOC 2, CMMI, TISAX, PCI DSS, gap analysis, documentation, and mock audits.",
+      desc: "ISO 27001 (ISMS), ISO 9001 (QMS), ISO 14001, 45001, IATF 16949, CMMI Development, TISAX, SOC 2, HIPAA, and gap analysis.",
       icon: <Award size={24} />,
       badge: "ISO & Standards",
     },
     {
       id: "mgmt",
       title: "Management System Compliance",
-      desc: "Yearly end-to-end compliance maintenance, internal audits, and CAPA.",
+      desc: "Process definition, QMS/ISMS implementation, continuous process improvement, and CAPA.",
       icon: <ShieldCheck size={24} />,
       badge: "Annual Maintenance",
     },
@@ -109,20 +109,20 @@ export function ServicesIntro({ navigate }: Props) {
     {
       id: "framework",
       title: "Standalone Services",
-      desc: "Targeted GAP assessments, independent internal audits & ongoing compliance maintenance.",
+      desc: "VAPT, targeted GAP assessments, independent internal audits & quality reviews.",
       icon: <CheckCircle2 size={24} />,
       badge: "Global Frameworks",
     },
     {
       id: "toolkits",
       title: "Compliance Toolkits",
-      desc: "Ready-to-use professional toolkits for ISO Standards, HIPAA, GDPR, SOC 2, CMMI, TISAX, PCI DSS.",
+      desc: "Ready-to-use professional toolkits for ISO Standards, CMMI, TISAX, SOC 2, HIPAA.",
       icon: <FileText size={24} />,
       badge: "Toolkits",
     },
     {
       id: "ondemand",
-      title: "On Demand Quality & Security Team",
+      title: "On Demand Quality & Security",
       desc: "Outsource QA, Security, and CISO functions (vCISO & vMR) instead of hiring a separate department.",
       icon: <Users size={24} />,
       badge: "vCISO & vMR",
@@ -132,14 +132,11 @@ export function ServicesIntro({ navigate }: Props) {
   return (
     <div
       style={{
-        // 🚨 OVERFLOW HIDDEN WAS REMOVED HERE 🚨
-        // This is what previously broke `position: sticky` and forced the sidebar to scroll away!
         fontFamily: "var(--font-sans)",
         background: "#F8FAFC",
         paddingTop: 64,
       }}
     >
-      {/* ── 1. Hero Header & 8 Quick-Access Gateway Cards ── */}
       <section
         style={{
           background: "linear-gradient(135deg, #0D2B5A 0%, #15335A 100%)",
@@ -302,7 +299,6 @@ export function ServicesIntro({ navigate }: Props) {
         </div>
       </section>
 
-      {/* ── 2. Split Layout with Native Sticky Sidebar ── */}
       <section
         style={{
           maxWidth: 1400,
@@ -310,21 +306,20 @@ export function ServicesIntro({ navigate }: Props) {
           padding: "64px 24px",
           display: "flex",
           flexDirection: isDesktop ? "row" : "column",
-          alignItems: "flex-start", // Crucial: prevents sidebar from stretching to 100% height
+          alignItems: "flex-start",
           gap: 32,
         }}
       >
-        {/* LEFT: Perfectly Sticky Sidebar */}
         <div
           style={{
             width: isDesktop ? "280px" : "100%",
             flexShrink: 0,
-            position: isDesktop ? "sticky" : "relative", // Changed from Fixed to Sticky
-            top: isDesktop ? 100 : "auto", // Triggers 100px from the top of the viewport
+            position: isDesktop ? "sticky" : "relative",
+            top: isDesktop ? 100 : "auto",
             height: isDesktop ? "calc(100vh - 120px)" : "auto",
             overflowY: isDesktop ? "auto" : "visible",
             paddingRight: isDesktop ? 12 : 0,
-            background: "#F8FAFC", // Prevents transparency overlap issues
+            background: "#F8FAFC",
             zIndex: 10,
           }}
         >
@@ -400,7 +395,6 @@ export function ServicesIntro({ navigate }: Props) {
               );
             })}
 
-            {/* Permanent CTA under Navigation Menu */}
             <div
               style={{
                 marginTop: 24,
@@ -443,7 +437,6 @@ export function ServicesIntro({ navigate }: Props) {
           </div>
         </div>
 
-        {/* RIGHT: Content Feed */}
         <div
           style={{
             flex: 1,
@@ -454,7 +447,6 @@ export function ServicesIntro({ navigate }: Props) {
             minWidth: 0,
           }}
         >
-          {/* BLOCK 1: Certification Consultancy */}
           <div
             id="cert"
             ref={sectionRefs.cert}
@@ -501,9 +493,10 @@ export function ServicesIntro({ navigate }: Props) {
                 marginBottom: 40,
               }}
             >
-              <strong>Standards Covered:</strong> All ISO standards (ISO 27001,
-              ISO 27701, ISO 9001, ISO 14001, ISO 22301, ISO 13485, ISO 62305,
-              ISO 17025, IATF 16949, SPICE).
+              <strong>Standards Covered:</strong> ISO 27001 (ISMS), ISO 9001
+              (QMS), ISO 14001, ISO 45001, IATF 16949, CMMI Development
+              Services, TISAX, ISO 27701, ISO 22301, HIPAA, GDPR, SOC 2, and PCI
+              DSS.
             </p>
 
             <h3
@@ -547,7 +540,7 @@ export function ServicesIntro({ navigate }: Props) {
                 >
                   <Target size={20} />{" "}
                   <h5 style={{ fontSize: 16, fontWeight: 700, margin: 0 }}>
-                    Gap Analysis
+                    Gap Analysis & Process Definition
                   </h5>
                 </div>
                 <p
@@ -558,8 +551,8 @@ export function ServicesIntro({ navigate }: Props) {
                     margin: 0,
                   }}
                 >
-                  Evaluating existing processes to identify missing operational
-                  controls.
+                  Evaluating existing processes, providing rigorous process
+                  definition, and implementing QMS/ISMS operational controls.
                 </p>
               </div>
 
@@ -619,7 +612,7 @@ export function ServicesIntro({ navigate }: Props) {
                 >
                   <Shield size={20} />{" "}
                   <h5 style={{ fontSize: 16, fontWeight: 700, margin: 0 }}>
-                    Internal Audits
+                    Internal Audits & Reviews
                   </h5>
                 </div>
                 <p
@@ -630,7 +623,8 @@ export function ServicesIntro({ navigate }: Props) {
                     margin: 0,
                   }}
                 >
-                  Performing mock audits to correct non-conformities beforehand.
+                  Performing mock audits and independent quality reviews to
+                  correct non-conformities beforehand.
                 </p>
               </div>
 
@@ -654,7 +648,7 @@ export function ServicesIntro({ navigate }: Props) {
                 >
                   <Users size={20} />{" "}
                   <h5 style={{ fontSize: 16, fontWeight: 700, margin: 0 }}>
-                    Awareness & Standard-specific Training
+                    Awareness & Internal Auditor Training
                   </h5>
                 </div>
                 <p
@@ -665,9 +659,8 @@ export function ServicesIntro({ navigate }: Props) {
                     margin: 0,
                   }}
                 >
-                  Conducting internal auditor workshops and awareness training
-                  sessions for all ISO Standards, HIPAA, GDPR, SOC 2, CMMI,
-                  TISAX, PCI DSS.
+                  Conducting ISO 27001 awareness, internal auditor modules, and
+                  workshops for CMMI, TISAX, and PCI DSS.
                 </p>
               </div>
 
@@ -739,12 +732,12 @@ export function ServicesIntro({ navigate }: Props) {
                   desc: "Defining project scope, choosing the appropriate standard, and setting timelines.",
                 },
                 {
-                  title: "Process Mapping",
-                  desc: "Aligning internal company workflows with standard clauses.",
+                  title: "Process Mapping & Definition",
+                  desc: "Aligning internal company workflows with standard clauses and defining implementation metrics.",
                 },
                 {
                   title: "Implementation & Rollout",
-                  desc: "Deploying new workflows and documenting operational evidence.",
+                  desc: "Deploying new workflows, operational controls, and documenting evidentiary artifacts.",
                 },
                 {
                   title: "Final Certification Audit",
@@ -805,7 +798,6 @@ export function ServicesIntro({ navigate }: Props) {
             }}
           />
 
-          {/* BLOCK 2: Management System Compliance */}
           <div
             id="mgmt"
             ref={sectionRefs.mgmt}
@@ -853,8 +845,9 @@ export function ServicesIntro({ navigate }: Props) {
               }}
             >
               Available as a standalone service or as a bundle, we provide
-              end-to-end Management System Compliance for a service period of 1
-              year, ensuring continuous audit-readiness.
+              end-to-end Quality Management System (QMS) and Information
+              Security Management System (ISMS) compliance. This ensures
+              continuous improvement and permanent audit-readiness.
             </p>
 
             <div
@@ -867,11 +860,15 @@ export function ServicesIntro({ navigate }: Props) {
               {[
                 {
                   title: "Standard Mapping & Alignment",
-                  desc: "Cross-referencing internal company processes against specific clauses of a chosen standard.",
+                  desc: "Cross-referencing internal company processes against QMS/ISMS clauses.",
                 },
                 {
                   title: "Documented Information Control",
                   desc: "Maintaining and updating policies, manuals, SOPs, and operational records.",
+                },
+                {
+                  title: "Continuous Process Improvement",
+                  desc: "Designing iterative workflows that evolve with business maturity.",
                 },
                 {
                   title: "Internal Auditing Program",
@@ -883,7 +880,7 @@ export function ServicesIntro({ navigate }: Props) {
                 },
                 {
                   title: "Management Review",
-                  desc: "Periodic evaluations by executive leadership to assess system suitability and adequacy.",
+                  desc: "Periodic evaluations by executive leadership to assess system suitability.",
                 },
               ].map((item, idx) => (
                 <div
@@ -930,7 +927,6 @@ export function ServicesIntro({ navigate }: Props) {
             }}
           />
 
-          {/* BLOCK 3: Second Party Auditing */}
           <div
             id="audit"
             ref={sectionRefs.audit}
@@ -1031,7 +1027,6 @@ export function ServicesIntro({ navigate }: Props) {
             }}
           />
 
-          {/* BLOCK 4: Data Center Compliance */}
           <div id="dc" ref={sectionRefs.dc} style={{ scrollMarginTop: 100 }}>
             <div
               style={{
@@ -1197,7 +1192,6 @@ export function ServicesIntro({ navigate }: Props) {
             }}
           />
 
-          {/* BLOCK 5: Risk Management */}
           <div
             id="risk"
             ref={sectionRefs.risk}
@@ -1325,7 +1319,6 @@ export function ServicesIntro({ navigate }: Props) {
             }}
           />
 
-          {/* BLOCK 6: Standalone Services */}
           <div
             id="framework"
             ref={sectionRefs.framework}
@@ -1372,13 +1365,11 @@ export function ServicesIntro({ navigate }: Props) {
                 marginBottom: 24,
               }}
             >
-              Targeted GAP assessments, independent internal audits & ongoing
-              compliance maintenance. Hover over any service card to see the
-              frameworks (GDPR, HIPAA, SOC 2, CMMI, TISAX, PCI DSS, etc.) they
-              are performed for.
+              Targeted GAP assessments, VAPT, independent internal audits &
+              ongoing compliance maintenance. Hover over any service card to see
+              the frameworks they are performed for.
             </p>
 
-            {/* Framework Name Strip */}
             <div
               style={{
                 background: "#E0F2FE",
@@ -1404,13 +1395,17 @@ export function ServicesIntro({ navigate }: Props) {
                 Covered Frameworks:
               </span>
               {[
+                "ISO 27001",
+                "ISO 9001",
+                "ISO 14001",
+                "ISO 45001",
+                "IATF 16949",
                 "HIPAA",
                 "GDPR",
                 "SOC 2",
                 "CMMI",
                 "TISAX",
                 "PCI DSS",
-                "ISO Standards",
               ].map((name, i) => (
                 <span
                   key={i}
@@ -1438,28 +1433,28 @@ export function ServicesIntro({ navigate }: Props) {
             >
               {[
                 {
+                  title: "VAPT Services",
+                  desc: "Vulnerability Assessment & Penetration Testing to identify infrastructure gaps, ensuring robust ISMS and ISO 27001 compliance.",
+                },
+                {
                   title: "Gap Analysis",
-                  desc: "Conducted for GDPR, HIPAA, SOC 2, CMMI, TISAX, PCI DSS, and ISO standards to evaluate baseline compliance.",
+                  desc: "Conducted for ISO standards, CMMI, TISAX, GDPR, SOC 2, and PCI DSS to evaluate QMS/ISMS baseline compliance.",
                 },
                 {
                   title: "Documentation Design",
-                  desc: "Policies, SOPs, and quality manuals designed for GDPR, HIPAA, SOC 2, CMMI, TISAX, PCI DSS.",
+                  desc: "Policies, SOPs, and quality manuals designed across frameworks.",
                 },
                 {
                   title: "Awareness Training",
-                  desc: "Workforce and stakeholder training conducted for GDPR, HIPAA, SOC 2, CMMI, TISAX, PCI DSS.",
+                  desc: "Workforce and stakeholder training conducted for ISO standards, CMMI, TISAX, and more.",
                 },
                 {
                   title: "Readiness Audits",
-                  desc: "Mock audits and pre-assessment checks performed for GDPR, HIPAA, SOC 2, CMMI, TISAX, PCI DSS.",
+                  desc: "Mock audits and pre-assessment quality reviews performed prior to certification.",
                 },
                 {
                   title: "Assessment Body Coordination",
-                  desc: "Liaison and scheduling support with certification bodies across GDPR, HIPAA, SOC 2, CMMI, TISAX, PCI DSS.",
-                },
-                {
-                  title: "Compliance Toolkits",
-                  desc: "Ready-to-use professional toolkits and documentation packs for GDPR, HIPAA, SOC 2, CMMI, TISAX, PCI DSS.",
+                  desc: "Liaison and scheduling support with certification bodies across global frameworks.",
                 },
               ].map((service, idx) => (
                 <div
@@ -1560,7 +1555,6 @@ export function ServicesIntro({ navigate }: Props) {
             }}
           />
 
-          {/* BLOCK 7: Compliance Toolkits */}
           <div
             id="toolkits"
             ref={sectionRefs.toolkits}
@@ -1596,8 +1590,7 @@ export function ServicesIntro({ navigate }: Props) {
                   margin: 0,
                 }}
               >
-                7. Compliance Toolkits for ISO Standards, HIPAA, GDPR, SOC 2,
-                CMMI, TISAX, PCI DSS
+                7. Compliance Toolkits
               </h2>
             </div>
             <p
@@ -1610,7 +1603,8 @@ export function ServicesIntro({ navigate }: Props) {
             >
               Accelerate your compliance journey with our extensive library of
               audit-ready toolkits, policies, quality manuals, and operational
-              checklists pre-configured for global frameworks.
+              checklists pre-configured for ISO Standards, CMMI, TISAX, HIPAA,
+              GDPR, and SOC 2.
             </p>
 
             <div
@@ -1696,7 +1690,6 @@ export function ServicesIntro({ navigate }: Props) {
             }}
           />
 
-          {/* BLOCK 8: On Demand Quality & Security Team (vCISO / vMR) */}
           <div
             id="ondemand"
             ref={sectionRefs.ondemand}

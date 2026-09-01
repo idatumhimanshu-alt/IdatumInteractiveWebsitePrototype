@@ -14,7 +14,7 @@ const tracks = [
   {
     label: "ISMS",
     color: "#0D6B4E",
-    desc: "Information Security Management",
+    desc: "ISO 27001 Awareness & Internal Auditor Modules",
   },
   {
     label: "SOC 2",
@@ -24,7 +24,7 @@ const tracks = [
   {
     label: "ISO",
     color: "#8B4513",
-    desc: "International Standards",
+    desc: "ISO 9001, 14001, 45001 & IATF 16949",
   },
   {
     label: "ITGC",
@@ -34,7 +34,7 @@ const tracks = [
   {
     label: "Audit",
     color: "#2B6A7C",
-    desc: "Internal Audit Excellence",
+    desc: "Internal Audit Excellence & Quality Reviews",
   },
 ];
 
@@ -376,8 +376,8 @@ export function AcademyIntro({ navigate }: Props) {
                   desc: "All courses are mapped to recognized certification bodies and audit standards, so learning translates directly to verifiable credentials.",
                 },
                 {
-                  title: "Flexible Delivery",
-                  desc: "Live virtual, in-person, and self-paced modules available. We match delivery to your team's schedule and learning preferences.",
+                  title: "Targeted Auditor Modules",
+                  desc: "Specialized ISO 27001 Awareness and Internal Auditor modules designed to upskill your workforce rapidly.",
                 },
                 {
                   title: "Customizable Content",

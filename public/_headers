@@ -5,3 +5,8 @@
 # Homepage Link Headers for Agent Discovery
 /
   Link: </.well-known/api-catalog>; rel="api-catalog"
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+/robots.txt
+  Content-Type: text/plain; charset=utf-8
